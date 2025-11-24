@@ -4,7 +4,7 @@ Hráč se probouzí uprostřed akce – během vloupání do banky se něco zvrt
 
 ## Herní princip
 
-Hráč začíná v trezoru na šestém patře, kde může klikáním sbírat rozházené peníze. Po krátké úvodní interakci zjistí, že všechny východy jsou zablokované a jediná cesta ven vede dolů – přes jednotlivá patra banky.
+Hráč začíná v trezoru na pátém patře, kde může klikáním sbírat rozházené peníze. Po krátké úvodní interakci zjistí, že všechny východy jsou zablokované a jediná cesta ven vede dolů – přes jednotlivá patra banky.
 
 Z každého patra lze uniknout pouze splněním jedné minihry. Úspěšně dokončená minihra hráči odemkne klíč k nižšímu patru. Postupně tak sestupuje až k východu z budovy. Každá minihra tematicky odpovídá zabezpečení daného patra.
 
