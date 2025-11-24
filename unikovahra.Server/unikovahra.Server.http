@@ -1,0 +1,6 @@
+@unikovahra.Server_HostAddress = http://localhost:5080
+
+GET {{unikovahra.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

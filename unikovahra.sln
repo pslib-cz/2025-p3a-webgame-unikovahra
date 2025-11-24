@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "unikovahra.client", "unikovahra.client\unikovahra.client.esproj", "{FA039CBA-AA28-C10F-E7F9-431D83C8A88D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unikovahra.Server", "unikovahra.Server\unikovahra.Server.csproj", "{B639C3F6-05D4-4679-9EAE-49B2AB29512B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA039CBA-AA28-C10F-E7F9-431D83C8A88D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA039CBA-AA28-C10F-E7F9-431D83C8A88D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA039CBA-AA28-C10F-E7F9-431D83C8A88D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FA039CBA-AA28-C10F-E7F9-431D83C8A88D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA039CBA-AA28-C10F-E7F9-431D83C8A88D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA039CBA-AA28-C10F-E7F9-431D83C8A88D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B639C3F6-05D4-4679-9EAE-49B2AB29512B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B639C3F6-05D4-4679-9EAE-49B2AB29512B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B639C3F6-05D4-4679-9EAE-49B2AB29512B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B639C3F6-05D4-4679-9EAE-49B2AB29512B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7EA7123-2B18-47CE-A46E-F68280EE5DFE}
+	EndGlobalSection
+EndGlobal
