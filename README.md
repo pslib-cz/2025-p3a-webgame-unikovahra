@@ -71,3 +71,8 @@ Na displeji běží několik sloupců s čísly 0–9, která se nepřetržitě 
 - [ ] Bankovní systém
 - [ ] Elektrický rozvaděč
 - [ ] Design
+
+# Odkazy
+
+[Figma](https://www.figma.com/design/p6w8yuVkiAh8u9b4hsM29T/Projekt-WEB---MPA--Jezbera--Adam--Proch%C3%A1zka-T.-?node-id=4-39&t=O9c0IQY7WmTthhBV-1)
+[Web]()
