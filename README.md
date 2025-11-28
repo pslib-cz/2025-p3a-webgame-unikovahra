@@ -60,7 +60,6 @@ Na displeji běží několik sloupců s čísly 0–9, která se nepřetržitě 
 ## Tomáš Procházka
 - [ ] Gamebook
 - [ ] Číselný zámek
-- [ ] Design
 
 ## Jakub Jezbera
 - [ ] Bezpečnostní tablet
@@ -70,7 +69,7 @@ Na displeji běží několik sloupců s čísly 0–9, která se nepřetržitě 
 ## Jakub Adam
 - [ ] Bankovní systém
 - [ ] Elektrický rozvaděč
-- [ ] Design
+- [ ] Zvukové efekty
 
 # Odkazy
 
