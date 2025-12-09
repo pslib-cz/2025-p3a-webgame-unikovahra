@@ -26,7 +26,7 @@ namespace unikovahra.Server.Data
                     NextA = 2,
                     OptionB = "Hledat vypínač sirény",
                     NextB = 3,
-                    ImageUrl = "/images/scene1.jpg"
+                    ImageUrl = "/images/img6.jpg"
                 },
                 new StoryNode
                 {
