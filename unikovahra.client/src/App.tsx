@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import RootLayout from "./pages/RootLayout";
+import StartPage from "./pages/StartPage";
+
+import GamebookPage, {gamebookLoader} from "./pages/GamebookPage";
+import SwitchboardPage from "./pages/SwitchboardPage";
+import TabletPage from "./pages/TabletPage";
+import HackingPage from "./pages/HackingPage";
+import KeylockPage from "./pages/KeylockPage";
+import DollarPage from "./pages/DollarPage";
+import MoneyGrabPage from "./pages/MoneyGrabPage";
+import FinishPage from "./pages/FinishPage";
+import NotFoundPage from "./pages/NotFoundPage";
+
+import MinigameInitialPage, {minigameLoader} from "./pages/MinigameInitialPage";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<StartPage />} />
+
+        <Route path="gamebook/:id" element={<GamebookPage />} loader={gamebookLoader} errorElement={<NotFoundPage />} />
+
+
+        <Route path="minigame" element={<MinigameInitialPage />} loader={minigameLoader} errorElement={<NotFoundPage />} />
+        {/*  jeste jedna stranka jako pravidla pro kazdou minihru? */ }
+
+        <Route path="minigame/switchboard" element={<SwitchboardPage />} />
+        <Route path="minigame/tablet" element={<TabletPage />} />
+        <Route path="minigame/hacking" element={<HackingPage />} />
+        <Route path="minigame/keylock" element={<KeylockPage />} />
+        <Route path="minigame/dollar" element={<DollarPage />} />
+        <Route path="minigame/moneygrab" element={<MoneyGrabPage />} />
+
+        <Route path="finish" element={<FinishPage />} />
+
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
