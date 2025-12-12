@@ -75,7 +75,7 @@ const GamebookPage = () => {
             )}
 
             {data.nextA == null && data.nextB == null && (
-              <button onClick={() => navigate('/minigame')}>
+              <button onClick={() => navigate('/minigame/moneygrab')}>
                 {data.optionA || 'Pokračovat'}
               </button>
             )}

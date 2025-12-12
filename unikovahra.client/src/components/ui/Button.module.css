@@ -1,8 +1,9 @@
 .btn {
     display: inline-block;
     padding: .5rem 1rem;
-    border: none;
+    border: 2px solid transparent;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .btn.gold {
@@ -16,5 +17,6 @@
 }
 
 .btn.white {
-    border: 2px solid var(--black);
+    border-color: var(--black);
+    background-color: var(--white);
 }

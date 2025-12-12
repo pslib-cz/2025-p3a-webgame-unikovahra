@@ -19,21 +19,21 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<RootLayout />}>
-      <Route index element={<StartPage />} />
+        <Route index element={<StartPage />} />
 
-      <Route path="gamebook/:id?" element={<GamebookPage />} />
+        <Route path="gamebook/:id?" element={<GamebookPage />} />
+        <Route path="minigame/moneygrab" element={<MoneyGrabPage />} />
+        <Route path="minigame/switchboard" element={<SwitchboardPage />} />
+        <Route path="minigame/tablet" element={<TabletPage />} />
+        <Route path="minigame/hacking" element={<HackingPage />} />
+        <Route path="minigame/keylock" element={<KeylockPage />} />
+        <Route path="minigame/dollar" element={<DollarPage />} />
 
-      <Route path="minigame/switchboard" element={<SwitchboardPage />} />
-      <Route path="minigame/tablet" element={<TabletPage />} />
-      <Route path="minigame/hacking" element={<HackingPage />} />
-      <Route path="minigame/keylock" element={<KeylockPage />} />
-      <Route path="minigame/dollar" element={<DollarPage />} />
-      <Route path="minigame/moneygrab" element={<MoneyGrabPage />} />
-      
-      <Route path="minigame/play/:roomId" element={<MinigameRulesPage />} />
-      <Route path="minigame/:id?" element={<MinigameInitialPage />} />
 
-      <Route path="finish" element={<FinishPage />} />
+        <Route path="minigame/play/:roomId" element={<MinigameRulesPage />} />
+        <Route path="minigame/:id?" element={<MinigameInitialPage />} />
+
+        <Route path="finish" element={<FinishPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>

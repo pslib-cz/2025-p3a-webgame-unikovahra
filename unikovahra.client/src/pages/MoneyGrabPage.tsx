@@ -7,7 +7,7 @@ const MoneyGrabPage = () => {
     <div>
       Seber co nejvíc bankovek!
             <button onClick={() => navigate(`/minigame/`)}>
-            Spustit minihru
+            Dočasný text - splnění minihry
           </button>
     </div>
   )
