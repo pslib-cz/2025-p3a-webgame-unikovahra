@@ -13,6 +13,7 @@ import FinishPage from "./pages/FinishPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import MinigameInitialPage from "./pages/MinigameInitialPage";
+import MinigameRulesPage from "./pages/MinigameRulesPage";
 
 function App() {
   return (
@@ -22,16 +23,17 @@ function App() {
 
       <Route path="gamebook/:id?" element={<GamebookPage />} />
 
+      <Route path="minigame/switchboard" element={<SwitchboardPage />} />
+      <Route path="minigame/tablet" element={<TabletPage />} />
+      <Route path="minigame/hacking" element={<HackingPage />} />
+      <Route path="minigame/keylock" element={<KeylockPage />} />
+      <Route path="minigame/dollar" element={<DollarPage />} />
+      <Route path="minigame/moneygrab" element={<MoneyGrabPage />} />
+      
+      <Route path="minigame/play/:roomId" element={<MinigameRulesPage />} />
+      <Route path="minigame/:id?" element={<MinigameInitialPage />} />
 
-      <Route path="minigame" element={<MinigameInitialPage />} />
-      {/*  jeste jedna stranka jako pravidla pro kazdou minihru? */ }        <Route path="minigame/switchboard" element={<SwitchboardPage />} />
-        <Route path="minigame/tablet" element={<TabletPage />} />
-        <Route path="minigame/hacking" element={<HackingPage />} />
-        <Route path="minigame/keylock" element={<KeylockPage />} />
-        <Route path="minigame/dollar" element={<DollarPage />} />
-        <Route path="minigame/moneygrab" element={<MoneyGrabPage />} />
-
-        <Route path="finish" element={<FinishPage />} />
+      <Route path="finish" element={<FinishPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>
