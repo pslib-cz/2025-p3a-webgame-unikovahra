@@ -13,17 +13,25 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
-                     ?? new[] { "http://localhost:5173/", "https://localhost:5173/", "http://localhost:5174/", "https://localhost:5174/" };
+var allowedOrigins =
+    builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
+    ?? new[]
+    {
+        "http://localhost:5173",
+        "https://localhost:5173",
+        "http://localhost:5174",
+        "https://localhost:5174"
+    };
 
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("DevCors", policy =>
     {
-        policy.WithOrigins(allowedOrigins)
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
 
@@ -40,16 +48,19 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseStaticFiles();
-
-app.UseCors("DevCors");
 app.UseRouting();
+app.UseCors("DevCors");
 
-app.UseHttpsRedirection();
+
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapFallbackToFile("/index.html");
+app.MapFallbackToFile("/index.html").Add(static builder =>
+{
+    ((RouteEndpointBuilder)builder).Order = int.MaxValue;
+});
 
 app.Run();

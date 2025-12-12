@@ -158,7 +158,7 @@ namespace unikovahra.Server.Data
                 {
                  Id = 1,
                 RoomId = 1,
-                Title= "Elektrický rozvaděč – Směřování energie",
+                Title= "Elektrický rozvaděč – Směřování <b>energieeeeee </b>",
                 Description = "První minihra"
 
                 },
