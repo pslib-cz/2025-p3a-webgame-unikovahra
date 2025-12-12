@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/ui/Button";
+import { Fetcher } from "../components/Fetcher";
 
 type StoryNodeDto = {
   id: number;
@@ -19,70 +19,41 @@ const GamebookPage = () => {
 
   const nodeId = Number(id ?? 1);
 
-  const [data, setData] = useState<StoryNodeDto | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchNode = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch(`http://localhost:5080/api/story/${nodeId}`);
-
-        if (!response.ok) {
-          throw new Error(`Chyba ${response.status}`);
-        }
-
-        const node: StoryNodeDto = await response.json();
-        setData(node);
-
-      } catch (e) {
-
-        setData(null);
-
-        if (e instanceof Error) setError(e);
-        else setError(new Error("Neznámá chyba"));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNode();
-  }, [nodeId]);
-
   return (
-    <div>
-      {loading && <p>Načítám data...</p>}
-      {error && <p>CHYBA: {error.message}</p>}
+    <Fetcher<StoryNodeDto>
+      url={`http://localhost:5080/api/story/${nodeId}`}
+      dependencies={[nodeId]}
+    >
+      {({ data, loading, error }) => (
+        <div>
+          {loading && <p>Načítám data...</p>}
+          {error && <p>CHYBA: {error.message}</p>}
 
-      {data && (
-        <>
-          <h2>{data.header}</h2>
-          <p>{data.text}</p>
+          {data && (
+            <>
+              <h2>{data.header}</h2>
+              <p>{data.text}</p>
 
-          <div >
-            {data.optionA && data.nextA != null && (
-             
+              <div>
+                {data.optionA && data.nextA != null && (
+                  <Button color="blue" onClick={() => navigate(`/gamebook/${data.nextA}`)} text={data.optionA} />
+                )}
 
-              <Button color="blue" onClick={() => navigate(`/gamebook/${data.nextA}`)} text={data.optionA} />
-            )}
+                {data.optionB && data.nextB != null && (
+                  <Button color="white" onClick={() => navigate(`/gamebook/${data.nextB}`)} text={data.optionB} />
+                )}
 
-            {data.optionB && data.nextB != null && (
-            
-              <Button color="white" onClick={() => navigate(`/gamebook/${data.nextB}`)} text={data.optionB} />
-            )}
-
-            {data.nextA == null && data.nextB == null && (
-              <button onClick={() => navigate('/minigame/moneygrab')}>
-                {data.optionA || 'Pokračovat'}
-              </button>
-            )}
-          </div>
-        </>
+                {data.nextA == null && data.nextB == null && (
+                  <button onClick={() => navigate('/minigame/moneygrab')}>
+                    {data.optionA || 'Pokračovat'}
+                  </button>
+                )}
+              </div>
+            </>
+          )}
+        </div>
       )}
-    </div>
+    </Fetcher>
   );
 };
 

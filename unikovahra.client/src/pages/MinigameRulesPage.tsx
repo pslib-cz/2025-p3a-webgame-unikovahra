@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Fetcher } from "../components/Fetcher";
 
 type RoomDto = {
   id: number;
@@ -15,40 +15,6 @@ const MinigameRulesPage = () => {
   const navigate = useNavigate();
 
   const id = Number(roomId ?? 1);
-
-  const [data, setData] = useState<RoomDto | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
-    const fetchRoom = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch(
-          `http://localhost:5080/api/room/${id}`
-        );
-
-        if (!response.ok) {
-          throw new Error(`Chyba ${response.status}`);
-        }
-
-        const room: RoomDto = await response.json();
-        setData(room);
-
-      } catch (e) {
-        setData(null);
-
-        if (e instanceof Error) setError(e);
-        else setError(new Error("Neznámá chyba"));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRoom();
-  }, [id]);
 
   const getMinigamePath = (roomId: number): string => {
     switch (roomId) {
@@ -70,22 +36,29 @@ const MinigameRulesPage = () => {
   };
 
   return (
-    <div>
-      {loading && <p>Načítám pravidla…</p>}
-      {error && <p>CHYBA: {error.message}</p>}
+    <Fetcher<RoomDto>
+      url={`http://localhost:5080/api/room/${id}`}
+      dependencies={[id]}
+    >
+      {({ data, loading, error }) => (
+        <div>
+          {loading && <p>Načítám pravidla…</p>}
+          {error && <p>CHYBA: {error.message}</p>}
 
-      {data && (
-        <>
-          <h2>{data.introTitle}</h2>
-          <h4>{data.introSubtitle}</h4>
-          <p>{data.introText}</p>
+          {data && (
+            <>
+              <h2>{data.introTitle}</h2>
+              <h4>{data.introSubtitle}</h4>
+              <p>{data.introText}</p>
 
-          <button onClick={() => navigate(getMinigamePath(data.id))}>
-            Pokračovat do minihry
-          </button>
-        </>
+              <button onClick={() => navigate(getMinigamePath(data.id))}>
+                Pokračovat do minihry
+              </button>
+            </>
+          )}
+        </div>
       )}
-    </div>
+    </Fetcher>
   );
 };
 
