@@ -158,7 +158,7 @@ namespace unikovahra.Server.Data
                 {
                  Id = 1,
                 RoomId = 1,
-                Title= "Elektrický rozvaděč – Směřování <b>energieeeeee </b>",
+                Title= "Elektrický rozvaděč – Směřování energie",
                 Description = "První minihra"
 
                 },
@@ -189,6 +189,67 @@ namespace unikovahra.Server.Data
                     RoomId = 5,
                     Title = "Zamykací panel - Zastavení čísel",
                     Description = "Pátá minihra"
+                }
+            );
+            modelBuilder.Entity<MinigameFinish>().HasData(
+                new MinigameFinish
+                {
+                    Id = 1,
+                    RoomId = 1,
+                    SuccessTitle = "Proud Obnoven!",
+                    SuccessSubtitle = "Dveře se odblokovaly – máš volný průchod",
+                    SuccessText = "Zbývá jen pár vteřin do vypršení času, když přesměruješ poslední směr na panelu. Celým nouzovým okruhem konečně proběhne plný proud. Rozvaděč hlasitě zavrčí a studená tma je náhle rozčíslena ostrým nouzovým světlem. Proud je zpět! Systém reaguje, mechanika se v trezorových dveřích uvolní a ty máš cestu ven volnou.",
+                    FailureTitle = "Proud nezprovozněn",
+                    FailureSubtitle = "Čas vypršel a systém selhal",
+                    FailureText = "Nepodařilo se ti úkol dokončit včas. Čas vypršel, než ses stihl správně propojit všechny šipky a vytvořit souvislou trasu od startu do cíle. Nouzový okruh zůstal neaktivní, rozvaděč zůstal tichý a trezorové dveře zůstávají zamčené. Systém vyhodnotil neúspěch a všechny pokusy selhaly.\r\nTvá chyba má následky. Můžeš se pokusit minihru zahrát znovu, ale část tvých peněz bude odečtena jako pokuta za neúspěch, nebo se rozhodnout misi ukončit a opustit budovu bez dalšího postupu."
+                },
+                new MinigameFinish
+                {
+                    Id = 2,
+                    RoomId = 2,
+                    SuccessTitle = "Kombinace zadána úspěšně!",
+                    SuccessSubtitle = "Dveře odblokovány – vstup do kanceláře volný",
+                    SuccessText = "Soustředěně dýcháš a dokončuješ poslední, nejdelší sekvenci. Tvé prsty se pohybují s přesností. Jakmile stiskneš poslední tlačítko správně, celá mřížka zazáří jasným, triumfálním zeleným světlem. Slyšíš tiché cvaknutí. Elektronická pojistka se uvolnila! Dveře do kanceláře ředitele se odemkly. Cesta k dalšímu, nezbytnému úkolu pro tvůj únik je volná.",
+                    FailureTitle = "Kombinace selhala",
+                    FailureSubtitle = "Dveře zůstávají zamčené a systém nereaguje",
+                    FailureText = "Nepodařilo se ti dokončit sekvenci včas. Čas vypršel, než ses stihl trefit do všech správných tlačítek, nebo jsi omylem klikl na několik nesprávných tlačítek vedle. Mřížka zůstala neaktivní, elektronická pojistka se nezměnila a dveře do kanceláře ředitele zůstávají pevně zamčené. Systém vyhodnotil neúspěch a úkol nebyl splněn.\r\nNásledky jsou jasné: můžeš se pokusit minihru znovu zahrát, ale část tvých peněz bude odečtena, nebo se rozhodnout misi ukončit a vzdát další postup."
+                }
+                new MinigameFinish //chce to ještě úpravu čekám na vytvoření obsahu ve figmě (ještě jsem nedělal migraci J.A.)
+                {
+                    Id = 3,
+                    RoomId = 3,
+                    SuccessTitle = "Kódy úspěšně zadány!",
+                    SuccessSubtitle = "Kamery vypnuty – můžeš pokračovat",
+                    SuccessText = "S napětím dokončuješ poslední kód. Jakmile stiskneš Enter, obrazovka na okamžik zčerná, než se znovu rozsvítí s potvrzením úspěchu. Kamery v celé budově se náhle vypnou. Ticho je absolutní. Máš volnou cestu k dalšímu kroku ve svém plánu úniku.",
+                    FailureTitle = "Kódy selhaly",
+                    FailureSubtitle = "Kamery zůstávají aktivní – jsi odhalen",
+                    FailureText = "Nepodařilo se ti zadat všechny kódy správně včas. Čas vypršel, než ses stihl trefit do všech správných kódů, nebo jsi udělal příliš mnoho chyb při jejich opisování. Obrazovka zůstala neaktivní a kamery zůstávají zapnuté, sledující každý tvůj pohyb. Systém vyhodnotil neúspěch a tvůj pokus byl odhalen.\r\nNásledky jsou jasné: můžeš se pokusit minihru znovu zahrát, ale část tvých peněz bude odečtena jako pokuta za neúspěch, nebo se rozhodnout misi ukončit a opustit budovu bez dalšího postupu."
+
+
+                }
+
+                new MinigameFinish //chce to ještě úpravu čekám na vytvoření obsahu ve figmě
+                {
+                    Id = 4,
+                    RoomId = 4,
+                    SuccessTitle = "Kamery deaktivovány a PIN získán",
+                    SuccessSubtitle = "Čistý průchod zajištěn",
+                    SuccessText = "Zvládl jsi to perfektně. Poslední kód jsi opsal včas a systém ho okamžitě potvrdil. Odpočet zmizel, obraz na kamerách zčernal a kontrolky signalizují úplné vypnutí sledování. V tu samou chvíli se na monitoru objeví nový údaj, unikátní PIN ke hlavním dveřím.",
+                    FailureTitle = "PIN stále zůstává záhadou",
+                    FailureSubtitle = "",
+                    FailureText = "Kvůli neúspěchu se ti nepodařilo získat důležitý PIN k hlavnímu východu. Bez něj zůstávají hlavní dveře uzamčeny a systém ti přístup odmítl.\r\nNyní stojíš před rozhodnutím, jak dál pokračovat. Můžeš se pokusit minihru zopakovat, i když tě to bude stát část peněz, nebo ukončit misi a vzdát se mise."
+                },
+
+                new MinigameFinish //chce to ještě úpravu čekám na vytvoření obsahu ve figmě
+                {
+                    Id = 5,
+                    RoomId = 5,
+                    SuccessTitle = "Dveře odemčeny – Únik úspěšný!",
+                    SuccessSubtitle = "Gratulujeme k úspěšnému úniku z banky!",
+                    SuccessText = "S napětím sleduješ, jak se poslední číslice zastavuje přesně na správné hodnotě. Jakmile všechny sloupce ukazují cílovou kombinaci, ozve se tiché cvaknutí. Hlavní dveře se pomalu otevírají, odhalující cestu ven do svobody. Únik je dokončen! S úlevou a triumfem opouštíš budovu, vědom si toho, že jsi úspěšně zvládl všechny výzvy a unikl bez povšimnutí.",
+                    FailureTitle = "Únik selhal – Dveře zůstávají zamčené",
+                    FailureSubtitle = "Bohužel jsi nedokázal správně zastavit čísla včas",
+                    FailureText = "S napětím sleduješ, jak se poslední číslice zastavuje, ale bohužel ne na správné hodnotě. Čas vypršel dříve, než ses stihl trefit do všech správných čísel, nebo jsi udělal příliš mnoho chyb při jejich zastavování. Hlavní dveře zůstávají pevně zamčené a tvůj pokus o únik selhal.\r\nNyní stojíš před rozhodnutím, jak dál pokračovat. Můžeš se pokusit minihru zopakovat, i když tě to bude stát část peněz, nebo ukončit misi a vzdát se mise."
                 }
             );
         }
