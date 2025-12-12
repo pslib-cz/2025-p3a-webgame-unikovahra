@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Button from "../components/ui/Button";
 
 type MiniGameDto = {
   id: number;
@@ -58,9 +59,8 @@ const MinigameInitialPage = () => {
           <h2>{data.title}</h2>
           <p>{data.description}</p>
 
-          <button onClick={() => navigate(`/minigame/play/${data.id}`)}>
-            Spustit minihru
-          </button>
+          
+          <Button onClick={() => navigate(`/minigame/play/${data.id}`)} text="Spustit minihru"  color="gold"/>
         </>
       )}
     </div>

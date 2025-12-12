@@ -1,0 +1,20 @@
+.btn {
+    display: inline-block;
+    padding: .5rem 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn.gold {
+    background-color: var(--gold);
+    color: var(--white);
+}
+
+.btn.blue {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.btn.white {
+    border: 2px solid var(--black);
+}

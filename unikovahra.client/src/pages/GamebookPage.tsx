@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Button from "../components/ui/Button";
 
 type StoryNodeDto = {
   id: number;
@@ -63,15 +64,14 @@ const GamebookPage = () => {
 
           <div >
             {data.optionA && data.nextA != null && (
-              <button onClick={() => navigate(`/gamebook/${data.nextA}`)}>
-                {data.optionA}
-              </button>
+             
+
+              <Button color="blue" onClick={() => navigate(`/gamebook/${data.nextA}`)} text={data.optionA} />
             )}
 
             {data.optionB && data.nextB != null && (
-              <button onClick={() => navigate(`/gamebook/${data.nextB}`)}>
-                {data.optionB}
-              </button>
+            
+              <Button color="white" onClick={() => navigate(`/gamebook/${data.nextB}`)} text={data.optionB} />
             )}
 
             {data.nextA == null && data.nextB == null && (
