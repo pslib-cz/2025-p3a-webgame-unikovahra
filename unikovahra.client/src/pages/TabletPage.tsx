@@ -1,8 +1,26 @@
 import React from 'react'
+import Button from '../components/ui/Button'
+import ScoreCounter from '../components/ui/ScoreCounter'
+import { useNavigate } from 'react-router-dom'
 
 const TabletPage = () => {
+
+  const navigate = useNavigate();
+  const roomId = 2;
   return (
-    <div>TabletPage</div>
+    <>
+      <Button
+        text="Simulovat úspěch"
+        onClick={() => navigate(`/minigame/finish/${roomId}/true`)}
+        color="blue"
+      />
+      <Button
+        text="Simulovat neúspěch"
+        onClick={() => navigate(`/minigame/finish/${roomId}/false`)}
+        color="white"
+      />
+      <ScoreCounter styled={true} />
+    </>
   )
 }
 

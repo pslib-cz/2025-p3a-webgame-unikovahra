@@ -26,9 +26,9 @@ const MinigameRulesPage = () => {
       case 3:
         return '/minigame/hacking';
       case 4:
-        return '/minigame/keylock';
-      case 5:
         return '/minigame/dollar';
+      case 5:
+        return '/minigame/keylock';
       case 6:
         return '/minigame/moneygrab';
       default:

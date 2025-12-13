@@ -15,6 +15,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import MinigameInitialPage from "./pages/MinigameInitialPage";
 import MinigameRulesPage from "./pages/MinigameRulesPage";
 import RulesPage from "./pages/RulesPage";
+import MinigameFinishPage from "./pages/MinigameFinishPage";
+import MissionEndPage from "./pages/MissionEndPage";
 
 function App() {
   return (
@@ -29,13 +31,16 @@ function App() {
         <Route path="minigame/switchboard" element={<SwitchboardPage />} />
         <Route path="minigame/tablet" element={<TabletPage />} />
         <Route path="minigame/hacking" element={<HackingPage />} />
-        <Route path="minigame/keylock" element={<KeylockPage />} />
+       
         <Route path="minigame/dollar" element={<DollarPage />} />
+        <Route path="minigame/keylock" element={<KeylockPage />} />
+        <Route path="minigame/finish/:roomId/:success" element={<MinigameFinishPage />} />
 
 
         <Route path="minigame/play/:roomId" element={<MinigameRulesPage />} />
         <Route path="minigame/:id?" element={<MinigameInitialPage />} />
 
+        <Route path="missionend" element={<MissionEndPage />} />
         <Route path="finish" element={<FinishPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
