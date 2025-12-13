@@ -7,7 +7,7 @@ const RulesPage = () => {
   return (
     <div>
       <h1>Pravidla Hry</h1>
-      <Button color="blue" onClick={() => navigate('/minigame/switchboard')} text="Jdu se dostat ven" />
+      <Button color="gray" onClick={() => navigate('/minigame/switchboard')} text="Jdu se dostat ven" />
     </div>
 
   )

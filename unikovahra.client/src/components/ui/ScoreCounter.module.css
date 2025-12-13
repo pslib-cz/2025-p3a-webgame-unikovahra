@@ -1,0 +1,10 @@
+
+.scoreCounter{
+    background-color: var(--gold);
+    font-family: "Rajdhani", sans-serif;
+    font-size: var(--text);
+    font-weight: var(--semibold);
+    padding: 1rem 0.5rem;
+    color: var(--black);
+    border-radius: 1rem; 
+}

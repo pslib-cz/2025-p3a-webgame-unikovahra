@@ -10,7 +10,7 @@ type StoryNodeDto = {
   nextA: number | null;
   optionB: string | null;
   nextB: number | null;
-  imageUrl?: string | null;o
+  imageUrl?: string | null;
 };
 
 const GamebookPage = () => {

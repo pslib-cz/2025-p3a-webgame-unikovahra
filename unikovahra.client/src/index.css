@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -55,6 +57,15 @@ h1 {
   --black: #000000;
   --white: #FFFFFF;
   --gray: #2A303C;
+  font-family: "Orbitron" "Rajdhani", sans-serif;
+  --text : 1.5rem;
+  --title: 4rem;
+  --subtitle: 3rem; 
+  --normal : 400;
+  --medium : 500;
+  --semibold : 600;
+  --bold: 700;
+  --extrabold: 800;
   
 
 
