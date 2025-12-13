@@ -2,20 +2,21 @@ import React, { useState, useEffect, forwardRef, useImperativeHandle } from "rea
 import styles from './ScoreCounter.module.css';
 
 interface ScoreCounterProps {
-  penalty?: number; // kolik bodů odečíst při chybě
-  adder?: number;   // kolik bodů přidat při úspěchu
+  penalty?: number; 
+  adder?: number;   
+  styled: boolean;
 }
 
 export interface ScoreCounterHandle {
   addScore: (points?: number) => void;
   deductScore: (points?: number) => void;
+  resetScore: () => void;
 }
 
 const ScoreCounter = forwardRef<ScoreCounterHandle, ScoreCounterProps>(
-  ({ penalty = 5, adder = 10 }, ref) => {
+  ({ penalty = 0, adder = 0, styled = true }, ref) => {
     const [score, setScore] = useState<number>(0);
 
-    // načtení skóre při mountu
     useEffect(() => {
       const savedScore = localStorage.getItem('playerScore');
       if (savedScore) setScore(parseInt(savedScore, 10));
@@ -26,24 +27,35 @@ const ScoreCounter = forwardRef<ScoreCounterHandle, ScoreCounterProps>(
       setScore(newScore);
       localStorage.setItem('playerScore', newScore.toString());
     };
-
     const deductScore = (points: number = penalty) => {
       const newScore = Math.max(0, score - points);
       setScore(newScore);
       localStorage.setItem('playerScore', newScore.toString());
     };
+const resetScore = () => {
+      setScore(0);
+      localStorage.setItem('playerScore', '0');
+    };
 
-    // expose funkce přes ref
     useImperativeHandle(ref, () => ({
       addScore,
-      deductScore
-    }));
+      deductScore,
+      resetScore,
 
+      
+    }));
+if (styled) {
     return (
-      <div className={styles.scoreCounter}>
-        <h2>Skóre: {score}</h2>
-      </div>
-    );
+        <div className={styles.scoreCounter}>
+            <span>${score}</span>
+        </div>
+    )}
+    else { 
+        return (
+                <span>${score}</span>
+        );
+    }
+
   }
 );
 

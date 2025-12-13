@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ResultScreen from '../components/ui/ResultScreen';
 import Button from '../components/ui/Button';
 import ScoreCounter, { type ScoreCounterHandle } from '../components/ui/ScoreCounter';
-
+import styles from '../components/ui/ScoreCounter.module.css';
 const MoneyGrabPage = () => {
   const navigate = useNavigate();
   const scoreRef = useRef<ScoreCounterHandle>(null); // ref na ScoreCounter
@@ -12,17 +12,18 @@ const MoneyGrabPage = () => {
   const [success, setSuccess] = useState(false);
 
   const handleSuccess = () => {
-    scoreRef.current?.addScore(); // přidá skóre
     setSuccess(true);
     setShowResult(true);
   };
 
   const handleFailure = () => {
-    scoreRef.current?.deductScore(); // odečte skóre
     setSuccess(false);
     setShowResult(true);
   };
 
+      const handleAdder = () => {
+      scoreRef.current!.addScore(10000); 
+};
   if (showResult) {
     return success ? (
       <ResultScreen
@@ -49,8 +50,10 @@ const MoneyGrabPage = () => {
 
       <Button text="Simulovat úspěch" onClick={handleSuccess} color="blue" />
       <Button text="Simulovat neúspěch" onClick={handleFailure} color="white" />
-      
-      <ScoreCounter ref={scoreRef} adder={1000} penalty={1000} />
+      <Button text="Simulace klikani peněz v safu" onClick={handleAdder}/>
+      <Button text="reset peněz" onClick={()=> scoreRef.current?.resetScore()}/>
+      <ScoreCounter ref={scoreRef} styled={true} />
+
     </div>
   );
 };

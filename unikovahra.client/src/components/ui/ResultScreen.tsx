@@ -1,12 +1,14 @@
 import Button from "./Button";
 import type { Colors } from "../../types/Colors";
-
+import ScoreCounter, { type ScoreCounterHandle } from "./ScoreCounter";
+import MoneyGrabPage from "../../pages/MoneyGrabPage";
 type ResultScreenProps = {
   title: string;
   message: string;
   buttonText: string;
   buttonColor?: Colors;
   onButtonClick: () => void;
+  
 };
 
 const ResultScreen = ({ title, message, buttonText, buttonColor, onButtonClick }: ResultScreenProps) => {
@@ -14,6 +16,7 @@ const ResultScreen = ({ title, message, buttonText, buttonColor, onButtonClick }
     <div>
       <h2>{title}</h2>
       <p>{message}</p>
+      <ScoreCounter styled={false}/>
       <Button text={buttonText} onClick={onButtonClick} color={buttonColor} />
     </div>
   );
