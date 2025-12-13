@@ -13,7 +13,7 @@ namespace unikovahra.Server.Data
         public DbSet<StoryNode> StoryNodes { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<MiniGame> MiniGames { get; set; }
-
+        public DbSet<MinigameFinish> MinigameFinishes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -213,34 +213,34 @@ namespace unikovahra.Server.Data
                     FailureTitle = "Kombinace selhala",
                     FailureSubtitle = "Dveře zůstávají zamčené a systém nereaguje",
                     FailureText = "Nepodařilo se ti dokončit sekvenci včas. Čas vypršel, než ses stihl trefit do všech správných tlačítek, nebo jsi omylem klikl na několik nesprávných tlačítek vedle. Mřížka zůstala neaktivní, elektronická pojistka se nezměnila a dveře do kanceláře ředitele zůstávají pevně zamčené. Systém vyhodnotil neúspěch a úkol nebyl splněn.\r\nNásledky jsou jasné: můžeš se pokusit minihru znovu zahrát, ale část tvých peněz bude odečtena, nebo se rozhodnout misi ukončit a vzdát další postup."
-                }
-                new MinigameFinish //chce to ještě úpravu čekám na vytvoření obsahu ve figmě (ještě jsem nedělal migraci J.A.)
+                },
+                new MinigameFinish 
                 {
                     Id = 3,
                     RoomId = 3,
-                    SuccessTitle = "Kódy úspěšně zadány!",
-                    SuccessSubtitle = "Kamery vypnuty – můžeš pokračovat",
-                    SuccessText = "S napětím dokončuješ poslední kód. Jakmile stiskneš Enter, obrazovka na okamžik zčerná, než se znovu rozsvítí s potvrzením úspěchu. Kamery v celé budově se náhle vypnou. Ticho je absolutní. Máš volnou cestu k dalšímu kroku ve svém plánu úniku.",
-                    FailureTitle = "Kódy selhaly",
-                    FailureSubtitle = "Kamery zůstávají aktivní – jsi odhalen",
-                    FailureText = "Nepodařilo se ti zadat všechny kódy správně včas. Čas vypršel, než ses stihl trefit do všech správných kódů, nebo jsi udělal příliš mnoho chyb při jejich opisování. Obrazovka zůstala neaktivní a kamery zůstávají zapnuté, sledující každý tvůj pohyb. Systém vyhodnotil neúspěch a tvůj pokus byl odhalen.\r\nNásledky jsou jasné: můžeš se pokusit minihru znovu zahrát, ale část tvých peněz bude odečtena jako pokuta za neúspěch, nebo se rozhodnout misi ukončit a opustit budovu bez dalšího postupu."
+                    SuccessTitle = "Kamery deaktivovány",
+                    SuccessSubtitle = "Čistý průchod zajištěn",
+                    SuccessText = "Zvládl jsi to perfektně. Poslední kód jsi opsal včas a systém ho okamžitě potvrdil. Odpočet zmizel, obraz na kamerách zčernal a kontrolky signalizují úplné vypnutí sledování. Žádný alarm, žádné komplikace. Cesta ven je teď bezpečná a kamery už ti stát v cestě nebudou.",
+                    FailureTitle = "Nepodařilo se deaktivovat kamery",
+                    FailureSubtitle = "Kamery stále aktivní",
+                    FailureText = "Nepodařilo se ti dokončit úkol včas. Čas vypršel, než ses stihl přesně opsat všechny blikající kódy, nebo jsi během přepisování udělal chybu. Obraz na kamerách zůstal aktivní a kontrolky signalizují, že sledování stále běží. Alarm se zatím nespustil, ale pokud se pokusíš odejít, kamery tě zachytí a alarm se spustí.\r\nTvá situace má následky: můžeš se pokusit minihru znovu zahrát, ale část tvých peněz bude odečtena, nebo se rozhodnout misi ukončit a vzdát další postup."
 
 
-                }
-
-                new MinigameFinish //chce to ještě úpravu čekám na vytvoření obsahu ve figmě
+                },
+               
+                new MinigameFinish 
                 {
                     Id = 4,
                     RoomId = 4,
-                    SuccessTitle = "Kamery deaktivovány a PIN získán",
-                    SuccessSubtitle = "Čistý průchod zajištěn",
-                    SuccessText = "Zvládl jsi to perfektně. Poslední kód jsi opsal včas a systém ho okamžitě potvrdil. Odpočet zmizel, obraz na kamerách zčernal a kontrolky signalizují úplné vypnutí sledování. V tu samou chvíli se na monitoru objeví nový údaj, unikátní PIN ke hlavním dveřím.",
-                    FailureTitle = "PIN stále zůstává záhadou",
-                    FailureSubtitle = "",
-                    FailureText = "Kvůli neúspěchu se ti nepodařilo získat důležitý PIN k hlavnímu východu. Bez něj zůstávají hlavní dveře uzamčeny a systém ti přístup odmítl.\r\nNyní stojíš před rozhodnutím, jak dál pokračovat. Můžeš se pokusit minihru zopakovat, i když tě to bude stát část peněz, nebo ukončit misi a vzdát se mise."
+                    SuccessTitle = "PIN získán!",
+                    SuccessSubtitle = "Přístup potvrzen",
+                    SuccessText = "Dodatečné ověření proběhlo úspěšně a systém potvrdil tvou identitu. Použití hlavního PINu k odemčení hlavních dveří banky bylo povoleno. Zapamatuj si tento PIN, budeš ho potřebovat při dalším kroku, protože bez něj se hlavní dveře neotevřou a v postupu nebude možné pokračovat.",
+                    FailureTitle = "PIN nebyl rozluštěn",
+                    FailureSubtitle = "Ověření selhalo",
+                    FailureText = "Dodatečné ověření se nepodařilo dokončit. Systém tvou identitu nepotvrdil a použití hlavního PINu bylo zablokováno. Bez tohoto PINu zůstávají hlavní dveře banky uzamčené a není možné pokračovat dál v tvé misi.\r\nDůsledky jsou jasné: můžeš se pokusit minihru znovu zahrát a opravit svůj neúspěch, nebo se rozhodnout vzdát celou misi a ukončit postup."
                 },
 
-                new MinigameFinish //chce to ještě úpravu čekám na vytvoření obsahu ve figmě
+                new MinigameFinish 
                 {
                     Id = 5,
                     RoomId = 5,
