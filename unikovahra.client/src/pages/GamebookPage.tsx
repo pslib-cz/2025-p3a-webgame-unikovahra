@@ -10,7 +10,7 @@ type StoryNodeDto = {
   nextA: number | null;
   optionB: string | null;
   nextB: number | null;
-  imageUrl?: string | null;
+  imageUrl?: string | null;o
 };
 
 const GamebookPage = () => {
@@ -31,6 +31,14 @@ const GamebookPage = () => {
 
           {data && (
             <>
+              {data.imageUrl && (
+                <img 
+                  src={`http://localhost:5080${data.imageUrl}`} 
+                  alt={data.header} 
+                  style={{ maxWidth: '100%', marginBottom: '1rem' }} 
+                />
+              )}
+              
               <h2>{data.header}</h2>
               <p>{data.text}</p>
 
@@ -44,9 +52,7 @@ const GamebookPage = () => {
                 )}
 
                 {data.nextA == null && data.nextB == null && (
-                  <button onClick={() => navigate('/minigame/moneygrab')}>
-                    {data.optionA || 'Pokračovat'}
-                  </button>
+                  <Button color="blue" onClick={() => navigate('/minigame/moneygrab')} text="Pokračovat" />
                 )}
               </div>
             </>

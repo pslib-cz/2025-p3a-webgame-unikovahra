@@ -30,7 +30,7 @@ const MinigameInitialPage = () => {
               <h2>{data.title}</h2>
               <p>{data.description}</p>
 
-              <Button onClick={() => navigate(`/minigame/play/${data.id}`)} text="Spustit minihru" color="gold" />
+              <Button onClick={() => navigate(`/minigame/play/${data.id}`)} text="Přečíst pravidla hry" color="gold" />
             </>
           )}
         </div>

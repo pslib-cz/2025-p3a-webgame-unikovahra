@@ -14,6 +14,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 import MinigameInitialPage from "./pages/MinigameInitialPage";
 import MinigameRulesPage from "./pages/MinigameRulesPage";
+import RulesPage from "./pages/RulesPage";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
 
         <Route path="gamebook/:id?" element={<GamebookPage />} />
         <Route path="minigame/moneygrab" element={<MoneyGrabPage />} />
+        <Route path="rules" element={<RulesPage />} />
+
         <Route path="minigame/switchboard" element={<SwitchboardPage />} />
         <Route path="minigame/tablet" element={<TabletPage />} />
         <Route path="minigame/hacking" element={<HackingPage />} />

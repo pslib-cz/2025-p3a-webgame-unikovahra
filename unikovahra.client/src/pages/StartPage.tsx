@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Button from "../components/ui/Button";
 
 export default function StartPage() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function StartPage() {
 
   return (
     <div>
-      <button onClick={handleStart}>START</button>
+      <Button color="blue" onClick={handleStart} text="START" />
     </div>
   );
 }

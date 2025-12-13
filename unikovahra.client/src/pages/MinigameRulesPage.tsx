@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Fetcher } from "../components/Fetcher";
+import Button from "../components/ui/Button";
 
 type RoomDto = {
   id: number;
@@ -51,9 +52,7 @@ const MinigameRulesPage = () => {
               <h4>{data.introSubtitle}</h4>
               <p>{data.introText}</p>
 
-              <button onClick={() => navigate(getMinigamePath(data.id))}>
-                Pokračovat do minihry
-              </button>
+            <Button onClick={() => navigate(getMinigamePath(data.id))} text="Jdu na to" color="gold" />
             </>
           )}
         </div>
