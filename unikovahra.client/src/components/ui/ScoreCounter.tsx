@@ -1,10 +1,10 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle} from "react";
 import styles from './ScoreCounter.module.css';
 
 interface ScoreCounterProps {
   penalty?: number;
   adder?: number;
-  styled: boolean;
+  style: "hidden" | "styled" | "notStyled";
 }
 
 export interface ScoreCounterHandle {
@@ -14,7 +14,7 @@ export interface ScoreCounterHandle {
 }
 
 const ScoreCounter = forwardRef<ScoreCounterHandle, ScoreCounterProps>(
-  ({ penalty = 0, adder = 0, styled = true }, ref) => {
+  ({ penalty = 0, adder = 0, style = "styled" }, ref) => {
     const [score, setScore] = useState<number>(0);
 
     useEffect(() => {
@@ -36,7 +36,6 @@ const ScoreCounter = forwardRef<ScoreCounterHandle, ScoreCounterProps>(
       setScore(0);
       localStorage.setItem('playerScore', '0');
     };
-
     useImperativeHandle(ref, () => ({
       addScore,
       deductScore,
@@ -44,17 +43,19 @@ const ScoreCounter = forwardRef<ScoreCounterHandle, ScoreCounterProps>(
 
 
     }));
-    if (styled) {
+    if ( style == "styled") {
       return (
         <div className={styles.scoreCounter}>
           <span>${score}</span>
         </div>
       )
     }
-    else {
+    else if (style == "notStyled") {
       return (
         <span>${score}</span>
       );
+    } else {
+      return null;
     }
 
   }

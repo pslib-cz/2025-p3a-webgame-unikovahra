@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import ResultScreen from '../components/ui/ResultScreen';
 import Button from '../components/ui/Button';
 import ScoreCounter, { type ScoreCounterHandle } from '../components/ui/ScoreCounter';
-import styles from '../components/ui/ScoreCounter.module.css';
 const MoneyGrabPage = () => {
   const navigate = useNavigate();
-  const scoreRef = useRef<ScoreCounterHandle>(null); // ref na ScoreCounter
+  const scoreRef = useRef<ScoreCounterHandle>(null);
   const [showResult, setShowResult] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -52,7 +51,7 @@ const MoneyGrabPage = () => {
       <Button text="Simulovat neúspěch" onClick={handleFailure} color="white" />
       <Button text="Simulace klikani peněz v safu" onClick={handleAdder}/>
       <Button text="reset peněz" onClick={()=> scoreRef.current?.resetScore()}/>
-      <ScoreCounter ref={scoreRef} styled={true} />
+      <ScoreCounter ref={scoreRef} style={"styled"} />
 
     </div>
   );

@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import React from 'react'
 import Button from '../components/ui/Button'
 import { useNavigate } from 'react-router-dom'
+import ScoreCounter, {type ScoreCounterHandle} from '../components/ui/ScoreCounter'
 
 const FinishPage = () => {
   const navigate = useNavigate();
   const [handleClick, setHandleClick] = useState(false)
-  
+    const scoreRef = useRef<ScoreCounterHandle>(null);
   const getScore = () => {
     const savedScore = localStorage.getItem('playerScore');
     return savedScore ? parseInt(savedScore, 10) : 0;
@@ -31,8 +33,8 @@ const FinishPage = () => {
           <h2>Za ${score}</h2>
           <p>Si můžeš koupit</p>
           <p>{rohlikyCount} Rohlíků</p>
-
-          <Button text="Hrát znovu" onClick={() => navigate('/')} color="blue"></Button>
+          <ScoreCounter style={"hidden"} />
+          <Button text="Hrát znovu" onClick={() => {; navigate('/')}} color="blue"></Button>
         </div>
       )}
     </div>

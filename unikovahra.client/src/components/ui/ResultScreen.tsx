@@ -16,7 +16,7 @@ const ResultScreen = ({ title, message, buttonText, buttonColor, onButtonClick }
     <div>
       <h2>{title}</h2>
       <p>{message}</p>
-      <ScoreCounter styled={false}/>
+      <ScoreCounter style={"notStyled"}/>
       <Button text={buttonText} onClick={onButtonClick} color={buttonColor} />
     </div>
   );

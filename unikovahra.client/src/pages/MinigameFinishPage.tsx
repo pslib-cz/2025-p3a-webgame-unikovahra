@@ -2,7 +2,7 @@ import React from 'react'
 import { Fetcher } from '../components/Fetcher'
 import { useParams, useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
-
+import ScoreCounter from '../components/ui/ScoreCounter'
 type MinigameFinishDto = {
     id: number;
     roomId: number;
@@ -28,6 +28,7 @@ const MinigameFinishPage = () => {
 
   const handleEndMission = () => {
     navigate('/missionend'); 
+  
   };
 
   return (
