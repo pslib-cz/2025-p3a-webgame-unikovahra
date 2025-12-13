@@ -110,18 +110,24 @@ namespace unikovahra.Server.Data
                     Id = 1,
                     Order = 1,
                     IntroTitle = "Nefunguje proud! Zprav to!",
-                    IntroSubtitle = "Tvým úkolem je správně přesměrovat elektrickou energii v rozvaděči.",
-                    IntroText = "Na panelu vidíš několik šipek, které jsou náhodně otočené. Kliknutím na šipku ji vždy otočíš o 90°.\r\nNež vyprší čas, musíš z těchto šipek vytvořit souvislou trasu od startu až do cíle.\r\n",
-                    ImageUrl = "/images/room1.jpg"
+                    IntroSubtitle = "Kritická chyba v Systému Napájení.",
+                    IntroText = "Trezor je v hluboké tmě a ty si uvědomíš, že proud nefunguje. Ten je nutný pro otevření dveří. Musíš rychle obnovit napájení. Najdeš nouzový rozvaděč s odpočtem (60 sekund) \r\na odpojeným kabelem. Energie sice je, ale neteče.",
+                    ImageUrl = "/images/room1.jpg",
+                    IntroTaskSubtitle = "Tvůj úkol:",
+                    IntroTaskText = "Na panelu vidíš několik šipek, které jsou náhodně otočené. Kliknutím na šipku ji vždy otočíš o 90°.\r\nNež vyprší čas, musíš z těchto šipek vytvořit souvislou trasu od startu až do cíle."
+
+
                 },
                 new Room
                 {
                     Id = 2,
                     Order = 2,
                     IntroTitle = "Teď se musíš dostat do kanclu",
-                    IntroSubtitle = "Tvým úkolem je si zamapatovat světelnou kombinaci pro otevření dvěří",
-                    IntroText = "Na displeji se objeví mřížka tlačítek, která se v náhodném pořadí rozsvěcí. Ty musíš sekvenci zopakovat klikáním na správná tlačítka.",
-                    ImageUrl = "/images/room2.jpg"
+                    IntroSubtitle = "Vstup do Kanceláře",
+                    IntroText = "Proud je sice zpět, ale dveře do kanceláře ředitele se neotevřou. Zůstávají zablokované finální, čistě elektronickou pojistkou. Musíš se dostat do kanceláře, protože tam na tebe čeká další úkol, který je nezbytný pro tvůj únik z banky. Na ovládacím panelu vedle dveří se objeví výzva.",
+                    ImageUrl = "/images/room2.jpg",
+                    IntroTaskSubtitle = "Tvůj úkol:",
+                    IntroTaskText = "Na displeji se objeví mřížka tlačítek, která se v náhodném pořadí rozsvěcí. Ty si musíš sekvenci zapamtovat a následně ji zopakovat klikáním na správná tlačítka."
 
 
                 },
@@ -130,27 +136,35 @@ namespace unikovahra.Server.Data
                     Id = 3,
                     Order = 3,
                     IntroTitle = "Vypni kamery! Rychle!",
-                    IntroSubtitle = "Tvým úkolem je rychle opsat text výše zobrazený pro vypnutí kamer",
-                    IntroText = "Pokoušíš nabourat do interního systému banky. Na obrazovce se objeví odpočet a několik kódů, které je nutné přesně opsat. Pokud se ti to nepovede tak příjdeš o pár peněz",
-                    ImageUrl = "/images/room3.jpg"
+                    IntroSubtitle = "Kamery blokují cestu",
+                    IntroText = "Jsi uvnitř kanceláře, východ z banky je odemčený, ale na monitoru vyskočí varování. Kamery nad východem jsou stále aktivní, pokud projdeš kolem tak tě okamžitě zachytí. Na obrazovce se objeví úkol, který musíš splnit jinak se spustí alarm.",
+                    ImageUrl = "/images/room3.jpg",
+                    IntroTaskSubtitle = "Tvůj úkol:",
+                    IntroTaskText = "Na monitoru se spustí krátký odpočet a pod ním se objeví blikající kódy, které musíš rychle a přesně opsat, než čas vyprší. Úspěšné dokončení ti zajistí nejen vypnutí kamer, ale \r\ni získání důležitého PINu, který budeš potřebovat pro další postup."
+
+
                 },
                 new Room
                 {
                     Id = 4,
                     Order = 4,
-                    IntroTitle = "Našel jsi další box s penězi",
-                    IntroSubtitle = "Tvým úkolem je posouvat bankovky aby byly číselně seřazené",
-                    IntroText = "Cílem je pomocí posouvání dlaždic seřadit bankovky do správného pořadí. Princip funguje stejně jako klasická „Patnáctka“.",
-                    ImageUrl = "/images/room4.jpg"
+                    IntroTitle = "Získej PIN",
+                    IntroSubtitle = "Dodatečné ověření pro hlavní PIN",
+                    IntroText = "Po zadání velkého množství kódů systém vyhodnotil, že je nutné provést dodatečné ověření, aby ti umožnil použít hlavní PIN k odemčení hlavních dveří banky. Na monitoru se proto objeví nová výzva, která má potvrdit, že jsi oprávněný pokračovat dál.",
+                    ImageUrl = "/images/room4.jpg",
+                    IntroTaskSubtitle = "Tvůj úkol:",
+                    IntroTaskText = "Na obrazovce se objeví mřížka s rozházenými číslami. Tvým cílem je pomocí posouvání jednotlivých čtverců na monitoru seřadit čísla do správného číselného pořadí. Funguje to jako klasická „Patnáctka“: můžeš přesouvat vždy jen jeden dílek, který sousedí s prázdným místem."
                 },
                 new Room
                 {
                     Id = 5,
                     Order = 5,
                     IntroTitle = "Odemkni dveře a zdrhej!",
-                    IntroSubtitle = "Tvým úkolem je zastavit číslo na tom, které bylo zmíněné v dřívějších minihrách",
-                    IntroText = "Na displeji běží několik sloupců s čísly 0–9, která se nepřetržitě posouvají shora dolů. Úkolem je kliknutím zastavit každý sloupec přesně na hodnotě, která je určena v cílové kombinaci.",
-                    ImageUrl = "/images/room5.jpg"
+                    IntroSubtitle = "Poslední překážka",
+                    IntroText = "Dostal ses k hlavním dveřím banky. Vedle nich svítí zabezpečený displej, který čeká na zadání čtyřmístného PINu. Bez správného kódu zůstanou dveře zavřené a dál se nedostaneš.",
+                    ImageUrl = "/images/room5.jpg",
+                    IntroTaskSubtitle = "Tvůj úkol:",
+                    IntroTaskText = "Na displeji se zobrazí čtyři sloupce čísel, která jsou uspořádaná náhodně a čísla v nich jdou různě za sebou. Pomocí tlačítek STOP pod sloupci musíš zadat správný čtyřmístný PIN, který sis předtím zapamatoval."
                 }
             );
             modelBuilder.Entity<MiniGame>().HasData(
