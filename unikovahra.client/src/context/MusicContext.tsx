@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 
 interface MusicPlayerProps {
-  src: string;          // cesta k souboru s hudbou
-  volume?: number;      // hlasitost 0.0 - 1.0, default 0.5
-  loop?: boolean;       // jestli se hudba má opakovat, default true
-  autoPlay?: boolean;   // jestli se má automaticky spustit, default true
+  src: string;          
+  volume?: number;      
+  loop?: boolean;       
+  autoPlay?: boolean;   
 }
 
 const MusicPlayer: React.FC<MusicPlayerProps> = ({
@@ -27,7 +27,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       window.removeEventListener("click", startAudio);
     };
 
-    // pokud je autoPlay true, počkáme na první interakci uživatele
+   
     if (autoPlay) {
       window.addEventListener("click", startAudio);
     }
@@ -39,7 +39,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     };
   }, [src, volume, loop, autoPlay]);
 
-  return null; // nic nevykresluje
+  return null; 
 };
 
 export default MusicPlayer;

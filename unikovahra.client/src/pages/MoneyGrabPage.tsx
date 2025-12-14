@@ -9,7 +9,7 @@ const MoneyGrabPage = () => {
   const scoreRef = useRef<ScoreCounterHandle>(null);
   const [showResult, setShowResult] = useState(false);
   const [success, setSuccess] = useState(false);
-    const audioRef = useRef(new Audio("../public/sfx/money-grab.mp3"));
+    const audioRef = useRef(new Audio("../sfx/money-grab.mp3"));
 
   const handleSuccess = () => {
     setSuccess(true);
