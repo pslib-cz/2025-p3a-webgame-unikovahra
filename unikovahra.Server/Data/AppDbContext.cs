@@ -31,7 +31,7 @@ namespace unikovahra.Server.Data
                     NextA = 2,
                     OptionB = "Hledat vypínač sirény",
                     NextB = 3,
-                    ImageUrl = "/images/img6.jpg"
+                    ImageUrl = "/images/gamebook1.jpg"
                 },
                 new StoryNode
                 {
@@ -42,7 +42,7 @@ namespace unikovahra.Server.Data
                     NextA = 4,
                     OptionB = "Radiovou rušičku",
                     NextB = 5,
-                    ImageUrl = "/images/scene1.jpg"
+                    ImageUrl = "/images/gamebook2.jpg"
                 },
                 new StoryNode
                 {
@@ -53,7 +53,7 @@ namespace unikovahra.Server.Data
                     NextA = 5,
                     OptionB = "Vylézt po schránkách",
                     NextB = 4,
-                    ImageUrl = "/images/scene1.jpg"
+                    ImageUrl = "/images/gamebook3.jpg"
                 },
                 new StoryNode
                 {
@@ -64,7 +64,7 @@ namespace unikovahra.Server.Data
                     NextA = 7,
                     OptionB = "Aktivovat oslňujicí přístroj",
                     NextB = 6,
-                    ImageUrl = "/images/scene1.jpg"
+                    ImageUrl = "/images/gamebook4.jpg"
                 },
                 new StoryNode
                 {
@@ -75,7 +75,7 @@ namespace unikovahra.Server.Data
                     NextA = 6,
                     OptionB = "Schovat se mezi penězi",
                     NextB = 7,
-                    ImageUrl = "/images/scene1.jpg"
+                    ImageUrl = "/images/gamebook5.jpg"
                 },
                 new StoryNode
                 {
@@ -86,7 +86,7 @@ namespace unikovahra.Server.Data
                     NextA = 1,
                     OptionB = null,
                     NextB = null,
-                    ImageUrl = "/images/scene1.jpg"
+                    ImageUrl = "/images/gamebook6.jpg"
                 },
                 new StoryNode
                 {
@@ -97,7 +97,7 @@ namespace unikovahra.Server.Data
                     NextA = null,
                     OptionB = null,
                     NextB = null,
-                    ImageUrl = "/images/scene1.jpg"
+                    ImageUrl = "/images/gamebook7.jpg"
                 }
 
 
@@ -112,7 +112,7 @@ namespace unikovahra.Server.Data
                     IntroTitle = "Nefunguje proud! Zprav to!",
                     IntroSubtitle = "Kritická chyba v Systému Napájení.",
                     IntroText = "Trezor je v hluboké tmě a ty si uvědomíš, že proud nefunguje. Ten je nutný pro otevření dveří. Musíš rychle obnovit napájení. Najdeš nouzový rozvaděč s odpočtem (60 sekund) \r\na odpojeným kabelem. Energie sice je, ale neteče.",
-                    ImageUrl = "/images/room1.jpg",
+                    ImageUrl = "/images/minigame1.jpg",
                     IntroTaskSubtitle = "Tvůj úkol:",
                     IntroTaskText = "Na panelu vidíš několik šipek, které jsou náhodně otočené. Kliknutím na šipku ji vždy otočíš o 90°.\r\nNež vyprší čas, musíš z těchto šipek vytvořit souvislou trasu od startu až do cíle."
 
@@ -125,7 +125,7 @@ namespace unikovahra.Server.Data
                     IntroTitle = "Teď se musíš dostat do kanclu",
                     IntroSubtitle = "Vstup do Kanceláře",
                     IntroText = "Proud je sice zpět, ale dveře do kanceláře ředitele se neotevřou. Zůstávají zablokované finální, čistě elektronickou pojistkou. Musíš se dostat do kanceláře, protože tam na tebe čeká další úkol, který je nezbytný pro tvůj únik z banky. Na ovládacím panelu vedle dveří se objeví výzva.",
-                    ImageUrl = "/images/room2.jpg",
+                    ImageUrl = "/images/minigame2.jpg",
                     IntroTaskSubtitle = "Tvůj úkol:",
                     IntroTaskText = "Na displeji se objeví mřížka tlačítek, která se v náhodném pořadí rozsvěcí. Ty si musíš sekvenci zapamtovat a následně ji zopakovat klikáním na správná tlačítka."
 
@@ -138,7 +138,7 @@ namespace unikovahra.Server.Data
                     IntroTitle = "Vypni kamery! Rychle!",
                     IntroSubtitle = "Kamery blokují cestu",
                     IntroText = "Jsi uvnitř kanceláře, východ z banky je odemčený, ale na monitoru vyskočí varování. Kamery nad východem jsou stále aktivní, pokud projdeš kolem tak tě okamžitě zachytí. Na obrazovce se objeví úkol, který musíš splnit jinak se spustí alarm.",
-                    ImageUrl = "/images/room3.jpg",
+                    ImageUrl = "/images/minigame3.jpg",
                     IntroTaskSubtitle = "Tvůj úkol:",
                     IntroTaskText = "Na monitoru se spustí krátký odpočet a pod ním se objeví blikající kódy, které musíš rychle a přesně opsat, než čas vyprší. Úspěšné dokončení ti zajistí nejen vypnutí kamer, ale \r\ni získání důležitého PINu, který budeš potřebovat pro další postup."
 
@@ -151,7 +151,7 @@ namespace unikovahra.Server.Data
                     IntroTitle = "Získej PIN",
                     IntroSubtitle = "Dodatečné ověření pro hlavní PIN",
                     IntroText = "Po zadání velkého množství kódů systém vyhodnotil, že je nutné provést dodatečné ověření, aby ti umožnil použít hlavní PIN k odemčení hlavních dveří banky. Na monitoru se proto objeví nová výzva, která má potvrdit, že jsi oprávněný pokračovat dál.",
-                    ImageUrl = "/images/room4.jpg",
+                    ImageUrl = "/images/minigame4.jpg",
                     IntroTaskSubtitle = "Tvůj úkol:",
                     IntroTaskText = "Na obrazovce se objeví mřížka s rozházenými číslami. Tvým cílem je pomocí posouvání jednotlivých čtverců na monitoru seřadit čísla do správného číselného pořadí. Funguje to jako klasická „Patnáctka“: můžeš přesouvat vždy jen jeden dílek, který sousedí s prázdným místem."
                 },
@@ -162,7 +162,7 @@ namespace unikovahra.Server.Data
                     IntroTitle = "Odemkni dveře a zdrhej!",
                     IntroSubtitle = "Poslední překážka",
                     IntroText = "Dostal ses k hlavním dveřím banky. Vedle nich svítí zabezpečený displej, který čeká na zadání čtyřmístného PINu. Bez správného kódu zůstanou dveře zavřené a dál se nedostaneš.",
-                    ImageUrl = "/images/room5.jpg",
+                    ImageUrl = "/images/minigame5.jpg",
                     IntroTaskSubtitle = "Tvůj úkol:",
                     IntroTaskText = "Na displeji se zobrazí čtyři sloupce čísel, která jsou uspořádaná náhodně a čísla v nich jdou různě za sebou. Pomocí tlačítek STOP pod sloupci musíš zadat správný čtyřmístný PIN, který sis předtím zapamatoval."
                 }
