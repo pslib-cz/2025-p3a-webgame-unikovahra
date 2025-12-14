@@ -48,11 +48,18 @@ const MinigameRulesPage = () => {
 
           {data && (
             <>
+              {data.imageUrl && (
+                <img
+                  src={`http://localhost:5080${data.imageUrl}`}
+                  alt={data.introTitle}
+                  style={{ maxWidth: '100%', marginBottom: '1rem' }}
+                />
+              )}
               <h2>{data.introTitle}</h2>
               <h4>{data.introSubtitle}</h4>
               <p>{data.introText}</p>
 
-            <Button onClick={() => navigate(getMinigamePath(data.id))} text="Jdu na to" color="gold" />
+              <Button onClick={() => navigate(getMinigamePath(data.id))} text="Jdu na to" color="gold" />
             </>
           )}
         </div>
