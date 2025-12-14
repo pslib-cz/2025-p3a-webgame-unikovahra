@@ -9,6 +9,7 @@ const MoneyGrabPage = () => {
   const scoreRef = useRef<ScoreCounterHandle>(null);
   const [showResult, setShowResult] = useState(false);
   const [success, setSuccess] = useState(false);
+    const audioRef = useRef(new Audio("../public/sfx/money-grab.mp3"));
 
   const handleSuccess = () => {
     setSuccess(true);
@@ -20,8 +21,14 @@ const MoneyGrabPage = () => {
     setShowResult(true);
   };
 
+
+  const playSound = () => {
+    audioRef.current.currentTime = 0.35; 
+    audioRef.current.play();
+  };
       const handleAdder = () => {
       scoreRef.current!.addScore(10000); 
+
 };
   if (showResult) {
     return success ? (
@@ -52,7 +59,7 @@ const MoneyGrabPage = () => {
 
       <Button text="Simulovat úspěch" onClick={handleSuccess} color="blue" />
       <Button text="Simulovat neúspěch" onClick={handleFailure} color="white" />
-      <Button text="Simulace klikani peněz v safu" onClick={handleAdder}/>
+      <Button text="Simulace klikani peněz v safu" onClick={() => {handleAdder() ; playSound() }}/>
       <Button text="reset peněz" onClick={()=> scoreRef.current?.resetScore()}/>
       <ScoreCounter ref={scoreRef} style={"styled"} />
 
