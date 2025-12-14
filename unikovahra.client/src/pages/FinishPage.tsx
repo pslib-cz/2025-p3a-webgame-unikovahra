@@ -33,8 +33,8 @@ const FinishPage = () => {
           <h2>Za ${score}</h2>
           <p>Si můžeš koupit</p>
           <p>{rohlikyCount} Rohlíků</p>
-          <ScoreCounter style={"hidden"} />
-          <Button text="Hrát znovu" onClick={() => {; navigate('/')}} color="blue"></Button>
+      <Button text="Hrát znovu" onClick={() => {scoreRef.current?.resetScore(); navigate("/")}} color="blue"></Button>
+      <ScoreCounter ref={scoreRef} style={"hidden"} />
         </div>
       )}
     </div>

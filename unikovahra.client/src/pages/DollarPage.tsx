@@ -18,7 +18,7 @@ const DollarPage = () => {
         onClick={() => navigate(`/minigame/finish/${roomId}/false`)}
         color="white"
       />
-      <ScoreCounter styled={true} />
+      <ScoreCounter style='styled' />
     </>
   )
 }

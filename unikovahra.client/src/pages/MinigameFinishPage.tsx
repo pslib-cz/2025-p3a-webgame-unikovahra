@@ -1,8 +1,9 @@
 import React from 'react'
-import { Fetcher } from '../components/Fetcher'
+import { useRef } from 'react'
+import { Fetcher  } from '../components/Fetcher'
 import { useParams, useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
-import ScoreCounter from '../components/ui/ScoreCounter'
+import ScoreCounter, {type ScoreCounterHandle} from '../components/ui/ScoreCounter'
 type MinigameFinishDto = {
     id: number;
     roomId: number;
@@ -19,15 +20,16 @@ const MinigameFinishPage = () => {
   const navigate = useNavigate();
   const roomIdNum = parseInt(roomId || '1', 10);
   const isSuccess = success === 'true';
-
+  const scoreRef = useRef<ScoreCounterHandle>(null);
   const handleRetry = () => {
     
-    
+    scoreRef.current?.deductScore(10000);
     navigate(-1);
   };
 
   const handleEndMission = () => {
     navigate('/missionend'); 
+    
   
   };
 
@@ -55,6 +57,7 @@ const MinigameFinishPage = () => {
                   <>
                     <Button text="Začít znovu"  onClick={handleRetry} color="blue" />
                     <Button text="Ukončit misi" onClick={handleEndMission} color="white" />
+                    <ScoreCounter ref={scoreRef} style={"hidden"} />
                   </>
                 )}
               </div>

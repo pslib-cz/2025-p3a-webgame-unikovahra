@@ -33,13 +33,16 @@ const MoneyGrabPage = () => {
         onButtonClick={() => navigate('/rules/')}
       />
     ) : (
+      <>
       <ResultScreen
         title="Neúspěch"
         message="Nepodařilo se ti sebrat dost peněz."
         buttonText="Zkusit znovu"
         buttonColor="white"
-        onButtonClick={() => navigate('/')}
+        onButtonClick={() => {navigate('/')}}
       />
+      <ScoreCounter style='styled'/>
+      </>
     );
   }
 
