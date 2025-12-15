@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using unikovahra.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace unikovahra.Server.Controllers
 {
@@ -17,19 +18,19 @@ namespace unikovahra.Server.Controllers
         }
 
         [HttpGet("room/{roomId}")]
-        public IActionResult GetByRoom(int roomId)
+        public async Task<IActionResult> GetByRoom(int roomId)
         {
-            var games = _db.MiniGames
+            var games = await _db.MiniGames
                 .Where(g => g.RoomId == roomId)
-                .ToList();
+                .ToListAsync();
 
             return Ok(games);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var game = _db.MiniGames.Find(id);
+            var game = await _db.MiniGames.FindAsync(id);
             if (game == null)
             {
                 return NotFound();
