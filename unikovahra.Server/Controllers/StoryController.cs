@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using unikovahra.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace unikovahra.Server.Controllers
 {
@@ -15,18 +16,18 @@ namespace unikovahra.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetNode(int id)
+        public async Task<IActionResult> GetNode(int id)
         {
-            var node = _db.StoryNodes.Find(id);
+            var node = await _db.StoryNodes.FindAsync(id);
             if (node == null)
                 return NotFound();
             return Ok(node);
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_db.StoryNodes.ToList());
+            return Ok(await _db.StoryNodes.FindAsync());
         }
     }
 }
