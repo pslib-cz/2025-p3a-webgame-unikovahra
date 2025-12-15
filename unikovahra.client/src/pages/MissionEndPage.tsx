@@ -9,7 +9,7 @@ const MissionEndPage = () => {
   return (
     <div>
       <h1> Konec mise</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, natus vitae necessitatibus eum nemo corrupti mollitia rem aut modi dolor ipsum reiciendis itaque tempora, provident, dolorum laboriosam sapiente. Laboriosam, nobis.</p>
+      <p>Rozhodl ses misi ukončit. Tvoje cesta zde končí a další postup už není možný. V tuto chvíli už nic nemůžeš změnit, tvůj příběh je uzavřen. Jedinou možností je začít celou hru znovu a pokusit se o úspěch od začátku.</p>
       <Button text="Hrát znovu" onClick={() => {scoreRef.current?.resetScore(); navigate("/")}} color="blue"></Button>
       <ScoreCounter ref={scoreRef} style={"hidden"} />
 

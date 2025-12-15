@@ -35,10 +35,10 @@ const MinigameRulesPage = () => {
         return '/minigame/switchboard';
     }
   };
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   return (
     <Fetcher<RoomDto>
-      url={`http://localhost:5080/api/room/${id}`}
+      url={`${API_BASE_URL}/api/room/${id}`}
       dependencies={[id]}
     >
       {({ data, loading, error }) => (
@@ -50,7 +50,7 @@ const MinigameRulesPage = () => {
             <>
               {data.imageUrl && (
                 <img
-                  src={`http://localhost:5080${data.imageUrl}`}
+                  src={`${API_BASE_URL}${data.imageUrl}`}
                   alt={data.introTitle}
                   style={{ maxWidth: '100%', marginBottom: '1rem' }}
                 />

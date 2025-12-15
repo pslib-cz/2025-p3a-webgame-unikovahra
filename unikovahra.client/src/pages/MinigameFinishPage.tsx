@@ -33,9 +33,12 @@ const MinigameFinishPage = () => {
   
   };
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
   return (
     <Fetcher<MinigameFinishDto[]>
-      url={`http://localhost:5080/api/MinigameFinish/room/${roomIdNum}`}
+      url={`${API_BASE_URL}/api/MinigameFinish/room/${roomIdNum}`}
       dependencies={[roomIdNum]}
     >
       {({ data, loading, error }) => (

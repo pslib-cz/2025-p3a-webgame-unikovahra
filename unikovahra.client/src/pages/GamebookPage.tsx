@@ -18,10 +18,11 @@ const GamebookPage = () => {
   const navigate = useNavigate();
 
   const nodeId = Number(id ?? 1);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   return (
     <Fetcher<StoryNodeDto>
-      url={`http://localhost:5080/api/story/${nodeId}`}
+      url={`${API_BASE_URL}/api/story/${nodeId}`}
       dependencies={[nodeId]}
     >
       {({ data, loading, error }) => (
@@ -33,7 +34,7 @@ const GamebookPage = () => {
             <>
               {data.imageUrl && (
                 <img 
-                  src={`http://localhost:5080${data.imageUrl}`} 
+                  src={`${API_BASE_URL}${data.imageUrl}`} 
                   alt={data.header} 
                   style={{ maxWidth: '100%', marginBottom: '1rem' }} 
                 />
