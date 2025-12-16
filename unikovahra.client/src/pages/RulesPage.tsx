@@ -1,13 +1,16 @@
 import React from 'react'
 import Button from '../components/ui/Button'
 import { useNavigate } from 'react-router'
+import RulesDisplay from '../components/rules/RulesDisplay'
 
 const RulesPage = () => {
   const navigate = useNavigate()
   return (
     <div>
-      <h1>Pravidla Hry</h1>
-      <Button color="gray" onClick={() => navigate('/minigame/switchboard')} text="Jdu se dostat ven" />
+      
+
+      <RulesDisplay /> 
+      <Button color="gold" onClick={() => navigate('/minigame/1')} text="Jdu se dostat ven" />
     </div>
 
   )

@@ -1,0 +1,12 @@
+.rule__subheading{
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Radjhani', sans-serif;
+    margin: 0;
+}
+.rule__heading{
+    color: var(--gold);
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+}
