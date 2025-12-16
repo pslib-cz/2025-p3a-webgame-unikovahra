@@ -1,6 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { Fetcher } from "../components/Fetcher";
+import Choices from "../components/ui/Choices";
+import ImageDisplay from "../components/ui/ImageDisplay";
+import Loader from "../components/ui/Loader";
+import { Error } from "../components/ui/Error";
 
 type StoryNodeDto = {
   id: number;
@@ -27,35 +31,17 @@ const GamebookPage = () => {
     >
       {({ data, loading, error }) => (
         <div>
-          {loading && <p>Načítám data...</p>}
-          {error && <p>CHYBA: {error.message}</p>}
+          {loading && <Loader />}
+          {error && <Error />}
 
           {data && (
             <>
-              {data.imageUrl && (
-                <img 
-                  src={`${API_BASE_URL}${data.imageUrl}`} 
-                  alt={data.header} 
-                  style={{ maxWidth: '100%', marginBottom: '1rem' }} 
-                />
-              )}
-              
+              <ImageDisplay data={data} />
+
               <h2>{data.header}</h2>
               <p>{data.text}</p>
 
-              <div>
-                {data.optionA && data.nextA != null && (
-                  <Button color="blue" onClick={() => navigate(`/gamebook/${data.nextA}`)} text={data.optionA} />
-                )}
-
-                {data.optionB && data.nextB != null && (
-                  <Button color="white" onClick={() => navigate(`/gamebook/${data.nextB}`)} text={data.optionB} />
-                )}
-
-                {data.nextA == null && data.nextB == null && (
-                  <Button color="blue" onClick={() => navigate('/minigame/moneygrab')} text="Pokračovat" />
-                )}
-              </div>
+              <Choices data={data} navigate={navigate} />
             </>
           )}
         </div>

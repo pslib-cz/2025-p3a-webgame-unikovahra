@@ -1,6 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Fetcher } from "../components/Fetcher";
 import Button from "../components/ui/Button";
+import ImageDisplay from "../components/ui/ImageDisplay";
+import Loader from "../components/ui/Loader";
+import { Error } from "../components/ui/Error";
 
 type RoomDto = {
   id: number;
@@ -9,6 +12,10 @@ type RoomDto = {
   introSubtitle: string;
   introText: string;
   imageUrl: string;
+  introTaskSubtitle: string;
+  introTaskText: string;
+
+  header: string;
 };
 
 const MinigameRulesPage = () => {
@@ -43,21 +50,21 @@ const MinigameRulesPage = () => {
     >
       {({ data, loading, error }) => (
         <div>
-          {loading && <p>Načítám pravidla…</p>}
-          {error && <p>CHYBA: {error.message}</p>}
+          {loading && <Loader/>}
+          {error && <Error/>}
 
           {data && (
             <>
-              {data.imageUrl && (
-                <img
-                  src={`${API_BASE_URL}${data.imageUrl}`}
-                  alt={data.introTitle}
-                  style={{ maxWidth: '100%', marginBottom: '1rem' }}
-                />
-              )}
-              <h2>{data.introTitle}</h2>
-              <h4>{data.introSubtitle}</h4>
+
+              <ImageDisplay data={{ ...data, header: data.introTitle }} />
+
+
+              <p>{data.introTitle}</p>
+              <p>{data.introSubtitle}</p>
               <p>{data.introText}</p>
+              <p>{data.introTaskSubtitle}</p>
+              <p>{data.introTaskText}</p>
+
 
               <Button onClick={() => navigate(getMinigamePath(data.id))} text="Jdu na to" color="gold" />
             </>
