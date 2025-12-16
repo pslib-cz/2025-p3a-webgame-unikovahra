@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { Fetcher } from "../components/Fetcher";
+import Loader from "../components/ui/Loader";
+import { Error } from "../components/ui/Error";
 
 type MiniGameDto = {
   id: number;
@@ -22,8 +24,8 @@ const MinigameInitialPage = () => {
     >
       {({ data, loading, error }) => (
         <div>
-          {loading && <p>Načítám minihru...</p>}
-          {error && <p>CHYBA: {error.message}</p>}
+          {loading && <Loader/>}
+          {error && <Error/>}
 
           {data && (
             <>
