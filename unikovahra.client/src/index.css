@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,17 +16,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
@@ -44,11 +38,11 @@ h1 {
     background-color: #ffffff;
   }
 
-  
+
 }
 
 
-:root{
+:root {
   --gold: #D4A017;
   --darkgreen: #0A7A3D;
   --green: #0DBF5A;
@@ -58,16 +52,38 @@ h1 {
   --white: #FFFFFF;
   --gray: #2A303C;
   font-family: "Orbitron" "Rajdhani", sans-serif;
-  --text : 1.5rem;
+  --text: 1.5rem;
   --title: 4rem;
-  --subtitle: 3rem; 
-  --normal : 400;
-  --medium : 500;
-  --semibold : 600;
+  --subtitle: 3rem;
+  --normal: 400;
+  --medium: 500;
+  --semibold: 600;
   --bold: 700;
   --extrabold: 800;
-  
 
 
 
+
+}
+
+p {
+  font-family: 'Radjhani', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+
+.marked {
+  color: var(--darkgreen);
+}
+
+.marked--failure {
+  color: var(--red);
 }
