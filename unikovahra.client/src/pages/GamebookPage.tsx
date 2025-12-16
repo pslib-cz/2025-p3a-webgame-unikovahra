@@ -10,7 +10,7 @@ type StoryNodeDto = {
   id: number;
   header: string;
   text: string;
-  optionA: string | null;
+  optionA: string;
   nextA: number | null;
   optionB: string | null;
   nextB: number | null;

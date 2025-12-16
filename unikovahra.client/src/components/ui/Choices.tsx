@@ -4,7 +4,7 @@ import styles from './Choices.module.css';
 
 type ChoicesProps = {
     data: {
-        optionA: string | null;
+        optionA: string;
         nextA: number | null;
         optionB: string | null;
         nextB: number | null;
@@ -26,7 +26,7 @@ const Choices: React.FC<ChoicesProps> = ({ data, navigate }) => {
             )}
 
             {data.nextA == null && data.nextB == null && (
-                <Button color="blue" onClick={() => navigate('/minigame/moneygrab')} text="Pokračovat" />
+                <Button color="blue" onClick={() => navigate('/minigame/moneygrab')} text={data.optionA} />
             )}
         </div>
     )
