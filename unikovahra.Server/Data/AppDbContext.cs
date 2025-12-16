@@ -13,13 +13,12 @@ namespace unikovahra.Server.Data
         public DbSet<StoryNode> StoryNodes { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<MiniGame> MiniGames { get; set; }
-        public DbSet<MinigameFinish> MinigameFinishes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            
+
 
             modelBuilder.Entity<StoryNode>().HasData(
                 new StoryNode
@@ -99,9 +98,6 @@ namespace unikovahra.Server.Data
                     NextB = null,
                     ImageUrl = "/images/gamebook7.jpg"
                 }
-
-
-
             );
 
             modelBuilder.Entity<Room>().HasData(
@@ -115,8 +111,6 @@ namespace unikovahra.Server.Data
                     ImageUrl = "/images/minigame1.jpg",
                     IntroTaskSubtitle = "Tvůj úkol:",
                     IntroTaskText = "Na panelu vidíš několik šipek, které jsou náhodně otočené. Kliknutím na šipku ji vždy otočíš o 90°.\r\nNež vyprší čas, musíš z těchto šipek vytvořit souvislou trasu od startu až do cíle."
-
-
                 },
                 new Room
                 {
@@ -128,8 +122,6 @@ namespace unikovahra.Server.Data
                     ImageUrl = "/images/minigame2.jpg",
                     IntroTaskSubtitle = "Tvůj úkol:",
                     IntroTaskText = "Na displeji se objeví mřížka tlačítek, která se v náhodném pořadí rozsvěcí. Ty si musíš sekvenci zapamtovat a následně ji zopakovat klikáním na správná tlačítka."
-
-
                 },
                 new Room
                 {
@@ -141,8 +133,6 @@ namespace unikovahra.Server.Data
                     ImageUrl = "/images/minigame3.jpg",
                     IntroTaskSubtitle = "Tvůj úkol:",
                     IntroTaskText = "Na monitoru se spustí krátký odpočet a pod ním se objeví blikající kódy, které musíš rychle a přesně opsat, než čas vyprší. Úspěšné dokončení ti zajistí nejen vypnutí kamer, ale \r\ni získání důležitého PINu, který budeš potřebovat pro další postup."
-
-
                 },
                 new Room
                 {
@@ -170,46 +160,10 @@ namespace unikovahra.Server.Data
             modelBuilder.Entity<MiniGame>().HasData(
                 new MiniGame
                 {
-                 Id = 1,
-                RoomId = 1,
-                Title= "Elektrický rozvaděč – Směřování energie",
-                Description = "První minihra"
-
-                },
-                new MiniGame
-                {
-                    Id = 2,
-                    RoomId = 2,
-                    Title = "Světelná kombinace – Otevření dveří",
-                    Description = "Druhá minihra"
-                },
-                new MiniGame
-                {
-                    Id = 3,
-                    RoomId = 3,
-                    Title = "Bankovní systém - Hackovací kódy",
-                    Description = "Třetí minihra"
-                },
-                new MiniGame
-                {
-                    Id = 4,
-                    RoomId = 4,
-                    Title = "Dolarová kombinace - Logická skládačka",
-                    Description = "Čtvrtá minihra"
-                },
-                new MiniGame
-                {
-                    Id = 5,
-                    RoomId = 5,
-                    Title = "Zamykací panel - Zastavení čísel",
-                    Description = "Pátá minihra"
-                }
-            );
-            modelBuilder.Entity<MinigameFinish>().HasData(
-                new MinigameFinish
-                {
                     Id = 1,
                     RoomId = 1,
+                    Title = "Elektrický rozvaděč – Směřování energie",
+                    Description = "První minihra",
                     SuccessTitle = "Proud Obnoven!",
                     SuccessSubtitle = "Dveře se odblokovaly – máš volný průchod",
                     SuccessText = "Zbývá jen pár vteřin do vypršení času, když přesměruješ poslední směr na panelu. Celým nouzovým okruhem konečně proběhne plný proud. Rozvaděč hlasitě zavrčí a studená tma je náhle rozčíslena ostrým nouzovým světlem. Proud je zpět! Systém reaguje, mechanika se v trezorových dveřích uvolní a ty máš cestu ven volnou.",
@@ -217,10 +171,12 @@ namespace unikovahra.Server.Data
                     FailureSubtitle = "Čas vypršel a systém selhal",
                     FailureText = "Nepodařilo se ti úkol dokončit včas. Čas vypršel, než ses stihl správně propojit všechny šipky a vytvořit souvislou trasu od startu do cíle. Nouzový okruh zůstal neaktivní, rozvaděč zůstal tichý a trezorové dveře zůstávají zamčené. Systém vyhodnotil neúspěch a všechny pokusy selhaly.\r\nTvá chyba má následky. Můžeš se pokusit minihru zahrát znovu, ale část tvých peněz bude odečtena jako pokuta za neúspěch, nebo se rozhodnout misi ukončit a opustit budovu bez dalšího postupu."
                 },
-                new MinigameFinish
+                new MiniGame
                 {
                     Id = 2,
                     RoomId = 2,
+                    Title = "Světelná kombinace – Otevření dveří",
+                    Description = "Druhá minihra",
                     SuccessTitle = "Kombinace zadána úspěšně!",
                     SuccessSubtitle = "Dveře odblokovány – vstup do kanceláře volný",
                     SuccessText = "Soustředěně dýcháš a dokončuješ poslední, nejdelší sekvenci. Tvé prsty se pohybují s přesností. Jakmile stiskneš poslední tlačítko správně, celá mřížka zazáří jasným, triumfálním zeleným světlem. Slyšíš tiché cvaknutí. Elektronická pojistka se uvolnila! Dveře do kanceláře ředitele se odemkly. Cesta k dalšímu, nezbytnému úkolu pro tvůj únik je volná.",
@@ -228,24 +184,25 @@ namespace unikovahra.Server.Data
                     FailureSubtitle = "Dveře zůstávají zamčené a systém nereaguje",
                     FailureText = "Nepodařilo se ti dokončit sekvenci včas. Čas vypršel, než ses stihl trefit do všech správných tlačítek, nebo jsi omylem klikl na několik nesprávných tlačítek vedle. Mřížka zůstala neaktivní, elektronická pojistka se nezměnila a dveře do kanceláře ředitele zůstávají pevně zamčené. Systém vyhodnotil neúspěch a úkol nebyl splněn.\r\nNásledky jsou jasné: můžeš se pokusit minihru znovu zahrát, ale část tvých peněz bude odečtena, nebo se rozhodnout misi ukončit a vzdát další postup."
                 },
-                new MinigameFinish 
+                new MiniGame
                 {
                     Id = 3,
                     RoomId = 3,
+                    Title = "Bankovní systém - Hackovací kódy",
+                    Description = "Třetí minihra",
                     SuccessTitle = "Kamery deaktivovány",
                     SuccessSubtitle = "Čistý průchod zajištěn",
                     SuccessText = "Zvládl jsi to perfektně. Poslední kód jsi opsal včas a systém ho okamžitě potvrdil. Odpočet zmizel, obraz na kamerách zčernal a kontrolky signalizují úplné vypnutí sledování. Žádný alarm, žádné komplikace. Cesta ven je teď bezpečná a kamery už ti stát v cestě nebudou.",
                     FailureTitle = "Nepodařilo se deaktivovat kamery",
                     FailureSubtitle = "Kamery stále aktivní",
                     FailureText = "Nepodařilo se ti dokončit úkol včas. Čas vypršel, než ses stihl přesně opsat všechny blikající kódy, nebo jsi během přepisování udělal chybu. Obraz na kamerách zůstal aktivní a kontrolky signalizují, že sledování stále běží. Alarm se zatím nespustil, ale pokud se pokusíš odejít, kamery tě zachytí a alarm se spustí.\r\nTvá situace má následky: můžeš se pokusit minihru znovu zahrát, ale část tvých peněz bude odečtena, nebo se rozhodnout misi ukončit a vzdát další postup."
-
-
                 },
-               
-                new MinigameFinish 
+                new MiniGame
                 {
                     Id = 4,
                     RoomId = 4,
+                    Title = "Dolarová kombinace - Logická skládačka",
+                    Description = "Čtvrtá minihra",
                     SuccessTitle = "PIN získán!",
                     SuccessSubtitle = "Přístup potvrzen",
                     SuccessText = "Dodatečné ověření proběhlo úspěšně a systém potvrdil tvou identitu. Použití hlavního PINu k odemčení hlavních dveří banky bylo povoleno. Zapamatuj si tento PIN, budeš ho potřebovat při dalším kroku, protože bez něj se hlavní dveře neotevřou a v postupu nebude možné pokračovat.",
@@ -253,11 +210,12 @@ namespace unikovahra.Server.Data
                     FailureSubtitle = "Ověření selhalo",
                     FailureText = "Dodatečné ověření se nepodařilo dokončit. Systém tvou identitu nepotvrdil a použití hlavního PINu bylo zablokováno. Bez tohoto PINu zůstávají hlavní dveře banky uzamčené a není možné pokračovat dál v tvé misi.\r\nDůsledky jsou jasné: můžeš se pokusit minihru znovu zahrát a opravit svůj neúspěch, nebo se rozhodnout vzdát celou misi a ukončit postup."
                 },
-
-                new MinigameFinish 
+                new MiniGame
                 {
                     Id = 5,
                     RoomId = 5,
+                    Title = "Zamykací panel - Zastavení čísel",
+                    Description = "Pátá minihra",
                     SuccessTitle = "Dveře odemčeny – Únik úspěšný!",
                     SuccessSubtitle = "Gratulujeme k úspěšnému úniku z banky!",
                     SuccessText = "S napětím sleduješ, jak se poslední číslice zastavuje přesně na správné hodnotě. Jakmile všechny sloupce ukazují cílovou kombinaci, ozve se tiché cvaknutí. Hlavní dveře se pomalu otevírají, odhalující cestu ven do svobody. Únik je dokončen! S úlevou a triumfem opouštíš budovu, vědom si toho, že jsi úspěšně zvládl všechny výzvy a unikl bez povšimnutí.",
