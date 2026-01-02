@@ -37,21 +37,19 @@ const MinigameFinishPage = () => {
 
 
   return (
-    <Fetcher<MinigameFinishDto[]>
-      url={`${API_BASE_URL}/api/MinigameFinish/room/${roomIdNum}`}
+    <Fetcher<MinigameFinishDto>
+      url={`${API_BASE_URL}/api/minigames/${roomIdNum}`}
       dependencies={[roomIdNum]}
     >
       {({ data, loading, error }) => (
         <div>
           {loading && <p>Načítám data...</p>}
           {error && <p>CHYBA: {error.message}</p>}
-          {data && data[0] && (
+          {data && (
             <div>
-              <h2>
-                {isSuccess ? data[0].successTitle : data[0].failureTitle}
-              </h2>
-              <h3>{isSuccess ? data[0].successSubtitle : data[0].failureSubtitle}</h3>
-              <p>{isSuccess ? data[0].successText : data[0].failureText}</p>
+              <h2 dangerouslySetInnerHTML={{ __html: isSuccess ? data.successTitle : data.failureTitle }} />
+              <h3 dangerouslySetInnerHTML={{ __html: isSuccess ? data.successSubtitle : data.failureSubtitle }} />
+              <p dangerouslySetInnerHTML={{ __html: isSuccess ? data.successText : data.failureText }} />
               
               <div>
                 {isSuccess ? (

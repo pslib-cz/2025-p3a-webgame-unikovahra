@@ -29,8 +29,8 @@ const MinigameInitialPage = () => {
 
           {data && (
             <>
-              <h2>{data.title}</h2>
-              <p>{data.description}</p>
+              <h2 dangerouslySetInnerHTML={{ __html: data.title }} />
+              <p dangerouslySetInnerHTML={{ __html: data.description }} />
 
               <Button onClick={() => navigate(`/minigame/play/${data.id}`)} text="Přečíst pravidla hry" color="gold" />
             </>

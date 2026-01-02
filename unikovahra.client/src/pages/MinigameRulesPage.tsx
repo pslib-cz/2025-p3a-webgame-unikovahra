@@ -59,11 +59,11 @@ const MinigameRulesPage = () => {
               <ImageDisplay data={{ ...data, header: data.introTitle }} />
 
 
-              <p>{data.introTitle}</p>
-              <p>{data.introSubtitle}</p>
-              <p>{data.introText}</p>
-              <p>{data.introTaskSubtitle}</p>
-              <p>{data.introTaskText}</p>
+              <p dangerouslySetInnerHTML={{ __html: data.introTitle }} />
+              <p dangerouslySetInnerHTML={{ __html: data.introSubtitle }} />
+              <p dangerouslySetInnerHTML={{ __html: data.introText }} />
+              <p dangerouslySetInnerHTML={{ __html: data.introTaskSubtitle }} />
+              <p dangerouslySetInnerHTML={{ __html: data.introTaskText }} />
 
 
               <Button onClick={() => navigate(getMinigamePath(data.id))} text="Jdu na to" color="gold" />
