@@ -1,6 +1,7 @@
 
 .scoreCounter{
     background-color: var(--gold);
+    display: inline-block;
     font-family: "Rajdhani", sans-serif;
     font-size: var(--text);
     font-weight: var(--semibold);

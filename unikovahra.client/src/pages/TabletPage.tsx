@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MemoryGrid from '../components/minigames/tablet/MemoryGrid'
+import ScoreCounter from '../components/ui/ScoreCounter';
+
 
 const TabletPage = () => {
   const navigate = useNavigate();
@@ -22,6 +24,7 @@ const TabletPage = () => {
 
   return (
     <div>
+      <ScoreCounter style="styled" />
       <MemoryGrid
         key={level}
         size={levels[level - 1].size}

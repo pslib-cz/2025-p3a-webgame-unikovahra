@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './MemoryCell.module.css'
+import { useState } from 'react'
 
 type MemoryCellProps = {
     isLit: boolean;
@@ -8,11 +9,27 @@ type MemoryCellProps = {
 }
 
 const MemoryCell: React.FC<MemoryCellProps> = ({ isLit, disabled, onClick }) => {
+const [isActive, setIsActive] = useState(false);
+
+const handleInternalClick = () => {
+    if (disabled) return;
+
+    setIsActive(true); 
+    onClick();
+
+    setTimeout(() => {
+      setIsActive(false);
+    }, 350);
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={() => {
+        handleInternalClick();
+      }}
       disabled={disabled}
-      className={`${styles.block} ${isLit ? styles.lit : ''}`}
+      className={`${styles.block} ${isLit ? styles.lit : ''} ${isActive ? styles.active : ''}`}
+
     />
   )
 }

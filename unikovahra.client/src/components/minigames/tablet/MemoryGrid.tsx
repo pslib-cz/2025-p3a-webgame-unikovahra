@@ -17,6 +17,7 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({ size, sequenceLength, onSuccess
     const [showIndex, setShowIndex] = useState(0);
     const [lit, setLit] = useState(-1);
 
+
     const total = size * size;
 
     const StartGame = () => {
@@ -63,9 +64,7 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({ size, sequenceLength, onSuccess
 
 
     return (
-        <div className={styles.grid} style={{
-            gridTemplateColumns: `repeat(${size}, 80px)`
-        }}>
+        <div className={`${styles.grid} ${styles['size-' + size]}`} >
             {Array.from({ length: total }).map((_, index) => (
                 <MemoryCell
                     

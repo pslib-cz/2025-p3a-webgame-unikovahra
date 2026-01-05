@@ -1,16 +1,18 @@
 .block {
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+
     background-color: var(--lightgray);
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.block:hover:not(:disabled) {
+
+.active{
     background-color: var(--green);
-    transform: scale(1.05);
 }
 
 .block:disabled {
