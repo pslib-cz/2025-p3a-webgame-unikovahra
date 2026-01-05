@@ -1,0 +1,56 @@
+.wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #0b0f0c;
+    border-radius: 10px;
+    font-family: "JetBrains Mono", monospace;
+    color: #2dff88;
+  }
+  
+  .header {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  
+  .codeBox {
+    background: #050807;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .codeLine {
+    margin: 0;
+    padding: 6px 8px;
+    transition: background 0.2s, opacity 0.2s;
+  }
+  
+  .activeLine {
+    background: #0f5132;
+  }
+  
+  .doneLine {
+    opacity: 0.4;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #111;
+    color: #2dff88;
+  }
+  
+  .input::placeholder {
+    color: #5fae8c;
+  }
+  
+  .result {
+    margin-top: 14px;
+    font-size: 20px;
+  }
