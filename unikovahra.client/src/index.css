@@ -65,3 +65,56 @@ h6 {
 .marked--failure {
   color: var(--red);
 }
+
+.wrap {
+  min-height: 100vh;
+  position: relative;
+}
+
+.wrap::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/path4.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.wrap--centered {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding-top: 4rem;
+}
+
+.wrap--centered.wrap--fullycentered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .wrap--centered {
+    padding-top: 2rem;
+  }
+  .wrap::before{
+    background-image: none;
+  }
+}
+
+.initial__text{
+  font-size: 3rem;
+  margin: 0;
+
+}
+.initial__title{
+  font-size: 4rem;
+  margin: 0;
+}

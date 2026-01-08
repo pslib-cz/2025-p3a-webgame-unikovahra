@@ -4,7 +4,7 @@ import styles from './RulesDisplay.module.css'
 const RulesDisplay = () => {
     return (
         <div>
-            <h1 className={styles.rule__heading}>Pravidla Hry</h1>
+            <h1 className={styles.rule__heading}>Pravidla </h1>
             <div>
                 <p className={styles.rule__subheading}>Základní <span className='marked'>pravidla:</span></p>
                 <ul>

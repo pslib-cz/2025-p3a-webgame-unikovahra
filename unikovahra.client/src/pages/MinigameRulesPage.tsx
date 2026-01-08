@@ -1,10 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Fetcher } from "../components/Fetcher";
-import Button from "../components/ui/Button";
-import ImageDisplay from "../components/ui/ImageDisplay";
 import Loader from "../components/ui/Loader";
 import { Error } from "../components/ui/Error";
-
+import MinigameRules from "../components/minigames/MinigameRules";
 type RoomDto = {
   id: number;
   order: number;
@@ -14,7 +12,6 @@ type RoomDto = {
   imageUrl: string;
   introTaskSubtitle: string;
   introTaskText: string;
-
   header: string;
 };
 
@@ -42,32 +39,29 @@ const MinigameRulesPage = () => {
         return '/minigame/switchboard';
     }
   };
+
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   return (
     <Fetcher<RoomDto>
       url={`${API_BASE_URL}/api/room/${id}`}
       dependencies={[id]}
     >
       {({ data, loading, error }) => (
-        <div>
-          {loading && <Loader/>}
-          {error && <Error/>}
+        <div className="wrap wrap--centered">
+          {loading && <Loader />}
+          {error && <Error />}
 
           {data && (
-            <>
-
-              <ImageDisplay data={{ ...data, header: data.introTitle }} />
-
-
-              <p dangerouslySetInnerHTML={{ __html: data.introTitle }} />
-              <p dangerouslySetInnerHTML={{ __html: data.introSubtitle }} />
-              <p dangerouslySetInnerHTML={{ __html: data.introText }} />
-              <p dangerouslySetInnerHTML={{ __html: data.introTaskSubtitle }} />
-              <p dangerouslySetInnerHTML={{ __html: data.introTaskText }} />
-
-
-              <Button onClick={() => navigate(getMinigamePath(data.id))} text="Jdu na to" color="gold" />
-            </>
+            <MinigameRules
+              introTitle={data.introTitle}
+              introSubtitle={data.introSubtitle}
+              introText={data.introText}
+              introTaskSubtitle={data.introTaskSubtitle}
+              introTaskText={data.introTaskText}
+              imageUrl={data.imageUrl}
+              onStart={() => navigate(getMinigamePath(data.id))}
+            />
           )}
         </div>
       )}

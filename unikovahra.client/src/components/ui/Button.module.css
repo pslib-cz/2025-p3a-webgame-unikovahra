@@ -21,3 +21,8 @@
     background-color: var(--white);
     color: var(--black);
 }
+
+.centered {
+    display: block;
+    margin: 2rem auto 0;
+}
