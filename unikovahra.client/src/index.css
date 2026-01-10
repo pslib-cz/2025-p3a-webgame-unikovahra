@@ -71,6 +71,15 @@ h6 {
   position: relative;
 }
 
+.wrap--start{
+  background-image: url('/images/StartBG.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+
+}
+
 .wrap::before {
   content: '';
   position: fixed;
@@ -78,7 +87,7 @@ h6 {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/path4.svg');
+  background-image: url('/images/background.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
