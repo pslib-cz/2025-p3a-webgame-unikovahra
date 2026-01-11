@@ -23,7 +23,7 @@ const TabletPage = () => {
   };
 
   return (
-    <div>
+    <div className='wrap wrap--centered wrap--fullycentered'>
       <ScoreCounter style="styled" />
       <MemoryGrid
         key={level}

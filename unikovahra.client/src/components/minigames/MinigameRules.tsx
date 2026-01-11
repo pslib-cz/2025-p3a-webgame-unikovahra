@@ -14,7 +14,7 @@ type MinigameRulesProps = {
   onStart: () => void;
 };
 
-const MinigameRules = ({
+const MinigameRules: React.FC<MinigameRulesProps> = ({
   introTitle,
   introSubtitle,
   introText,
@@ -22,7 +22,7 @@ const MinigameRules = ({
   introTaskText,
   imageUrl,
   onStart
-}: MinigameRulesProps) => {
+}) => {
   return (
     <div className={styles.container}>
       <p className={styles.title} dangerouslySetInnerHTML={{ __html: introTitle }} />

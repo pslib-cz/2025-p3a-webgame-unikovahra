@@ -2,11 +2,15 @@
 .scoreCounter{
     background-color: var(--gold);
     display: inline-block;
-    font-family: "Rajdhani", sans-serif;
     font-size: var(--text);
     font-weight: var(--semibold);
     padding: 1rem 0.5rem;
     color: var(--black);
     border-radius: 1rem; 
     text-align: center;
+
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
 }
