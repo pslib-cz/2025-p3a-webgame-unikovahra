@@ -28,7 +28,7 @@ const MinigameRulesPage = () => {
       case 2:
         return '/minigame/tablet';
       case 3:
-        return '/minigame/hacking';
+        return '/minigame/codetyping';
       case 4:
         return '/minigame/dollar';
       case 5:

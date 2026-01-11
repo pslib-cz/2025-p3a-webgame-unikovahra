@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import MemoryCell from './MemoryCell'
 import styles from './MemoryGrid.module.css'
-
+import MusicPlayer from '../../../context/MusicContext'
 type MemoryGridProps = {
     size: number;
     sequenceLength: number;
