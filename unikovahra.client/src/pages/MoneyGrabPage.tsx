@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ResultScreen from '../components/ui/ResultScreen';
 import ScoreCounter, { type ScoreCounterHandle } from '../components/ui/ScoreCounter';
 import MoneyGrabContent from '../components/minigames/moneygrab/MoneyGrabContent';
-
+import MusicPlayer from '../context/MusicContext';
 
 const MoneyGrabPage = () => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const MoneyGrabPage = () => {
     return success ? (
       
       <ResultScreen
-        title={<>Povedlo se ti nasbírat {/*pridat*/} <span className='marked'>Dolarů</span></>}
+        title={<>Povedlo se ti nasbírat <ScoreCounter style="notStyled"></ScoreCounter> <span className='marked'>Dolarů</span></>}
         message="Taška je plná bankovek a jejich váha ti připomíná, že ses dostal přesně tam, kam jsi chtěl. Trezor za tebou zůstává tichý, ale víš, že tady se zdržet nemůžeš. Nasbírané peníze máš u sebe, jenže to nejtěžší teprve přijde. Musíš se dostat 
         z banky ven, projít dalšími překážkami a zvládnout řadu úkolů, které rozhodnou 
         o tom, jestli tahle akce skončí úspěchem nebo neúspěchem...."
@@ -61,6 +61,7 @@ const MoneyGrabPage = () => {
           onButtonClick={() => { navigate('/') }}
         />
         <ScoreCounter style='styled' />
+        
       </>
     );
   }
@@ -74,6 +75,7 @@ const MoneyGrabPage = () => {
         onCollect={handleCollect}
         onFinish={handleFinish}
       />
+      <MusicPlayer src="../sfx/background-noise.mp3" volume={0.04} />
 
       <ScoreCounter ref={scoreRef} style="styled" />
     </div>

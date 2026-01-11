@@ -1,20 +1,36 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+}
+
 .wrapper {
-    max-width: 720px;
+    min-width: 1080px;
+    height: auto;
     margin: 0 auto;
-    padding: 20px;
-    background: #0b0f0c;
+    padding: 1rem;
+    background: #000000;
     border-radius: 10px;
-    font-family: "JetBrains Mono", monospace;
+    font-family: monospace;
     color: #2dff88;
   }
   
   .header {
-    font-size: 18px;
+    font-size: 2rem;
     margin-bottom: 12px;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: bold;
+    color: #2dff88;
+    text-align: center;
   }
   
   .codeBox {
-    background: #050807;
+    background: #000000;
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 12px;
@@ -27,7 +43,7 @@
   }
   
   .activeLine {
-    background: #0f5132;
+    background: #152920;
   }
   
   .doneLine {
@@ -37,17 +53,18 @@
   .input {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: inherit;
     border-radius: 6px;
     border: none;
     outline: none;
-    background: #111;
+    background: #161616;
     color: #2dff88;
+    box-sizing: border-box;
   }
   
   .input::placeholder {
-    color: #5fae8c;
+    color: #2dff88;
   }
   
   .result {

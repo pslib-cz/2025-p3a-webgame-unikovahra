@@ -1,30 +1,15 @@
 import React from 'react'
 import Button from '../components/ui/Button'
 import ScoreCounter from '../components/ui/ScoreCounter'
-import { useNavigate } from 'react-router-dom'
 import CodeTypingGame from '../components/minigames/codetyping/CodeTypingGame'
 
-const HackingPage = () => {
- const navigate = useNavigate();
-  const roomId = 3;
+const CodeTypingPage = () => {
   return (
     <>
-<CodeTypingGame timeLimit={60}
-></CodeTypingGame>
-
-      <Button
-        text="Simulovat úspěch"
-        onClick={() => navigate(`/minigame/finish/${roomId}/true`)}
-        color="blue"
-      />
-      <Button
-        text="Simulovat neúspěch"
-        onClick={() => navigate(`/minigame/finish/${roomId}/false`)}
-        color="white"
-      />
+<CodeTypingGame timeLimit={60} />
       <ScoreCounter style={"styled"} />
     </>
   )
 }
 
-export default HackingPage
+export default CodeTypingPage

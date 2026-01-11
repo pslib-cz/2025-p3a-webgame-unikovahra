@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./MoneyGrabContent.module.css";
-import MusicPlayer from "../../../context/MusicContext";
 
 export type MoneyGrabContentProps = {
     onCollect: (amount: number) => void;
@@ -77,7 +76,6 @@ export default function MoneyGrabContent({
     return (
         
         <div className={styles.wrapper}>
-            <MusicPlayer src="../sfx/background-noise.mp3" volume={0.01}></MusicPlayer>
             <div className={styles.game} ref={gameRef}>
                 {/*bankovky */}
                 {bills.map((bill) => (

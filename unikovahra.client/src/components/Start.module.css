@@ -31,7 +31,13 @@
     border-radius: 200px;
     background: none;
     font-size: 3rem;
-
+    border-width: 10px;
+    font-family: "Rajdhani", sans-serif;
+    border-style: solid;
+    font-weight: bold;
+}
+.btn:hover {
+    cursor: pointer;
 }
 
 .container {

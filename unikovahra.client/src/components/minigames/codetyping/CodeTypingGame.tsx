@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./CodeTypingGame.module.css";
+import MusicPlayer from "../../../context/MusicContext";
 
-/* 🔐 POLE KÓDŮ */
 const CODES: string[] = [
 `#ignore -Camera12<mvm.detect>
 #override -Firewall<System>
@@ -29,7 +30,8 @@ const CodeTypingGame: React.FC<CodeTypingGameProps> = ({
   timeLimit,
   onFinish,
 }) => {
-  /* 🎲 náhodný výběr kódu */
+const navigate = useNavigate();
+const roomId = 3;
   const codeLines = useMemo(() => {
     const randomIndex = Math.floor(Math.random() * CODES.length);
     return CODES[randomIndex].split("\n");
@@ -40,8 +42,9 @@ const CodeTypingGame: React.FC<CodeTypingGameProps> = ({
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [finished, setFinished] = useState(false);
   const [success, setSuccess] = useState<boolean | null>(null);
-
-  // ⏱️ Timer
+const audioSuccess = new Audio("../sfx/correct.mp3");
+const audioFail  = new Audio("../sfx/error-modern.mp3");
+const audioWarning = new Audio("../sfx/clock2.mp3");
   useEffect(() => {
     if (finished) return;
 
@@ -59,30 +62,43 @@ const CodeTypingGame: React.FC<CodeTypingGameProps> = ({
     return () => clearInterval(timer);
   }, [timeLeft, finished, onFinish]);
 
-  // ⌨️ Enter = odeslat řádek
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== "Enter") return;
 
     if (input === codeLines[currentLine]) {
       if (currentLine + 1 === codeLines.length) {
-        // ✅ dokončeno úspěšně
         setSuccess(true);
         setFinished(true);
         onFinish?.(true);
       } else {
         setCurrentLine((l) => l + 1);
         setInput("");
+        audioSuccess.play();
       }
     } else {
-      // ❌ chyba (zatím jen reset inputu)
       setInput("");
+      setTimeLeft((t) => Math.max(t - 10, 0)); 
+      audioFail.play();
     }
-  };
 
+
+
+  };
+if (success){
+     navigate(`/minigame/finish/${roomId}/true`)
+}
+if (success === false){
+     navigate(`/minigame/finish/${roomId}/false`)
+}
+
+if (timeLeft === 8){
+    audioWarning.play();
+    audioWarning.volume = 0.2;
+}
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        ⏳ Čas: {timeLeft}s
+      Čas: {timeLeft}
       </div>
 
       <div className={styles.codeBox}>
@@ -105,14 +121,8 @@ const CodeTypingGame: React.FC<CodeTypingGameProps> = ({
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           autoFocus
-          placeholder="Přepiš řádek a stiskni Enter"
-        />
-      )}
-
-      {finished && success !== null && (
-        <div className={styles.result}>
-          {success ? "✅ Přístup povolen" : "❌ Přístup odepřen"}
-        </div>
+          placeholder="Zadej kód a stiskni Enter"
+         />
       )}
     </div>
   );
