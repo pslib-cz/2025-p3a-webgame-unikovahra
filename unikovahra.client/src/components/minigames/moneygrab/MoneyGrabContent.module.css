@@ -7,7 +7,7 @@
     position: relative;
     width: 1920px;
     height: 900px;
-    background-image: url("../../../../public/images/TrezorFloor.jpg");
+    background-image: url("/public/images/TrezorFloor.jpg"); /*jinej obrazek*/
     background-size: cover;
     background-position: center;
     border-radius: 20px;
@@ -20,14 +20,12 @@
     inset: 0;
     pointer-events: none;
     background-color: rgba(0,0,0,0.8);
-    /* z-index: 2; */
 }
 
 .light {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    /* z-index: 3; */
 }
 
 .bill {

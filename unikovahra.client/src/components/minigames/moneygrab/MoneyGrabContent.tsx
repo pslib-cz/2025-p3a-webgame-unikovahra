@@ -20,7 +20,7 @@ export default function MoneyGrabContent({
     useEffect(() => {
         const generated = Array.from({ length: totalBills }).map((_, i) => ({
             id: i,
-            x: Math.random() * 85,
+            x: Math.random() * 85,  
             y: Math.random() * 80,
         }));
         setBills(generated);
@@ -47,14 +47,11 @@ export default function MoneyGrabContent({
         const value = 5000;
 
         onCollect(value);
-
         setBills((prev) => {
             const updated = prev.filter((b) => b.id !== id);
-
             if (updated.length === 0) {
                 onFinish(true);
             }
-
             return updated;
         });
     };
@@ -77,7 +74,6 @@ export default function MoneyGrabContent({
         
         <div className={styles.wrapper}>
             <div className={styles.game} ref={gameRef}>
-                {/*bankovky */}
                 {bills.map((bill) => (
                     <div
                         key={bill.id}
@@ -89,19 +85,17 @@ export default function MoneyGrabContent({
                     </div>
                 ))}
 
-                {/*tmavý overlay – stále vidět */}
                 <div className={styles.darkness} />
 
-                {/* světlo kolem kurzoru – blikající */}
                 <div
                     className={styles.light}
                     style={{
                         background: flicker
                             ? `radial-gradient(
                         80px at ${light.x}px ${light.y}px,
-                        rgba(0,0,0,0) 0%,      
-                        rgba(0,0,0,0.6) 0%,
-                        rgba(0,0,0,0.9) 10%)`
+                            rgba(0,0,0,0) 0%,      
+                            rgba(0,0,0,0.6) 0%,
+                            rgba(0,0,0,0.9) 10%)`
                             : `radial-gradient(
                         140px at ${light.x}px ${light.y}px,
                             rgba(0,0,0,0) 50%,
