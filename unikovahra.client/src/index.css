@@ -72,11 +72,13 @@ h6 {
 }
 
 .wrap--start{
-  background-image: url('/images/StartBG.svg');
+  background-image: url('/public/images/StartBG.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
+  width: 100vw;
+  
 
 }
 
@@ -87,7 +89,7 @@ h6 {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/images/background.svg');
+  background-image: url('/public/images/background.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

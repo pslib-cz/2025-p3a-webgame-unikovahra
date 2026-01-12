@@ -23,16 +23,18 @@ const TabletPage = () => {
   };
 
   return (
-    <div className='wrap wrap--centered wrap--fullycentered'>
-      <ScoreCounter style="styled" />
-      <MemoryGrid
-        key={level}
-        size={levels[level - 1].size}
-        sequenceLength={levels[level - 1].sequenceLength}
-        onSuccess={handleSuccess}
-        onFailure={() => navigate('/minigame/finish/2/false')}
-      />
-    </div>
+    <div > <ScoreCounter style="styled" />
+      <div className='wrap wrap--centered wrap--fullycentered'>
+
+        <MemoryGrid
+          key={level}
+          size={levels[level - 1].size}
+          sequenceLength={levels[level - 1].sequenceLength}
+          onSuccess={handleSuccess}
+          onFailure={() => navigate('/minigame/finish/2/false')}
+        />
+      </div>
+    </div >
   )
 }
 
