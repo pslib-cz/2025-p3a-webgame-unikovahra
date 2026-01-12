@@ -3,6 +3,8 @@ import { useState } from 'react'
 import MemoryCell from './MemoryCell'
 import styles from './MemoryGrid.module.css'
 import MusicPlayer from '../../../context/MusicContext'
+import Button from '../../ui/Button'
+
 type MemoryGridProps = {
     size: number;
     sequenceLength: number;
@@ -74,8 +76,7 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({ size, sequenceLength, onSuccess
                     onClick={() => handleCellClick(index)}
                 />
             ))}
-            <button onClick={StartGame} disabled={showing}>Začít</button>
-
+            <Button onClick={StartGame} text='Začít' color='blue' />
 
 
         </div>
