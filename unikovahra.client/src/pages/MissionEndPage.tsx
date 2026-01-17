@@ -1,4 +1,3 @@
-import React from 'react'
 import MissionEnd from '../components/minigames/MissionEnd';
 const MissionEndPage = () => {
   return (

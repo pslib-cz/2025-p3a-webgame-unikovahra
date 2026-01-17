@@ -1,16 +1,20 @@
 .wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .game {
     position: relative;
-    width: 1920px;
-    height: 900px;
-    background-image: url("/public/images/TrezorFloor.jpg"); /*jinej obrazek*/
+    width: 75vw;
+    max-width: 1920px;
+    aspect-ratio: 16 / 9;
+    background-image: url("/public/images/TrezorFloor.jpg");
     background-size: cover;
     background-position: center;
-    border-radius: 20px;
+    border-radius: 1rem;
     overflow: hidden;
     cursor: none;
 }
@@ -30,20 +34,30 @@
 
 .bill {
     position: absolute;
-    width: 48px;
-    height: 24px;
-    background: #22c55e;
-    border: 2px solid #15803d;
-    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: var(--green);
+    border-radius: 4px;
     font-weight: bold;
+    font-size: .75rem;
     color: black;
     cursor: grab;
-    transition: transform 0.1s ease;
+    transition: transform 0.2s ease;
 }
 
 .bill:hover {
     transform: scale(1.1);
 }
+
+/* mobil nevim zatim */
+/* @media (max-width: 768px) {
+    .game {
+        border-radius: 0;
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+    }
+} */
