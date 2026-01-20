@@ -18,8 +18,8 @@ const Finish = () => {
     };
 
     const score = getScore();
-    const rohlikyCount = 0.15 * score;
-    const microbitCount = 17 * score;
+    const rohlikyCount = Math.floor(score / 5);
+    const microbitCount = Math.floor(score / 17);
 
 
     return (
