@@ -3,49 +3,54 @@ import { useNavigate } from "react-router-dom";
 import ResultScreen from "../components/ui/ResultScreen";
 import ScoreCounter, { type ScoreCounterHandle } from "../components/ui/ScoreCounter";
 import MoneyGrabContent from "../components/minigames/moneygrab/MoneyGrabContent";
-
+import MusicPlayer from "../context/MusicContext";
+ 
 export default function MoneyGrabPage() {
     const navigate = useNavigate();
     const scoreRef = useRef<ScoreCounterHandle>(null);
-
     const [finished, setFinished] = useState(false);
     const [success, setSuccess] = useState(false);
 
     const handleCollect = (amount: number) => {
         scoreRef.current?.addScore(amount);
     };
-
+ 
     const handleFinish = (isSuccess: boolean) => {
         setSuccess(isSuccess);
         setFinished(true);
     };
-
+ 
     if (finished) {
         return success ? (
             <ResultScreen
-                title="Úspěch!"
-                message="Sebral jsi všechny bankovky."
-                buttonText="Pokračovat"
+                title={<>Povedlo se ti nasbírat <ScoreCounter style="notStyled"></ScoreCounter> <span className='marked'>Dolarů</span></>}
+                message="Taška je plná bankovek a jejich váha ti připomíná, že ses dostal přesně tam, kam jsi chtěl. Trezor za tebou zůstává tichý, ale víš, že tady se zdržet nemůžeš. Nasbírané peníze máš u sebe, jenže to nejtěžší teprve přijde. Musíš se dostat
+                z banky ven, projít dalšími překážkami a zvládnout řadu úkolů, které rozhodnou
+                o tom, jestli tahle akce skončí úspěchem nebo neúspěchem...."
+                buttonText="Pravidla"
                 buttonColor="blue"
-                onButtonClick={() => navigate("/rules")}
+                onButtonClick={() => navigate('/rules/')}
             />
-        ) : (
+            ) : (
             <ResultScreen
-                title="Neúspěch"
-                message="Nepodařilo se ti nic sebrat."
+                title={<>Nepodařilo se ti nasbírat <span className='marked--failure'>žádné dolary</span></>}
+                message="Trezor zůstává prázdný a tvoje taška lehká. Nepodařilo se ti získat ani jednu bankovku, a proto nemáš žádný základ pro další postup. Čas uběhl a šance je promarněna. Bez minimálního zisku nemůžeš pokračovat dál a mise tímto končí neúspěchem.
+                Jedinou možností je začít hru znovu."
                 buttonText="Zkusit znovu"
                 buttonColor="white"
-                onButtonClick={() => navigate("/")}
+                onButtonClick={() => { navigate('/') }}  
             />
         );
     }
-
+ 
     return (
         <>
             <MoneyGrabContent
+                timelimit={30}
                 onCollect={handleCollect}
                 onFinish={handleFinish}
             />
+            <MusicPlayer src="../sfx/background-noise.mp3" volume={0.04} />
             <ScoreCounter ref={scoreRef} style="styled" />
         </>
     );
