@@ -1,0 +1,74 @@
+.puzzleContainer {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.timer {
+  position: relative;
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+  font-family: 'Rajdhani', sans-serif;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.timer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--timer-width, 0%);
+  background: var(--gold);
+  z-index: 0;
+  transition: width 1s linear;
+}
+
+.timer::after {
+  content: 'Čas: ' attr(data-time) 's';
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.puzzleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 780px;
+  gap: 1rem;
+  border-radius: 30px;
+  background-color: var(--blue);
+  padding: 1rem;
+}
+
+.tile {
+  background-color: var(--darkgreen);
+  color: white;
+  font-size: 150px;
+  padding: 1rem 4rem;
+  text-align: center;
+  border-radius: 30px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .tile {
+    font-size: 64px;
+    padding: .5rem 2rem;
+  }
+  .puzzleGrid {
+    gap: .5rem;
+    padding: .5rem;
+  }
+
+
+
+  
+}
