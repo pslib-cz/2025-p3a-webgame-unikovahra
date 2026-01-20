@@ -1,11 +1,12 @@
 .wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
 }
-
+ 
 .game {
     position: relative;
     width: 75vw;
@@ -18,20 +19,20 @@
     overflow: hidden;
     cursor: none;
 }
-
+ 
 .darkness {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-color: rgba(0,0,0,0.8);
 }
-
+ 
 .light {
     position: absolute;
     inset: 0;
     pointer-events: none;
 }
-
+ 
 .bill {
     position: absolute;
     display: flex;
@@ -46,12 +47,21 @@
     color: black;
     cursor: grab;
     transition: transform 0.2s ease;
+    user-select: none;
 }
-
+ 
 .bill:hover {
     transform: scale(1.1);
 }
-
+ 
+.time  {
+    text-align: center;
+    font-size: 3rem;
+    padding-bottom: 1rem;
+    font-weight: 500;
+   
+}
+ 
 /* mobil nevim zatim */
 /* @media (max-width: 768px) {
     .game {
