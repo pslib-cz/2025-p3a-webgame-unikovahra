@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./MoneyGrabContent.module.css";
+import MusicPlayer from "../../../context/MusicContext";
  
 type Bill = {
     id: number;
@@ -130,6 +131,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                     }}
                 />
             </div>
+            <MusicPlayer src="/sfx/background-noise.mp3"/>
         </div>
     );
 }
