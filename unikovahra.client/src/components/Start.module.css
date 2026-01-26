@@ -1,0 +1,61 @@
+.trezorImage {
+    width: 250px;
+    height: auto;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+
+.rotating {
+    animation: rotateTrezor 2s ease;
+}
+
+@keyframes rotateTrezor {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(140deg);
+    }
+}
+
+
+.title {
+    font-size: 4rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 3rem 5rem;
+    border-radius: 200px;
+    background: none;
+    font-size: 3rem;
+    border-width: 10px;
+    font-family: "Rajdhani", sans-serif;
+    border-style: solid;
+    font-weight: bold;
+}
+.btn:hover {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    min-height: 100vh;
+}
+
+@media screen and (max-width: 600px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .btn {
+        padding: 2rem 4rem;
+        font-size: 2rem;
+    }
+}

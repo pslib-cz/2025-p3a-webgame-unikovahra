@@ -6,11 +6,11 @@ import RulesDisplay from '../components/rules/RulesDisplay'
 const RulesPage = () => {
   const navigate = useNavigate()
   return (
-    <div>
-      
+    <div className='wrap wrap--centered'>
 
-      <RulesDisplay /> 
-      <Button color="gold" onClick={() => navigate('/minigame/1')} text="Jdu se dostat ven" />
+
+      <RulesDisplay />
+      <Button color="gold" onClick={() => navigate('/minigame/1')} text="Začít hrát" className="centered" />
     </div>
 
   )

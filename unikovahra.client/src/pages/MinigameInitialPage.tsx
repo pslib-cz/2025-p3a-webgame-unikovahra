@@ -24,16 +24,17 @@ const MinigameInitialPage = () => {
     >
       {({ data, loading, error }) => (
         <div>
-          {loading && <Loader/>}
-          {error && <Error/>}
+          {loading && <Loader />}
+          {error && <Error />}
 
           {data && (
-            <>
-              <h2>{data.title}</h2>
-              <p>{data.description}</p>
+            <div className="wrap wrap--fullycentered wrap--centered">
+              <p className="initial__text" dangerouslySetInnerHTML={{ __html: data.description }} />
+              <h2 className="initial__title" dangerouslySetInnerHTML={{ __html: data.title }} />
+
 
               <Button onClick={() => navigate(`/minigame/play/${data.id}`)} text="Přečíst pravidla hry" color="gold" />
-            </>
+            </div>
           )}
         </div>
       )}

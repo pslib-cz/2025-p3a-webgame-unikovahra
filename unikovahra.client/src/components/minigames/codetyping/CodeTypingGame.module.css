@@ -1,0 +1,74 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+}
+
+.wrapper {
+    min-width: 1080px;
+    height: auto;
+    margin: 0 auto;
+    padding: 1rem;
+    background: #000000;
+    border-radius: 10px;
+    font-family: monospace;
+    color: #2dff88;
+  }
+  
+  .header {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: bold;
+    color: #2dff88;
+    text-align: center;
+  }
+  
+  .codeBox {
+    background: #000000;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .codeLine {
+    margin: 0;
+    padding: 6px 8px;
+    transition: background 0.2s, opacity 1s;
+    user-select: none;
+  }
+  
+  .activeLine {
+    background: #152920;
+  }
+  
+  .doneLine {
+    opacity: 0.4;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #161616;
+    color: #2dff88;
+    box-sizing: border-box;
+  }
+  
+  .input::placeholder {
+    color: #2dff88;
+  }
+  
+  .result {
+    margin-top: 14px;
+    font-size: 20px;
+  }

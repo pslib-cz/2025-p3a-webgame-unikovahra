@@ -1,48 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 
 body {
   margin: 0;
   padding: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-
+  background-color: var(--background);
+  color: var(--text-color);
 }
 
 
 :root {
+  color-scheme: light dark;
+  --background: light-dark(var(--white), #302E2E);
+  --text-color: light-dark(var(--black), var(--white));
+
+
+
   --gold: #D4A017;
   --darkgreen: #0A7A3D;
   --green: #0DBF5A;
@@ -50,8 +26,10 @@ h1 {
   --red: #BD0000;
   --black: #000000;
   --white: #FFFFFF;
+  --lightgray: #D9D9D9;
   --gray: #2A303C;
-  font-family: "Orbitron" "Rajdhani", sans-serif;
+  font-family: "Oxanium", "Rajdhani", sans-serif;
+
   --text: 1.5rem;
   --title: 4rem;
   --subtitle: 3rem;
@@ -67,7 +45,7 @@ h1 {
 }
 
 p {
-  font-family: 'Radjhani', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 h1,
@@ -76,7 +54,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Oxanium', sans-serif;
 }
 
 
@@ -86,4 +64,68 @@ h6 {
 
 .marked--failure {
   color: var(--red);
+}
+
+.wrap {
+  min-height: 100vh;
+  position: relative;
+}
+
+.wrap--start{
+  background-image: url('/public/images/StartBG.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  
+
+}
+
+.wrap::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/public/images/background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.wrap--centered {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding-top: 4rem;
+}
+
+.wrap--centered.wrap--fullycentered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .wrap--centered {
+    padding-top: 2rem;
+  }
+  .wrap::before{
+    background-image: none;
+  }
+}
+
+.initial__text{
+  font-size: 3rem;
+  margin: 0;
+
+}
+.initial__title{
+  font-size: 4rem;
+  margin: 0;
 }

@@ -1,70 +1,57 @@
-import React from 'react';
-import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ResultScreen from '../components/ui/ResultScreen';
-import Button from '../components/ui/Button';
-import ScoreCounter, { type ScoreCounterHandle } from '../components/ui/ScoreCounter';
-const MoneyGrabPage = () => {
-  const navigate = useNavigate();
-  const scoreRef = useRef<ScoreCounterHandle>(null);
-  const [showResult, setShowResult] = useState(false);
-  const [success, setSuccess] = useState(false);
-    const audioRef = useRef(new Audio("../sfx/money-grab.mp3"));
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ResultScreen from "../components/ui/ResultScreen";
+import ScoreCounter, { type ScoreCounterHandle } from "../components/ui/ScoreCounter";
+import MoneyGrabContent from "../components/minigames/moneygrab/MoneyGrabContent";
+import MusicPlayer from "../context/MusicContext";
+ 
+export default function MoneyGrabPage() {
+    const navigate = useNavigate();
+    const scoreRef = useRef<ScoreCounterHandle>(null);
+    const [finished, setFinished] = useState(false);
+    const [success, setSuccess] = useState(false);
 
-  const handleSuccess = () => {
-    setSuccess(true);
-    setShowResult(true);
-  };
-
-  const handleFailure = () => {
-    setSuccess(false);
-    setShowResult(true);
-  };
-
-
-  const playSound = () => {
-    audioRef.current.currentTime = 0.35; 
-    audioRef.current.play();
-  };
-      const handleAdder = () => {
-      scoreRef.current!.addScore(10000); 
-
-};
-  if (showResult) {
-    return success ? (
-      <ResultScreen
-        title="Úspěch!"
-        message="Povedlo se ti sebrat peníze!"
-        buttonText="Pokračovat"
-        buttonColor="blue"
-        onButtonClick={() => navigate('/rules/')}
-      />
-    ) : (
-      <>
-      <ResultScreen
-        title="Neúspěch"
-        message="Nepodařilo se ti sebrat dost peněz."
-        buttonText="Zkusit znovu"
-        buttonColor="white"
-        onButtonClick={() => {navigate('/')}}
-      />
-      <ScoreCounter style='styled'/>
-      </>
+    const handleCollect = (amount: number) => {
+        scoreRef.current?.addScore(amount);
+    };
+ 
+    const handleFinish = (isSuccess: boolean) => {
+        setSuccess(isSuccess);
+        setFinished(true);
+    };
+ 
+    if (finished) {
+        return success ? (
+            <ResultScreen
+                title={<>Povedlo se ti nasbírat <ScoreCounter style="notStyled"></ScoreCounter> <span className='marked'>Dolarů</span></>}
+                message="Taška je plná bankovek a jejich váha ti připomíná, že ses dostal přesně tam, kam jsi chtěl. Trezor za tebou zůstává tichý, ale víš, že tady se zdržet nemůžeš. Nasbírané peníze máš u sebe, jenže to nejtěžší teprve přijde. Musíš se dostat
+                z banky ven, projít dalšími překážkami a zvládnout řadu úkolů, které rozhodnou
+                o tom, jestli tahle akce skončí úspěchem nebo neúspěchem...."
+                buttonText="Pravidla"
+                buttonColor="blue"
+                onButtonClick={() => navigate('/rules/')}
+            />
+            ) : (
+            <ResultScreen
+                title={<>Nepodařilo se ti nasbírat <span className='marked--failure'>žádné dolary</span></>}
+                message="Trezor zůstává prázdný a tvoje taška lehká. Nepodařilo se ti získat ani jednu bankovku, a proto nemáš žádný základ pro další postup. Čas uběhl a šance je promarněna. Bez minimálního zisku nemůžeš pokračovat dál a mise tímto končí neúspěchem.
+                Jedinou možností je začít hru znovu."
+                buttonText="Zkusit znovu"
+                buttonColor="white"
+                onButtonClick={() => { navigate('/') }}  
+            />
+        );
+    }
+ 
+    return (
+        <>
+            <MoneyGrabContent
+                timelimit={30}
+                onCollect={handleCollect}
+                onFinish={handleFinish}
+            />
+            <MusicPlayer src="../sfx/background-noise.mp3" volume={0.04} />
+            <ScoreCounter ref={scoreRef} style="styled" />
+        </>
     );
-  }
-
-  return (
-    <div>
-      <p>Seber co nejvíc bankovek!</p>
-
-      <Button text="Simulovat úspěch" onClick={handleSuccess} color="blue" />
-      <Button text="Simulovat neúspěch" onClick={handleFailure} color="white" />
-      <Button text="Simulace klikani peněz v safu" onClick={() => {handleAdder() ; playSound() }}/>
-      <Button text="reset peněz" onClick={()=> scoreRef.current?.resetScore()}/>
-      <ScoreCounter ref={scoreRef} style={"styled"} />
-
-    </div>
-  );
-};
-
-export default MoneyGrabPage;
+}

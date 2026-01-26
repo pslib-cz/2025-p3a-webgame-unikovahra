@@ -1,0 +1,73 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+ 
+.game {
+    position: relative;
+    width: 75vw;
+    max-width: 1920px;
+    aspect-ratio: 16 / 9;
+    background-image: url("/public/images/TrezorFloor.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: none;
+}
+ 
+.darkness {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-color: rgba(0,0,0,0.8);
+}
+ 
+.light {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+ 
+.bill {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: var(--green);
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: .75rem;
+    color: black;
+    cursor: grab;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+ 
+.bill:hover {
+    transform: scale(1.1);
+}
+ 
+.time  {
+    text-align: center;
+    font-size: 3rem;
+    padding-bottom: 1rem;
+    font-weight: 500;
+   
+}
+ 
+/* mobil nevim zatim */
+/* @media (max-width: 768px) {
+    .game {
+        border-radius: 0;
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+    }
+} */

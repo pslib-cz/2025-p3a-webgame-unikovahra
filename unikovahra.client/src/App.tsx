@@ -5,9 +5,9 @@ import StartPage from "./pages/StartPage";
 import GamebookPage from "./pages/GamebookPage";
 import SwitchboardPage from "./pages/SwitchboardPage";
 import TabletPage from "./pages/TabletPage";
-import HackingPage from "./pages/HackingPage";
+import CodeTypingPage from "./pages/CodeTypingPage";
 import KeylockPage from "./pages/KeylockPage";
-import DollarPage from "./pages/DollarPage";
+import SlidingPuzzlePage from "./pages/SlidingPuzzlePage";
 import MoneyGrabPage from "./pages/MoneyGrabPage";
 import FinishPage from "./pages/FinishPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -17,6 +17,7 @@ import MinigameRulesPage from "./pages/MinigameRulesPage";
 import RulesPage from "./pages/RulesPage";
 import MinigameFinishPage from "./pages/MinigameFinishPage";
 import MissionEndPage from "./pages/MissionEndPage";
+
 
 function App() {
   return (
@@ -30,9 +31,9 @@ function App() {
 
         <Route path="minigame/switchboard" element={<SwitchboardPage />} />
         <Route path="minigame/tablet" element={<TabletPage />} />
-        <Route path="minigame/hacking" element={<HackingPage />} />
+        <Route path="minigame/codetyping" element={<CodeTypingPage/>} />
        
-        <Route path="minigame/dollar" element={<DollarPage />} />
+        <Route path="minigame/puzzle" element={<SlidingPuzzlePage />} />
         <Route path="minigame/keylock" element={<KeylockPage />} />
         <Route path="minigame/finish/:roomId/:success" element={<MinigameFinishPage />} />
 

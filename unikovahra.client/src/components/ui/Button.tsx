@@ -6,12 +6,13 @@ type ButtonProps = {
   onClick: () => void;
   text: string;
   color?: Colors;
+  className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, text, color }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, text, color, className }) => {
   return (
     <button 
-      className={`${styles.btn}${color ? ` ${styles[color]}` : ''}`} 
+      className={`${styles.btn}${color ? ` ${styles[color]}` : ''}${className ? ` ${styles[className]}` : ''}`} 
       onClick={onClick}
     >
       {text}

@@ -1,18 +1,18 @@
 import React from 'react'
 import { useRef } from 'react'
-import { Fetcher  } from '../components/Fetcher'
+import { Fetcher } from '../components/Fetcher'
 import { useParams, useNavigate } from 'react-router-dom'
-import Button from '../components/ui/Button'
-import ScoreCounter, {type ScoreCounterHandle} from '../components/ui/ScoreCounter'
+import  { type ScoreCounterHandle } from '../components/ui/ScoreCounter'
+import MinigameFinish from '../components/minigames/MinigameFinish'
 type MinigameFinishDto = {
-    id: number;
-    roomId: number;
-    successTitle: string;
-    successSubtitle: string;
-    successText: string;
-    failureTitle: string;
-    failureSubtitle: string;
-    failureText: string;
+  id: number;
+  roomId: number;
+  successTitle: string;
+  successSubtitle: string;
+  successText: string;
+  failureTitle: string;
+  failureSubtitle: string;
+  failureText: string;
 };
 
 const MinigameFinishPage = () => {
@@ -22,48 +22,32 @@ const MinigameFinishPage = () => {
   const isSuccess = success === 'true';
   const scoreRef = useRef<ScoreCounterHandle>(null);
   const handleRetry = () => {
-    
+
     scoreRef.current?.deductScore(10000);
     navigate(-1);
   };
 
   const handleEndMission = () => {
-    navigate('/missionend'); 
-    
-  
+    navigate('/missionend');
+
+
   };
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
   return (
-    <Fetcher<MinigameFinishDto[]>
-      url={`${API_BASE_URL}/api/MinigameFinish/room/${roomIdNum}`}
+    <Fetcher<MinigameFinishDto>
+      url={`${API_BASE_URL}/api/minigames/${roomIdNum}`}
       dependencies={[roomIdNum]}
     >
       {({ data, loading, error }) => (
         <div>
           {loading && <p>Načítám data...</p>}
           {error && <p>CHYBA: {error.message}</p>}
-          {data && data[0] && (
-            <div>
-              <h2>
-                {isSuccess ? data[0].successTitle : data[0].failureTitle}
-              </h2>
-              <h3>{isSuccess ? data[0].successSubtitle : data[0].failureSubtitle}</h3>
-              <p>{isSuccess ? data[0].successText : data[0].failureText}</p>
-              
-              <div>
-                {isSuccess ? (
-                  <Button text="K další minihře" onClick={() => navigate(`/minigame/${roomIdNum+1}`)} color="blue" />
-                ) : (
-                  <>
-                    <Button text="Začít znovu"  onClick={handleRetry} color="blue" />
-                    <Button text="Ukončit misi" onClick={handleEndMission} color="white" />
-                    <ScoreCounter ref={scoreRef} style={"hidden"} />
-                  </>
-                )}
-              </div>
+          {data && (
+            <div className='wrap wrap--centered wrap--fullycentered'>
+              <MinigameFinish data={data} isSuccess={isSuccess} roomIdNum={roomIdNum} navigate={navigate} handleRetry={handleRetry} handleEndMission={handleEndMission} scoreRef={scoreRef} />
             </div>
           )}
         </div>

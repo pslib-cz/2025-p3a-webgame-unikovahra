@@ -4,9 +4,23 @@
     font-family: 'Radjhani', sans-serif;
     margin: 0;
 }
+
 .rule__heading{
     color: var(--gold);
     font-size: 4rem;
     font-weight: bold;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Oxanium', sans-serif;
+    margin: 0 0 2rem  0;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    .rule__heading{
+        font-size: 3rem;
+    }
+    .rule__subheading{
+        font-size: 1.5rem;
+    }
+    
+    
 }
