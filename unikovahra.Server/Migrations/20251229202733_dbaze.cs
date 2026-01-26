@@ -131,7 +131,7 @@ namespace unikovahra.Server.Migrations
                 keyColumn: "Id",
                 keyValue: 2,
                 columns: new[] { "IntroSubtitle", "IntroTaskSubtitle", "IntroTaskText", "IntroTitle" },
-                values: new object[] { "Vstup do <span className='marked'> Kanceláře </span>", "Tvůj <span className='marked'> úkol: </span>", "Na displeji se objeví mřížka tlačítek, která se v náhodném pořadí rozsvěcí. Ty si musíš sekvenci zapamtovat a následně ji zopakovat klikáním na správná tlačítka.", "Teď se musíš dostat do <span className='marked'> kanclu </span>" });
+                values: new object[] { "Vstup do <span className='marked'> Kanceláře </span>", "Tvůj <span className='marked'> úkol: </span>", "Na displeji se objeví mřížka tlačítek, která se v náhodném pořadí rozsvěcí. Ty si musíš sekvenci zapamatovat a následně ji zopakovat klikáním na správná tlačítka.", "Teď se musíš dostat do <span className='marked'> kanclu </span>" });
 
             migrationBuilder.UpdateData(
                 table: "Rooms",
