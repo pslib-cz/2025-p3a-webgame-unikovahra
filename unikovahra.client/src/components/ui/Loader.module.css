@@ -1,0 +1,47 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 100vh;
+}
+.text {
+font-size: 3rem;
+}
+
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+  
+  .spinner {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: conic-gradient(var(--green) 0deg 180deg, var(--text-color) 180deg 360deg);
+    animation: rotate 1.5s linear infinite;
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 7px),
+      black calc(100% - 15px)
+    );
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
