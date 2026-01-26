@@ -21,6 +21,12 @@ const Finish = () => {
     const rohlikyCount = Math.floor(score / 5);
     const microbitCount = Math.floor(score / 17);
 
+    const handleRestart = () => {
+        localStorage.removeItem('gameProgress');
+        scoreRef.current?.resetScore();
+        navigate("/");
+    }
+
 
     return (
         <div className='wrap wrap--centered wrap--fullycentered'>
@@ -38,7 +44,7 @@ const Finish = () => {
                     <p className={styles.scoreSubtitle}>Si můžeš koupit</p>
                     <p className={styles.scoreDescription}>{rohlikyCount} Rohlíků</p>
                     <p className={styles.scoreDescription}>{microbitCount} Microbitů</p>
-                    <Button text="Hrát znovu" onClick={() => { scoreRef.current?.resetScore(); navigate("/") }} color="gold"></Button>
+                    <Button text="Hrát znovu" onClick={handleRestart} color="gold"></Button>
                     <ScoreCounter ref={scoreRef} style={"hidden"} />
                 </div>
             )}

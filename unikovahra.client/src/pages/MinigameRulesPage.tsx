@@ -30,7 +30,7 @@ const MinigameRulesPage = () => {
       case 3:
         return '/minigame/codetyping';
       case 4:
-        return '/minigame/dollar';
+        return '/minigame/puzzle';
       case 5:
         return '/minigame/keylock';
       case 6:

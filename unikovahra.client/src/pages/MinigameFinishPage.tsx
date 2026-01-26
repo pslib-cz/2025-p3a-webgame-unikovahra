@@ -4,6 +4,7 @@ import { Fetcher } from '../components/Fetcher'
 import { useParams, useNavigate } from 'react-router-dom'
 import  { type ScoreCounterHandle } from '../components/ui/ScoreCounter'
 import MinigameFinish from '../components/minigames/MinigameFinish'
+import { saveProgress } from '../types/storage'
 type MinigameFinishDto = {
   id: number;
   roomId: number;
@@ -29,9 +30,11 @@ const MinigameFinishPage = () => {
 
   const handleEndMission = () => {
     navigate('/missionend');
+    
 
 
   };
+
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
