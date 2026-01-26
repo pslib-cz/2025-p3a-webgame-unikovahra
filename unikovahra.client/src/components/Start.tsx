@@ -2,11 +2,22 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import  MusicPlayer  from '../context/MusicContext';
 import styles from './Start.module.css';
+import { loadProgress } from '../types/storage';
 
 
 const Start = () => {
     const navigate = useNavigate();
     const [isRotating, setIsRotating] = useState(false);
+
+    const savedProgress = loadProgress();
+    const hasSavedPath = savedProgress?.completedMinigames?.length > 0;
+
+    const handleContinue = () => {
+        if(savedProgress?.currentPath) {
+            navigate(savedProgress.currentPath);
+        }
+    }
+
 
 
     const handleStart = () => {
@@ -30,11 +41,14 @@ const Start = () => {
                 onClick={handleStart}
                 onAnimationEnd={handleAnimationEnd}
             />
+            {hasSavedPath && (
+                <button className={`${styles.btn} ${styles.continueBtn}`} onClick={handleContinue} >Pokračovat</button>
+            )}
 
-            <button className={`${styles.btn}`}  onClick={handleStart} >START</button>
+            <button className={`${styles.btn}`}  onClick={handleStart} >{hasSavedPath ? 'Pokračovat' : 'Nová hra    '}</button>
             <MusicPlayer src="../sfx/waiting-music.mp3" volume={0.3} loop={true} autoPlay={true}></MusicPlayer>
         </div>
     )
 }
 
-export default Start
+export default Start;

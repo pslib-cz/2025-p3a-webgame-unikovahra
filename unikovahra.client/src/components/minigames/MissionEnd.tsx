@@ -11,10 +11,16 @@ const MissionEnd = () => {
     const navigate = useNavigate();
     const scoreRef = useRef<ScoreCounterHandle>(null);
 
+    const handleRestart = () => {
+        localStorage.removeItem('gameProgress');
+        scoreRef.current?.resetScore();
+        navigate("/");
+    }
+
     return (
         <div><h1><span className={styles.title} > Konec mise </span></h1>
             <p className={styles.text}>Rozhodl ses misi ukončit. Tvoje cesta zde končí a další postup už není možný. V tuto chvíli už nic nemůžeš změnit, tvůj příběh je uzavřen. Jedinou možností je začít celou hru znovu a pokusit se o úspěch od začátku.</p>
-            <Button text="Hrát znovu" onClick={() => { scoreRef.current?.resetScore(); navigate("/") }} color="red"></Button>
+            <Button text="Hrát znovu" onClick={handleRestart} color="red"></Button>
             <ScoreCounter ref={scoreRef} style={"hidden"} />
         </div>
     )

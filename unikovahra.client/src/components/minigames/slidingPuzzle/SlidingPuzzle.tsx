@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SlidingPuzzle.module.css';
-import Button from '../ui/Button';
+import Button from '../../ui/Button';
 
 type TileValue = number | null;
 type Board = TileValue[][];
@@ -54,7 +54,7 @@ const SlidingPuzzle: React.FC<SlidingPuzzleProps> = ({ onWin, onLose }) => {
       [7, 8, null]
     ];
 
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 150; i++) {
       const empty = findEmpty(newBoard);
       const neighbors = [];
       if (empty.r > 0) neighbors.push({ r: empty.r - 1, c: empty.c });

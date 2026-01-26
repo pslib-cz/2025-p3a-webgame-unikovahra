@@ -17,9 +17,26 @@ import MinigameRulesPage from "./pages/MinigameRulesPage";
 import RulesPage from "./pages/RulesPage";
 import MinigameFinishPage from "./pages/MinigameFinishPage";
 import MissionEndPage from "./pages/MissionEndPage";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { loadProgress } from "./types/storage";
 
 
 function App() {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const savedProgress = loadProgress();
+      if (savedProgress?.currentPath) {
+        navigate(savedProgress.currentPath);
+      }
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 500);
+    }, []);
+
   return (
     <Routes>
       <Route path="/" element={<RootLayout />}>
