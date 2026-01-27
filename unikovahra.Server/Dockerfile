@@ -1,31 +1,52 @@
 # See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
+# Stage 1: Build the React client
+FROM node:22-alpine AS client-build
+WORKDIR /app/client
+
+# Copy package files
+COPY unikovahra.client/package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy client source
+COPY unikovahra.client/ ./
+
+# Build the client
+RUN npm run build
+
+# Stage 2: Build the .NET server
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS server-build
+WORKDIR /app/server
+
+# Copy csproj files and client esproj for restore
+COPY unikovahra.Server/unikovahra.Server.csproj ./
+COPY unikovahra.client/unikovahra.client.esproj ../unikovahra.client/
+RUN dotnet restore
+
+# Copy server source
+COPY unikovahra.Server/ ./
+
+# Copy built client files to wwwroot
+COPY --from=client-build /app/client/dist ./wwwroot
+
+# Build the server
+RUN dotnet publish -c Release -o /app/publish
+
+# Stage 3: Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
+
+# Copy published app
+COPY --from=server-build /app/publish .
+
+# Set environment variables
+ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_ENVIRONMENT=Production
+
+# Expose port
 EXPOSE 8080
-EXPOSE 8081
 
-
-# This stage is used to build the service project
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["unikovahra.Server/unikovahra.Server.csproj", "unikovahra.Server/"]
-COPY ["unikovahra.client/unikovahra.client.esproj", "unikovahra.client/"]
-RUN dotnet restore "./unikovahra.Server/unikovahra.Server.csproj"
-COPY . .
-WORKDIR "/src/unikovahra.Server"
-RUN dotnet build "./unikovahra.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-# This stage is used to publish the service project to be copied to the final stage
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./unikovahra.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
+# Start the application
 ENTRYPOINT ["dotnet", "unikovahra.Server.dll"]
