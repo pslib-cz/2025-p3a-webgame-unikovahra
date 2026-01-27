@@ -19,11 +19,11 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS server-build
 WORKDIR /app/server
 
 # Copy csproj and restore
-COPY SynergyDistrict.Server/*.csproj ./
+COPY unikovahra.Server/*.csproj ./
 RUN dotnet restore
 
 # Copy server source
-COPY SynergyDistrict.Server/ ./
+COPY unikovahra.Server/ ./
 
 # Copy built client files to wwwroot
 COPY --from=client-build /app/client/dist ./wwwroot
@@ -49,4 +49,4 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 EXPOSE 8080
 
 # Start the application
-ENTRYPOINT ["dotnet", "SynergyDistrict.Server.dll"]
+ENTRYPOINT ["dotnet", "unikovahra.Server.dll"]
