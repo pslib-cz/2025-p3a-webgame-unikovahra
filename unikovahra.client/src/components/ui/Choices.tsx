@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from './Button';
 import styles from './Choices.module.css';
+import { loadProgress, saveProgress } from '../../types/storage';
 
 type ChoicesProps = {
     data: {
@@ -15,6 +16,15 @@ type ChoicesProps = {
 
 
 const Choices: React.FC<ChoicesProps> = ({ data, navigate }) => {
+    const handleGamebookComplete = () => {
+        const progress = loadProgress();
+        saveProgress({
+            currentPath: '/minigame/moneygrab',
+            completedMinigames: [...(progress?.completedMinigames || []), 'gamebook']
+        });
+        navigate('/minigame/moneygrab');
+    };
+
     return (
         <div className={styles.choices}>
             {data.optionA && data.nextA != null && (
@@ -26,7 +36,7 @@ const Choices: React.FC<ChoicesProps> = ({ data, navigate }) => {
             )}
 
             {data.nextA == null && data.nextB == null && (
-                <Button color="blue" onClick={() => navigate('/minigame/moneygrab')} text={data.optionA} />
+                <Button color="blue" onClick={handleGamebookComplete} text={data.optionA} />
             )}
         </div>
     )

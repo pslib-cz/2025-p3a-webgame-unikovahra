@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MemoryGrid from '../components/minigames/tablet/MemoryGrid'
 import ScoreCounter from '../components/ui/ScoreCounter';

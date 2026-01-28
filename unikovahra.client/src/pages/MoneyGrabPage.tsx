@@ -4,7 +4,8 @@ import ResultScreen from "../components/ui/ResultScreen";
 import ScoreCounter, { type ScoreCounterHandle } from "../components/ui/ScoreCounter";
 import MoneyGrabContent from "../components/minigames/moneygrab/MoneyGrabContent";
 import MusicPlayer from "../context/MusicContext";
- 
+import { loadProgress, saveProgress } from "../types/storage";
+
 export default function MoneyGrabPage() {
     const navigate = useNavigate();
     const scoreRef = useRef<ScoreCounterHandle>(null);
@@ -14,12 +15,20 @@ export default function MoneyGrabPage() {
     const handleCollect = (amount: number) => {
         scoreRef.current?.addScore(amount);
     };
- 
+
     const handleFinish = (isSuccess: boolean) => {
         setSuccess(isSuccess);
         setFinished(true);
+
+        if (isSuccess) {
+            const progress = loadProgress();
+            saveProgress({
+                currentPath: '/rules/',
+                completedMinigames: [...(progress?.completedMinigames || []), 'moneygrab']
+            });
+        }
     };
- 
+
     if (finished) {
         return success ? (
             <ResultScreen
@@ -31,18 +40,18 @@ export default function MoneyGrabPage() {
                 buttonColor="blue"
                 onButtonClick={() => navigate('/rules/')}
             />
-            ) : (
+        ) : (
             <ResultScreen
                 title={<>Nepodařilo se ti nasbírat <span className='marked--failure'>žádné dolary</span></>}
                 message="Trezor zůstává prázdný a tvoje taška lehká. Nepodařilo se ti získat ani jednu bankovku, a proto nemáš žádný základ pro další postup. Čas uběhl a šance je promarněna. Bez minimálního zisku nemůžeš pokračovat dál a mise tímto končí neúspěchem.
                 Jedinou možností je začít hru znovu."
                 buttonText="Zkusit znovu"
                 buttonColor="white"
-                onButtonClick={() => { navigate('/') }}  
+                onButtonClick={() => { navigate('/') }}
             />
         );
     }
- 
+
     return (
         <>
             <MoneyGrabContent

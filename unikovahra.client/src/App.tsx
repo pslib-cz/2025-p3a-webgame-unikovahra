@@ -17,6 +17,7 @@ import MinigameRulesPage from "./pages/MinigameRulesPage";
 import RulesPage from "./pages/RulesPage";
 import MinigameFinishPage from "./pages/MinigameFinishPage";
 import MissionEndPage from "./pages/MissionEndPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,18 +25,18 @@ import { loadProgress } from "./types/storage";
 
 
 function App() {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const navigate = useNavigate();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      const savedProgress = loadProgress();
-      if (savedProgress?.currentPath) {
-        navigate(savedProgress.currentPath);
-      }
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 500);
-    }, []);
+  useEffect(() => {
+    const savedProgress = loadProgress();
+    if (savedProgress?.currentPath) {
+      navigate(savedProgress.currentPath);
+    }
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+  }, []);
 
   return (
     <Routes>
@@ -43,17 +44,45 @@ function App() {
         <Route index element={<StartPage />} />
 
         <Route path="gamebook/:id?" element={<GamebookPage />} />
-        <Route path="minigame/moneygrab" element={<MoneyGrabPage />} />
+
+        <Route path="minigame/moneygrab" element={
+          <ProtectedRoute requiredMinigames={['gamebook']} currentMinigame="moneygrab">
+            <MoneyGrabPage />
+          </ProtectedRoute>
+        } />
+
         <Route path="rules" element={<RulesPage />} />
+        <Route path="minigame/switchboard" element={
+          <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab']} currentMinigame="switchboard">
+            <SwitchboardPage />
+          </ProtectedRoute>
+        } />
 
-        <Route path="minigame/switchboard" element={<SwitchboardPage />} />
-        <Route path="minigame/tablet" element={<TabletPage />} />
-        <Route path="minigame/codetyping" element={<CodeTypingPage/>} />
-       
-        <Route path="minigame/puzzle" element={<SlidingPuzzlePage />} />
-        <Route path="minigame/keylock" element={<KeylockPage />} />
+        <Route path="minigame/tablet" element={
+          <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard']} currentMinigame="tablet">
+            <TabletPage />
+          </ProtectedRoute>
+        } />
+
+        <Route path="minigame/codetyping" element={
+          <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet']} currentMinigame="codetyping">
+            <CodeTypingPage />
+          </ProtectedRoute>
+        } />
+
+        <Route path="minigame/puzzle" element={
+          <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping']} currentMinigame="puzzle">
+            <SlidingPuzzlePage />
+          </ProtectedRoute>
+        } />
+
+        <Route path="minigame/keylock" element={
+          <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping', 'puzzle']} currentMinigame="keylock">
+            <KeylockPage />
+          </ProtectedRoute>
+        } />
+
         <Route path="minigame/finish/:roomId/:success" element={<MinigameFinishPage />} />
-
 
         <Route path="minigame/play/:roomId" element={<MinigameRulesPage />} />
         <Route path="minigame/:id?" element={<MinigameInitialPage />} />

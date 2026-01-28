@@ -9,13 +9,22 @@ const SwitchboardPage = () => {
   const roomId = 1;
 
 
+  const handleSuccess = () => {
+    const progress = loadProgress();
+    saveProgress({
+      currentPath: '/minigame/finish/1/true',
+      completedMinigames: [...(progress?.completedMinigames || []), 'switchboard']
+    });
+    navigate('/minigame/finish/1/true');
+  };
+
 
   return (
     <>
       <SwitchboardContent />
       <Button
         text="Simulovat úspěch"
-        onClick={() => navigate(`/minigame/finish/${roomId}/true`)}
+        onClick={handleSuccess}
         color="blue"
       />
       <Button
