@@ -2,17 +2,18 @@ import React from 'react'
 import Button from '../ui/Button'
 import ScoreCounter from '../ui/ScoreCounter'
 import styles from './MinigameFinish.module.css'
+import { clearProgress } from '../../types/storage'
 
 
 type MinigameFinishDto = {
-  id: number;
-  roomId: number;
-  successTitle: string;
-  successSubtitle: string;
-  successText: string;
-  failureTitle: string;
-  failureSubtitle: string;
-  failureText: string;
+    id: number;
+    roomId: number;
+    successTitle: string;
+    successSubtitle: string;
+    successText: string;
+    failureTitle: string;
+    failureSubtitle: string;
+    failureText: string;
 };
 
 type MinigameFinishProps = {
@@ -27,6 +28,11 @@ type MinigameFinishProps = {
 
 const MinigameFinish: React.FC<MinigameFinishProps> = ({ data, isSuccess, roomIdNum, navigate, handleRetry, handleEndMission, scoreRef }) => {
 
+    const handleNewGame = () => {
+        clearProgress();
+        navigate('/');
+    };
+
     return (
         <div className={styles.wrap}>
             <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: isSuccess ? data.successTitle : data.failureTitle }} />
@@ -35,11 +41,15 @@ const MinigameFinish: React.FC<MinigameFinishProps> = ({ data, isSuccess, roomId
 
             <div>
                 {isSuccess ? (
-                    <Button text="K další minihře" onClick={() => navigate(`/minigame/${roomIdNum + 1}`)} color="gold" />
+                    <div className={styles.buttons}>
+                        <Button text="K další minihře" onClick={() => navigate(`/minigame/${roomIdNum + 1}`)} color="gold" />
+                        <Button text="Nová hra" onClick={handleNewGame} color="white" />
+                    </div>
                 ) : (
                     <div className={styles.buttons}>
                         <Button text="Začít znovu" onClick={handleRetry} color="gold" />
                         <Button text="Ukončit misi" onClick={handleEndMission} color="red" />
+                        <Button text="Nová hra" onClick={handleNewGame} color="white" />
                         <ScoreCounter ref={scoreRef} style={"hidden"} />
                     </div>
                 )}

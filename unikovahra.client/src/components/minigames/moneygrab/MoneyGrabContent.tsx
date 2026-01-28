@@ -1,30 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./MoneyGrabContent.module.css";
 import MusicPlayer from "../../../context/MusicContext";
- 
+
 type Bill = {
     id: number;
     x: number;
     y: number;
 };
- 
+
 type MoneyGrabProps = {
     timelimit: number;
     onCollect: (amount: number) => void;
-    onFinish: (success: boolean) => void;
+    onFinish: (success: boolean, totalCollected: number) => void;
 };
- 
+
 const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFinish }) => {
     const gameRef = useRef<HTMLDivElement>(null);
- 
+
     const [light, setLight] = useState({ x: 0, y: 0 });
     const [bills, setBills] = useState<Bill[]>([]);
     const [flicker, setFlicker] = useState(false);
     const [timeLeft, setTimeLeft] = useState(timelimit);
-    // const [finished, setFinished] = useState<"success" | "failure" | null>(null);
     const [finished, setFinished] = useState(false);
+    const [collectedAmount, setCollectedAmount] = useState(0);
     const TotalBills = 20;
- 
+
     useEffect(() => {
         const generated: Bill[] = Array.from({ length: TotalBills }).map(
             (_, i) => ({
@@ -35,7 +35,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
         );
         setBills(generated);
     }, []);
- 
+
     useEffect(() => {
         const handleMove = (e: MouseEvent) => {
             if (!gameRef.current) return;
@@ -45,63 +45,63 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                 y: e.clientY - rect.top,
             });
         };
- 
+
         const el = gameRef.current;
         el?.addEventListener("mousemove", handleMove);
         return () => el?.removeEventListener("mousemove", handleMove);
     }, []);
- 
+
     useEffect(() => {
         const interval = setInterval(() => {
             setFlicker(true);
             setTimeout(() => setFlicker(false), 150);
         }, 1500);
- 
+
         return () => clearInterval(interval);
     }, []);
- 
+
     useEffect(() => {
         if (finished) return;
- 
+
         if (timeLeft <= 0) {
-            // setFinished(true);
-            onFinish(true);
+            setFinished(true);
+            onFinish(collectedAmount > 0, collectedAmount);
             return;
         }
-
-
 
         const timer = setInterval(() => {
             setTimeLeft((t) => t - 1);
         }, 1000);
- 
+
         return () => clearInterval(timer);
-    }, [timeLeft, finished, onFinish]);
- 
+    }, [timeLeft, finished, onFinish, collectedAmount]);
+
     const collectBill = (id: number) => {
         if (finished) return;
- 
-        onCollect(5000);
- 
+
+        const billValue = 5000;
+        setCollectedAmount((prev) => prev + billValue);
+        onCollect(billValue);
+
         setBills((prev) => {
             const updated = prev.filter((b) => b.id !== id);
             if (updated.length === 0) {
                 setFinished(true);
-                onFinish(true);
+                onFinish(true, collectedAmount + billValue);
             }
             return updated;
         });
     };
- 
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.time} style={{
                 color: timeLeft <= 5 ? "red" : "black",
-                }}
+            }}
             >
                 Čas: {timeLeft}s
             </div>
- 
+
             <div className={styles.game} ref={gameRef}>
                 {bills.map((bill) => (
                     <div
@@ -113,7 +113,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                         $$$
                     </div>
                 ))}
- 
+
                 <div className={styles.darkness} />
                 <div
                     className={styles.light}
@@ -131,7 +131,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                     }}
                 />
             </div>
-            <MusicPlayer src="/sfx/background-noise.mp3"/>
+            <MusicPlayer src="/sfx/background-noise.mp3" />
         </div>
     );
 }

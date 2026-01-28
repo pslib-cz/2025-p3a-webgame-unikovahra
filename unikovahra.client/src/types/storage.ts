@@ -8,3 +8,10 @@ export const loadProgress = () => {
   const saved = localStorage.getItem(STORAGE_KEY);
   return saved ? JSON.parse(saved) : null;
 };
+
+export const clearProgress = () => {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem('playerScore');
+  localStorage.removeItem('puzzlePin');
+};
+
