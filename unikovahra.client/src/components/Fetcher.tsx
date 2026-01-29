@@ -30,8 +30,14 @@ export const Fetcher = <T,>({ url, dependencies = [], children }: FetcherProps<T
           throw new Error(`Chyba ${response.status}`);
         }
 
-        const result: T = await response.json();
-        setData(result);
+        const text = await response.text();
+        try {
+          const result: T = JSON.parse(text);
+          setData(result);
+        } catch (parseError) {
+          console.error("Failed to parse JSON:", parseError, "Response text starts with:", text.substring(0, 100));
+          throw new Error("Server vrátil špatný formát dat (pravděpodobně HTML místo JSON).");
+        }
 
       } catch (e) {
         setData(null);
