@@ -16,10 +16,9 @@ const MinigameInitialPage = () => {
   const navigate = useNavigate();
 
   const minigameId = Number(id ?? 1);
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   return (
     <Fetcher<MiniGameDto>
-      url={`${API_BASE_URL}/api/minigames/${minigameId}`}
+      url={`/api/minigames/${minigameId}`}
       dependencies={[minigameId]}
     >
       {({ data, loading, error }) => (

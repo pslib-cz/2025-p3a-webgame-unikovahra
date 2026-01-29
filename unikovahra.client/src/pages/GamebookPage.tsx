@@ -20,11 +20,9 @@ const GamebookPage = () => {
   const navigate = useNavigate();
 
   const nodeId = Number(id ?? 1);
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
   return (
     <Fetcher<StoryNodeDto>
-      url={`${API_BASE_URL}/api/story/${nodeId}`}
+      url={`/api/story/${nodeId}`}
       dependencies={[nodeId]}
     >
       {({ data, loading, error }) => (

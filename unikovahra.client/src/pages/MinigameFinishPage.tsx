@@ -1,10 +1,8 @@
-import React from 'react'
 import { useRef } from 'react'
 import { Fetcher } from '../components/Fetcher'
 import { useParams, useNavigate } from 'react-router-dom'
-import  { type ScoreCounterHandle } from '../components/ui/ScoreCounter'
+import { type ScoreCounterHandle } from '../components/ui/ScoreCounter'
 import MinigameFinish from '../components/minigames/MinigameFinish'
-import { saveProgress } from '../types/storage'
 type MinigameFinishDto = {
   id: number;
   roomId: number;
@@ -30,18 +28,15 @@ const MinigameFinishPage = () => {
 
   const handleEndMission = () => {
     navigate('/missionend');
-    
+
 
 
   };
 
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-
   return (
     <Fetcher<MinigameFinishDto>
-      url={`${API_BASE_URL}/api/minigames/${roomIdNum}`}
+      url={`/api/minigames/${roomIdNum}`}
       dependencies={[roomIdNum]}
     >
       {({ data, loading, error }) => (

@@ -40,11 +40,9 @@ const MinigameRulesPage = () => {
     }
   };
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
   return (
     <Fetcher<RoomDto>
-      url={`${API_BASE_URL}/api/room/${id}`}
+      url={`/api/room/${id}`}
       dependencies={[id]}
     >
       {({ data, loading, error }) => (
