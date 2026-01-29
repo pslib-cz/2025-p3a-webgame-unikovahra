@@ -39,9 +39,9 @@ export const Fetcher = <T,>({ url, dependencies = [], children }: FetcherProps<T
           console.error("Response text (first 200 chars):", text.substring(0, 200));
 
           if (text.trim().toLowerCase().startsWith("<!doctype html") || text.trim().startsWith("<html")) {
-            throw new Error("Server vrátil HTML stránku místo JSON dat. Zkontrolujte, zda je správně nastavená VITE_API_BASE_URL a zda API endpoint existuje.");
+            throw new Error(`Server vrátil HTML stránku místo JSON dat. (URL: ${url}). Zkontrolujte, zda je správně nastavená VITE_API_BASE_URL a zda API endpoint existuje.`);
           }
-          throw new Error("Server vrátil špatný formát dat (nepodařilo se zpracovat JSON).");
+          throw new Error(`Server vrátil špatný formát dat (URL: ${url}). Nepodařilo se zpracovat JSON.`);
         }
 
       } catch (e) {
