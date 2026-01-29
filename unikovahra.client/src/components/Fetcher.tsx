@@ -8,7 +8,7 @@ type FetcherResult<T> = {
 
 type FetcherProps<T> = {
   url: string;
-  dependencies?: any[];
+  dependencies?: unknown[];
   children: (result: FetcherResult<T>) => ReactNode;
 };
 
@@ -35,8 +35,13 @@ export const Fetcher = <T,>({ url, dependencies = [], children }: FetcherProps<T
           const result: T = JSON.parse(text);
           setData(result);
         } catch (parseError) {
-          console.error("Failed to parse JSON:", parseError, "Response text starts with:", text.substring(0, 100));
-          throw new Error("Server vrátil špatný formát dat (pravděpodobně HTML místo JSON).");
+          console.error("Failed to parse JSON:", parseError);
+          console.error("Response text (first 200 chars):", text.substring(0, 200));
+
+          if (text.trim().toLowerCase().startsWith("<!doctype html") || text.trim().startsWith("<html")) {
+            throw new Error("Server vrátil HTML stránku místo JSON dat. Zkontrolujte, zda je správně nastavená VITE_API_BASE_URL a zda API endpoint existuje.");
+          }
+          throw new Error("Server vrátil špatný formát dat (nepodařilo se zpracovat JSON).");
         }
 
       } catch (e) {
@@ -50,6 +55,7 @@ export const Fetcher = <T,>({ url, dependencies = [], children }: FetcherProps<T
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, ...dependencies]);
 
   return <>{children({ data, loading, error })}</>;
