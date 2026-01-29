@@ -12,6 +12,11 @@ export default defineConfig(({ mode }) => {
           target: env.VITE_API_BASE_URL || 'https://id-114.pslib.cloud',
           changeOrigin: true,
           secure: false,
+        },
+        '/images': {
+          target: env.VITE_API_BASE_URL || 'https://id-114.pslib.cloud',
+          changeOrigin: true,
+          secure: false,
         }
       }
     }
