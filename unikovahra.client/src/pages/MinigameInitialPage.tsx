@@ -25,7 +25,7 @@ const MinigameInitialPage = () => {
       {({ data, loading, error }) => (
         <div>
           {loading && <Loader />}
-          {error && <Error />}
+          {error && <Error message={error.message} />}
 
           {data && (
             <div className="wrap wrap--fullycentered wrap--centered">

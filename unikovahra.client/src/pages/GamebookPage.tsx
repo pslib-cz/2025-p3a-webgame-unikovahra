@@ -30,7 +30,7 @@ const GamebookPage = () => {
       {({ data, loading, error }) => (
         <div className="wrap wrap--centered">
           {loading && <Loader />}
-          {error && <Error />}
+          {error && <Error message={error.message} />}
 
           {data && (
             <GamebookContent

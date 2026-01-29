@@ -19,6 +19,7 @@ export const Fetcher = <T,>({ url, dependencies = [], children }: FetcherProps<T
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("Fetching from URL:", url);
       setLoading(true);
       setError(null);
 
