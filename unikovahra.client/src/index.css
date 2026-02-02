@@ -131,6 +131,18 @@ h6 {
   margin: 0;
 }
 
+@media screen and (max-width: 600px) {
+  .initial__title {
+    font-size: 2rem;
+    font-weight: var(--bold);
+  }
+
+  .initial__text {
+    font-size: 2rem;
+  }
+}
+
+
 .error__title {
   font-size: 4rem;
   margin: 0;

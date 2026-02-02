@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./CodeTypingGame.module.css";
 import MusicPlayer from "../../../context/MusicContext";
+import { loadProgress, saveProgress } from "../../../types/storage";
 
 const CODES: string[] = [
 `#ignore -Camera12<mvm.detect>
@@ -85,6 +86,8 @@ const audioWarning = new Audio("../sfx/clock2.mp3");
 
   };
 if (success){
+     const progress = loadProgress();
+     saveProgress({ currentPath: `/minigame/finish/${roomId}/true`, completedMinigames: [...(progress?.completedMinigames || []), 'codetyping'] });
      navigate(`/minigame/finish/${roomId}/true`)
 }
 if (success === false){
