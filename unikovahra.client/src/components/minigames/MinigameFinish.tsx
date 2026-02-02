@@ -28,10 +28,7 @@ type MinigameFinishProps = {
 
 const MinigameFinish: React.FC<MinigameFinishProps> = ({ data, isSuccess, roomIdNum, navigate, handleRetry, handleEndMission, scoreRef }) => {
 
-    const handleNewGame = () => {
-        clearProgress();
-        navigate('/');
-    };
+    const isLastMinigame = roomIdNum === 5;
 
     return (
         <div className={styles.wrap}>
@@ -42,14 +39,17 @@ const MinigameFinish: React.FC<MinigameFinishProps> = ({ data, isSuccess, roomId
             <div>
                 {isSuccess ? (
                     <div className={styles.buttons}>
-                        <Button text="K další minihře" onClick={() => navigate(`/minigame/${roomIdNum + 1}`)} color="gold" />
-                        <Button text="Nová hra" onClick={handleNewGame} color="white" />
+                        {isLastMinigame ? (
+                            <Button text="Dokončit hru" onClick={() => navigate('/finish')} color="gold" />
+                        ) : (
+                            <Button text="K další minihře" onClick={() => navigate(`/minigame/${roomIdNum + 1}`)} color="gold" />
+                        )}
+                        <Button text="Ukončit misi" onClick={handleEndMission} color="red" />
                     </div>
                 ) : (
                     <div className={styles.buttons}>
                         <Button text="Začít znovu" onClick={handleRetry} color="gold" />
                         <Button text="Ukončit misi" onClick={handleEndMission} color="red" />
-                        <Button text="Nová hra" onClick={handleNewGame} color="white" />
                         <ScoreCounter ref={scoreRef} style={"hidden"} />
                     </div>
                 )}
