@@ -58,7 +58,7 @@ const MinigameRulesPage = () => {
               introTaskSubtitle={data.introTaskSubtitle}
               introTaskText={data.introTaskText}
               imageUrl={data.imageUrl}
-              onStart={() => navigate(getMinigamePath(data.id))}
+              onStart={() => navigate(getMinigamePath(id))}
             />
           )}
         </div>
