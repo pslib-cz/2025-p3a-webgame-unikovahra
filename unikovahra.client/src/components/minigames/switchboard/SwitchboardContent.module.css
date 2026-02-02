@@ -1,80 +1,67 @@
-.arrowGame {
+.switchboard {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
-
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(5, 72px);
-  grid-template-rows: repeat(5, 72px);
-  gap: 8px;
+  grid-template-columns: repeat(5, 60px);
+  grid-template-rows: repeat(5, 60px);
+  gap: 4px;
 }
-
 
 .cell {
-  width: 72px;
-  height: 72px;
-  border-radius: 6px;
-  background: #e5e5e5;
+  width: 60px;
+  height: 60px;
+  background: #222;
   display: flex;
-  justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-}
-
-.cell:hover {
+  justify-content: center;
   cursor: pointer;
 }
 
+.empty {
+  background: #111;
+}
+
 .block {
-  background: #000;
+  background: #555;
 }
 
 .goal {
-  background: #d4a017;
+  background: gold;
 }
-
-.empty {
-  background: #e5e5e5;
-}
-
 
 .arrow {
-  width: 40px;
-  height: 40px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transition: transform 0.2s ease;
-background-image: url('public/images/arrow.svg');}
-
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 24px solid white;
+  transition: transform 0.2s, filter 0.2s;
+}
 
 .up {
-  transform: rotate(-90deg);
+  transform: rotate(360deg);
 }
-
 .right {
-  transform: rotate(0deg);
-}
-
-.down {
   transform: rotate(90deg);
 }
-
-.left {
+.down {
   transform: rotate(180deg);
 }
-
-
-.green {
-
-}
-
-.red {
-
+.left {
+  transform: rotate(270deg);
 }
 
 .dark {
+  opacity: 0.4;
+}
 
+.green {
+  filter: drop-shadow(0 0 8px lime);
+}
+
+.solved {
+  box-shadow: inset 0 0 15px lime;
 }

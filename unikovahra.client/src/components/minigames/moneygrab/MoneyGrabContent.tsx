@@ -55,7 +55,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
         const interval = setInterval(() => {
             setFlicker(true);
             setTimeout(() => setFlicker(false), 150);
-        }, 1500);
+        }, 10000);
 
         return () => clearInterval(interval);
     }, []);
