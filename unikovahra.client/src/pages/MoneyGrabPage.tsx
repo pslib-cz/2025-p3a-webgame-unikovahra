@@ -51,7 +51,7 @@ export default function MoneyGrabPage() {
                 Jedinou možností je začít hru znovu."
                 buttonText="Zkusit znovu"
                 buttonColor="white"
-                onButtonClick={() => { navigate('/') }}
+                onButtonClick={() => { navigate('/gamebook/7') }}
             />
         );
     }
