@@ -29,7 +29,8 @@ export const Fetcher = <T,>({ url, dependencies = [], children }: FetcherProps<T
           throw new Error(`Chyba ${response.status}`);
         }
 
-      
+        const result: T = await response.json();
+        setData(result);
 
       } catch (e) {
         setData(null);
