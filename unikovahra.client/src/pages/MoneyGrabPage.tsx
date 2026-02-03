@@ -42,7 +42,7 @@ export default function MoneyGrabPage() {
                 o tom, jestli tahle akce skončí úspěchem nebo neúspěchem...."
                 buttonText="Pravidla"
                 buttonColor="blue"
-                onButtonClick={() => navigate('/rules/')}
+                onButtonClick={() => navigate('/rules/', { replace: true })}
             />
         ) : (
             <ResultScreen

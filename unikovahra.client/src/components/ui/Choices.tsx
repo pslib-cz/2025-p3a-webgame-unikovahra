@@ -1,4 +1,5 @@
 import React from 'react'
+import type { NavigateFunction } from 'react-router-dom';
 import Button from './Button';
 import styles from './Choices.module.css';
 import { loadProgress, saveProgress } from '../../types/storage';
@@ -10,7 +11,7 @@ type ChoicesProps = {
         optionB: string | null;
         nextB: number | null;
     };
-    navigate: (path: string) => void;
+    navigate: NavigateFunction;
 }
 
 
@@ -22,7 +23,7 @@ const Choices: React.FC<ChoicesProps> = ({ data, navigate }) => {
             currentPath: '/minigame/moneygrab',
             completedMinigames: [...(progress?.completedMinigames || []), 'gamebook']
         });
-        navigate('/minigame/moneygrab');
+        navigate('/minigame/moneygrab', { replace: true });
     };
 
     return (

@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Fetcher } from "../components/Fetcher";
 import Loader from "../components/ui/Loader";
 import { Error } from "../components/ui/Error";
 import GamebookContent from "../components/minigames/gamebook/GamebookContent";
+import { loadProgress } from "../types/storage";
 
 type StoryNodeDto = {
   id: number;
@@ -18,6 +20,14 @@ type StoryNodeDto = {
 const GamebookPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const progress = loadProgress();
+    const completedMinigames = progress?.completedMinigames || [];
+    if (completedMinigames.includes("moneygrab")) {
+      navigate(progress?.currentPath || "/rules", { replace: true });
+    }
+  }, [navigate]);
 
   const nodeId = Number(id ?? 1);
   return (
