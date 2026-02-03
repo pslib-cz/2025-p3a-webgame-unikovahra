@@ -5,6 +5,7 @@ import MoneyGrabContent from "../components/minigames/moneygrab/MoneyGrabContent
 import MusicPlayer from "../context/MusicContext";
 import { loadProgress, saveProgress } from "../types/storage";
 import ScoreCounter, { type ScoreCounterHandle } from "../components/ui/ScoreCounter";
+import { showAchievement } from "../types/achievements";
 
 export default function MoneyGrabPage() {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function MoneyGrabPage() {
         scoreRef.current?.addScore(amount);
     };
 
-    const handleFinish = (isSuccess: boolean, totalCollected: number) => {
+    const handleFinish = (isSuccess: boolean, totalCollected: number, timeLeft: number) => {
         setSuccess(isSuccess);
         setFinished(true);
         setFinalScore(totalCollected);
@@ -30,6 +31,17 @@ export default function MoneyGrabPage() {
                 currentPath: '/rules/',
                 completedMinigames: [...(progress?.completedMinigames || []), 'moneygrab']
             });
+
+           
+            if (timeLeft > 15) {
+                showAchievement('speedrunner');
+            }
+
+            if(totalCollected >= 80000) {
+                showAchievement('rich');
+            }
+        } else if (!isSuccess && totalCollected === 0) {
+            showAchievement('broke');
         }
     };
 

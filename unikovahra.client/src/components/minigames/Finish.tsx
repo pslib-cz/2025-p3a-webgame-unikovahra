@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import type { ScoreCounterHandle } from '../ui/ScoreCounter';
 import { useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
 import ScoreCounter from '../ui/ScoreCounter';
 import styles from './Finish.module.css';
+import { showAchievement } from '../../types/achievements';
 
 
 
@@ -11,6 +12,10 @@ const Finish = () => {
     const [handleClick, setHandleClick] = useState(false);
     const navigate = useNavigate();
     const scoreRef = useRef<ScoreCounterHandle>(null);
+
+    useEffect(() => {
+        showAchievement('winner');
+    }, []);
 
     const getScore = () => {
         const savedScore = localStorage.getItem('playerScore');

@@ -3,6 +3,7 @@ import Button from '../ui/Button'
 import ScoreCounter from '../ui/ScoreCounter'
 import styles from './MinigameFinish.module.css'
 import { clearProgress } from '../../types/storage'
+import { showAchievement } from '../../types/achievements'
 
 
 type MinigameFinishDto = {
@@ -29,6 +30,10 @@ type MinigameFinishProps = {
 const MinigameFinish: React.FC<MinigameFinishProps> = ({ data, isSuccess, roomIdNum, navigate, handleRetry, handleEndMission, scoreRef }) => {
 
     const isLastMinigame = roomIdNum === 5;
+
+    if(isSuccess && roomIdNum >= 3) {
+        showAchievement('halfway')
+    }
 
     return (
         <div className={styles.wrap}>

@@ -6,7 +6,7 @@ import CodeTypingGame from '../components/minigames/codetyping/CodeTypingGame'
 const CodeTypingPage = () => {
   return (
     <>
-<CodeTypingGame timeLimit={60} />
+      <CodeTypingGame timeLimit={60} />
       <ScoreCounter style={"styled"} />
     </>
   )

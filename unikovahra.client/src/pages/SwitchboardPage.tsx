@@ -4,6 +4,7 @@ import ScoreCounter from '../components/ui/ScoreCounter'
 import { useNavigate } from 'react-router-dom'
 import SwitchboardContent from '../components/minigames/switchboard/SwitchboardContent'
 import { loadProgress, saveProgress } from '../types/storage'
+import { showAchievement } from '../types/achievements'
 const SwitchboardPage = () => {
   const navigate = useNavigate();
   const roomId = 1;
@@ -16,6 +17,8 @@ const SwitchboardPage = () => {
       completedMinigames: [...(progress?.completedMinigames || []), 'switchboard']
     });
     navigate('/minigame/finish/1/true');
+
+    showAchievement('first_minigame');
   };
 
 

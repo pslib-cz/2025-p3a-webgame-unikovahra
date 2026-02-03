@@ -11,7 +11,7 @@ type Bill = {
 type MoneyGrabProps = {
     timelimit: number;
     onCollect: (amount: number) => void;
-    onFinish: (success: boolean, totalCollected: number) => void;
+    onFinish: (success: boolean, totalCollected: number, timeLeft: number) => void;
 };
 
 const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFinish }) => {
@@ -65,7 +65,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
 
         if (timeLeft <= 0) {
             setFinished(true);
-            onFinish(collectedAmount > 0, collectedAmount);
+            onFinish(collectedAmount > 0, collectedAmount, timeLeft);
             return;
         }
 
@@ -87,7 +87,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
             const updated = prev.filter((b) => b.id !== id);
             if (updated.length === 0) {
                 setFinished(true);
-                onFinish(true, collectedAmount + billValue);
+                onFinish(true, collectedAmount + billValue, timeLeft);
             }
             return updated;
         });

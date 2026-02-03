@@ -8,7 +8,7 @@ type Board = TileValue[][];
 const SIZE = 3;
 
 type SlidingPuzzleProps = {
-  onWin: () => void;
+  onWin: (timeLeft: number) => void;
   onLose: () => void;
 };
 
@@ -112,7 +112,7 @@ const SlidingPuzzle: React.FC<SlidingPuzzleProps> = ({ onWin, onLose }) => {
           <h2 className={`marked ${styles.title}`}>Výborně!</h2>
           <p className={styles.description}>Zapamatuj si tento PIN:</p>
           <div className={styles.pinCode}>{pin}</div>
-          <Button onClick={onWin} text={'Pokračovat'} color='blue' className='centered' />
+          <Button onClick={() => onWin(timeLeft)} text={'Pokračovat'} color='blue' className='centered' />
         </div>
       </div>
     );
