@@ -10,7 +10,7 @@ const SwitchboardPage = () => {
   const roomId = 1;
 
 
-  const handleSuccess = () => {
+  const handleSuccess = (timeLeft: number) => {
     const progress = loadProgress();
     saveProgress({
       currentPath: '/minigame/finish/1/true',
@@ -21,20 +21,13 @@ const SwitchboardPage = () => {
     showAchievement('first_minigame');
   };
 
+  const handleLose = () => {
+    navigate(`/minigame/finish/${roomId}/false`);
+  };
 
   return (
     <>
-      <SwitchboardContent />
-      <Button
-        text="Simulovat úspěch"
-        onClick={handleSuccess}
-        color="blue"
-      />
-      <Button
-        text="Simulovat neúspěch"
-        onClick={() => navigate(`/minigame/finish/${roomId}/false`)}
-        color="white"
-      />
+      <SwitchboardContent onWin={handleSuccess} onLose={handleLose} />
       <ScoreCounter style="styled" />
     </>
   )

@@ -1,67 +1,95 @@
+
 .switchboard {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  background: #0b0d10;
+  padding: 20px;
+  border-radius: 1rem;
+}
+
+.levelInfo {
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.levelText {
+  margin: 0;
+}
+
+.timeDisplay {
+  font-size: 20px;
+  margin-top: 8px;
+  margin: 0;
+}
+
+.timeCritical {
+  color: var(--red);
+}
+
+.timeNormal {
+  color: var(--green);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 60px);
   grid-template-rows: repeat(5, 60px);
-  gap: 4px;
+  gap: 0.5rem;
 }
 
 .cell {
   width: 60px;
   height: 60px;
-  background: #222;
+  border-radius: 6px;
+  background: #12151a;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1px #1e222b;
+}
+
+.cell.arrow {
   cursor: pointer;
 }
 
-.empty {
-  background: #111;
+.cell.empty {
+  background: #0f1217;
 }
 
-.block {
-  background: #555;
+.cell.block {
+  background: #050607;
+  box-shadow: inset 0 0 0 1px #000;
 }
 
-.goal {
-  background: gold;
+.cell.goal {
+  background: radial-gradient(circle, #1b2f1b, #0a120a);
+  box-shadow: 0 0 8px var(--green);
+  animation: solvedPulse 0.8s ease-in-out infinite alternate;
 }
 
-.arrow {
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-bottom: 24px solid white;
-  transition: transform 0.2s, filter 0.2s;
-}
-
-.up {
-  transform: rotate(360deg);
-}
-.right {
-  transform: rotate(90deg);
-}
-.down {
-  transform: rotate(180deg);
-}
-.left {
-  transform: rotate(270deg);
-}
+.up    { transform: rotate(0deg); }
+.right { transform: rotate(90deg); }
+.down  { transform: rotate(180deg); }
+.left  { transform: rotate(270deg); }
 
 .dark {
-  opacity: 0.4;
+  border-bottom-color: #2c2f36;
 }
 
 .green {
-  filter: drop-shadow(0 0 8px lime);
+  border-bottom-color: var(--green);
+  filter: drop-shadow(0 0 6px var(--green));
 }
 
-.solved {
-  box-shadow: inset 0 0 15px lime;
+
+@keyframes solvedPulse {
+  from {
+    box-shadow: 0 0 6px rgba(60, 255, 135, 0.4);
+  }
+  to {
+    box-shadow: 0 0 12px rgba(60, 255, 135, 0.8);
+  }
 }
