@@ -6,7 +6,7 @@ import RulesDisplay from '../components/rules/RulesDisplay'
 const RulesPage = () => {
   const navigate = useNavigate()
   return (
-    <div className='wrap wrap--centered'>
+    <div className='wrap wrap--centered wrap--mobile'>
 
 
       <RulesDisplay />
