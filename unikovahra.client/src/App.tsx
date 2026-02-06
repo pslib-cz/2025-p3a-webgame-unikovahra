@@ -26,18 +26,18 @@ import { loadProgress } from "./types/storage";
 
 
 function App() {
-  // const [isLoaded, setIsLoaded] = useState(false);
-  // const navigate = useNavigate();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const savedProgress = loadProgress();
-  //   if (savedProgress?.currentPath) {
-  //     navigate(savedProgress.currentPath);
-  //   }
-  //   setTimeout(() => {
-  //     setIsLoaded(true);
-  //   }, 500);
-  // }, []);
+  useEffect(() => {
+    const savedProgress = loadProgress();
+    if (savedProgress?.currentPath) {
+      navigate(savedProgress.currentPath);
+    }
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+  }, []);
 
   return (
     <Routes>
