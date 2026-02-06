@@ -29,15 +29,15 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const savedProgress = loadProgress();
-  //   if (savedProgress?.currentPath) {
-  //     navigate(savedProgress.currentPath);
-  //   }
-  //   setTimeout(() => {
-  //     setIsLoaded(true);
-  //   }, 500);
-  // }, []);
+  useEffect(() => {
+    const savedProgress = loadProgress();
+    if (savedProgress?.currentPath) {
+      navigate(savedProgress.currentPath);
+    }
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+  }, []);
 
   return (
     <Routes>
@@ -78,9 +78,9 @@ function App() {
         } />
 
         <Route path="minigame/keylock" element={
-            // <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping', 'puzzle']} currentMinigame="keylock">
+            <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping', 'puzzle']} currentMinigame="keylock">
               <KeylockPage />
-            // { </ProtectedRoute> }
+            </ProtectedRoute>
           } />
 
         <Route path="minigame/finish/:roomId/:success" element={<MinigameFinishPage />} />

@@ -8,7 +8,7 @@ type Props = {
 }
 
 const Rows = 7
-const Speed = 200
+const Speed = 350
 const Timer = 25
 
 const Keylock: React.FC<Props> = ({ onSuccess, onFail }) => {
