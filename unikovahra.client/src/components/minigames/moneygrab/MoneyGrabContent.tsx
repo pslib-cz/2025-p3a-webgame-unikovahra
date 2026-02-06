@@ -29,26 +29,48 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
         const generated: Bill[] = Array.from({ length: TotalBills }).map(
             (_, i) => ({
                 id: i,
-                x: Math.random() * 95,
-                y: Math.random() * 95,
+                x: Math.random() * 90,
+                y: 15 + Math.random() * 80,
             })
         );
         setBills(generated);
     }, []);
 
     useEffect(() => {
-        const handleMove = (e: MouseEvent) => {
+        let rafId: number;
+
+        const updateLight = (clientX: number, clientY: number) => {
             if (!gameRef.current) return;
             const rect = gameRef.current.getBoundingClientRect();
-            setLight({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
+            
+            rafId = requestAnimationFrame(() => {
+                setLight({
+                    x: clientX - rect.left,
+                    y: clientY - rect.top,
+                });
             });
+        };
+
+        const handleMove = (e: MouseEvent) => {
+            updateLight(e.clientX, e.clientY);
+        };
+
+        const handleTouch = (e: TouchEvent) => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                updateLight(touch.clientX, touch.clientY);
+            }
         };
 
         const el = gameRef.current;
         el?.addEventListener("mousemove", handleMove);
-        return () => el?.removeEventListener("mousemove", handleMove);
+        el?.addEventListener("touchmove", handleTouch, { passive: true });
+        
+        return () => {
+            el?.removeEventListener("mousemove", handleMove);
+            el?.removeEventListener("touchmove", handleTouch);
+            if (rafId) cancelAnimationFrame(rafId);
+        };
     }, []);
 
     useEffect(() => {
