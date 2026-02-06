@@ -9,6 +9,7 @@ body {
   padding: 0;
   background-color: var(--background);
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 
@@ -114,15 +115,13 @@ h6 {
 
 @media screen and (max-width: 600px) {
   .wrap--centered {
-    padding-top: 2rem;
+    align-items: start;
   }
 
   .wrap::before {
     background-image: none;
   }
-  .wrap--mobile{
-    padding:1rem ;
-  }
+
 }
 
 .initial__text {
@@ -141,7 +140,9 @@ h6 {
     font-size: 2rem;
     font-weight: var(--bold);
   }
-
+  .wrap--mobile {
+    padding: 1rem;
+  }
   .initial__text {
     font-size: 2rem;
   }
