@@ -120,6 +120,9 @@ h6 {
   .wrap::before {
     background-image: none;
   }
+  .wrap--mobile{
+    padding:1rem ;
+  }
 }
 
 .initial__text {
