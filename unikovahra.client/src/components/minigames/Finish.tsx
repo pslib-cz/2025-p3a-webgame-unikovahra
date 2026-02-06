@@ -25,6 +25,7 @@ const Finish = () => {
     const score = getScore();
     const rohlikyCount = Math.floor(score / 5);
     const microbitCount = Math.floor(score / 17);
+    const kebabCount = Math.floor(score / 7.3);
 
     const handleRestart = () => {
         localStorage.removeItem('gameProgress');
@@ -49,7 +50,11 @@ const Finish = () => {
                     <p className={styles.scoreSubtitle}>Si můžeš koupit</p>
                     <p className={styles.scoreDescription}>{rohlikyCount} Rohlíků</p>
                     <p className={styles.scoreDescription}>{microbitCount} Microbitů</p>
-                    <Button text="Hrát znovu" onClick={handleRestart} color="gold"></Button>
+                    <p className={styles.scoreDescription}>{kebabCount} Kebabů</p>
+                    <div className={styles.buttonGroup}>
+                        <Button text="Achievementy" onClick={() => navigate('/achievements')} color="blue"></Button>
+                        <Button text="Hrát znovu" onClick={handleRestart} color="gold"></Button>
+                    </div>
                     <ScoreCounter ref={scoreRef} style={"hidden"} />
                 </div>
             )}

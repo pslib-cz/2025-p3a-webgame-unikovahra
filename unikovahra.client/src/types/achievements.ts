@@ -1,5 +1,5 @@
 export type AchievementId = 
- | 'cheater' | 'first_minigame' | 'halfway' | 'speedrunner' | 'rich' | 'broke' | 'winner';
+ | 'cheater' | 'first_minigame' | 'halfway' | 'speedrunner' | 'rich' | 'broke' | 'winner' | 'easter_egg';
 
 
  export interface Achievement {
@@ -52,6 +52,12 @@ export const achievements: Record<AchievementId, Achievement> = {
         name: 'Vítěz',
         description: 'Vyhrál jsi všechny minihry!',
         icon: '🥇'
+    },
+    easter_egg: {
+        id: 'easter_egg',
+        name: 'Objevitel',
+        description: 'Našel jsi skrytý easter egg!',
+        icon: '🥚'
     }
 };
 
@@ -61,6 +67,14 @@ let addToastFn: ((a: Achievement) => void) | null = null;
 export function showAchievement(id: AchievementId) {
     if (shown.has(id)) return;
     shown.add(id);
+    
+    const saved = localStorage.getItem('unlockedAchievements');
+    const unlocked: AchievementId[] = saved ? JSON.parse(saved) : [];
+    if (!unlocked.includes(id)) {
+        unlocked.push(id);
+        localStorage.setItem('unlockedAchievements', JSON.stringify(unlocked));
+    }
+    
     addToastFn?.(achievements[id]);
 }
 

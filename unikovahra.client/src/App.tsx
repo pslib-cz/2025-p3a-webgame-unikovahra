@@ -10,6 +10,7 @@ import KeylockPage from "./pages/KeylockPage";
 import SlidingPuzzlePage from "./pages/SlidingPuzzlePage";
 import MoneyGrabPage from "./pages/MoneyGrabPage";
 import FinishPage from "./pages/FinishPage";
+import AchievementsPage from "./pages/AchievementsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import MinigameInitialPage from "./pages/MinigameInitialPage";
@@ -25,18 +26,18 @@ import { loadProgress } from "./types/storage";
 
 
 function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const navigate = useNavigate();
+  // const [isLoaded, setIsLoaded] = useState(false);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    const savedProgress = loadProgress();
-    if (savedProgress?.currentPath) {
-      navigate(savedProgress.currentPath);
-    }
-    setTimeout(() => {
-      setIsLoaded(true);
-    }, 500);
-  }, []);
+  // useEffect(() => {
+  //   const savedProgress = loadProgress();
+  //   if (savedProgress?.currentPath) {
+  //     navigate(savedProgress.currentPath);
+  //   }
+  //   setTimeout(() => {
+  //     setIsLoaded(true);
+  //   }, 500);
+  // }, []);
 
   return (
     <Routes>
@@ -89,6 +90,7 @@ function App() {
 
         <Route path="missionend" element={<MissionEndPage />} />
         <Route path="finish" element={<FinishPage />} />
+        <Route path="achievements" element={<AchievementsPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>

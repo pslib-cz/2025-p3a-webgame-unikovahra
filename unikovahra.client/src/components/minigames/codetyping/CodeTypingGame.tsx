@@ -103,6 +103,11 @@ const CodeTypingGame: React.FC<CodeTypingGameProps> = ({
   if (success) {
     const progress = loadProgress();
     saveProgress({ currentPath: `/minigame/finish/${roomId}/true`, completedMinigames: [...(progress?.completedMinigames || []), 'codetyping'] });
+    
+    if (timeLeft > 30) {
+      showAchievement('speedrunner');
+    }
+    
     navigate(`/minigame/finish/${roomId}/true`, { replace: true })
   }
   if (success === false) {
