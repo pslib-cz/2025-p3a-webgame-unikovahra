@@ -16,7 +16,7 @@ const SwitchboardPage = () => {
       currentPath: '/minigame/finish/1/true',
       completedMinigames: [...(progress?.completedMinigames || []), 'switchboard']
     });
-    navigate('/minigame/finish/1/true');
+    navigate('/minigame/finish/1/true', { replace: true });
 
     showAchievement('first_minigame');
   };

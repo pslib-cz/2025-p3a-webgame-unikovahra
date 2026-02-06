@@ -17,7 +17,7 @@ const handleSuccess = (timeLeft: number) => {
     showAchievement('speedrunner');
   }
 
-  navigate(`/minigame/finish/${roomId}/true`);
+  navigate(`/minigame/finish/${roomId}/true`, { replace: true });
 }
 
 return (

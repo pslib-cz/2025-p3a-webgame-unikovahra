@@ -16,7 +16,7 @@ const KeylockPage = () => {
       currentPath: '/minigame/finish/5/true',
       completedMinigames: [...(progress?.completedMinigames || []), 'keylock']
     });
-    navigate('/minigame/finish/5/true');
+    navigate('/minigame/finish/5/true', { replace: true });
   };
 
 
