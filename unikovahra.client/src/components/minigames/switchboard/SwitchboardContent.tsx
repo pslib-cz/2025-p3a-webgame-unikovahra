@@ -235,7 +235,7 @@ const getRandomGrid = (): CellData[][] => {
 export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) {
   const [level, setLevel] = useState(1);
   const [grid, setGrid] = useState<CellData[][]>(getRandomGrid());
-  const [timeLeft, setTimeLeft] = useState(1000);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [gameSolved, setGameSolved] = useState(false);
 
   
@@ -270,7 +270,7 @@ export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) 
       
           setLevel(prev => prev + 1);
           setGrid(getRandomGrid());
-          setTimeLeft(1000);
+          setTimeLeft(10);
           setGameSolved(false);
         }
       }, 500);

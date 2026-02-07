@@ -159,7 +159,6 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                     }}
                 />
             </div>
-            <MusicPlayer src="/sfx/background-noise.mp3" volume={0.12} />
         </div>
     );
 }
