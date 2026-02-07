@@ -24,6 +24,9 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
     const [finished, setFinished] = useState(false);
     const [collectedAmount, setCollectedAmount] = useState(0);
     const TotalBills = 20;
+    const collectBillSound = new Audio("/sfx/money-grab.mp3");
+    collectBillSound.volume = 0.3;
+    collectBillSound.playbackRate = 1 + Math.random() * 0.5;
 
     useEffect(() => {
         const generated: Bill[] = Array.from({ length: TotalBills }).map(
@@ -130,7 +133,10 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                         key={bill.id}
                         className={styles.bill}
                         style={{ left: `${bill.x}%`, top: `${bill.y}%` }}
-                        onClick={() => collectBill(bill.id)}
+                        onClick={() => {
+                            collectBill(bill.id);
+                            collectBillSound.play();
+                        }}
                     >
                         $$$
                     </div>
@@ -153,7 +159,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                     }}
                 />
             </div>
-            <MusicPlayer src="/sfx/background-noise.mp3" />
+            <MusicPlayer src="/sfx/background-noise.mp3" volume={0.12} />
         </div>
     );
 }

@@ -64,14 +64,14 @@ const gridTemplates: CellData[][][] = [
   [
     [
       { type: "empty" },
-      { type: "arrow",},
+      { type: "arrow", correctDirection: "down" },
       { type: "block" },
-      { type: "arrow", direction: "up", correctDirection: "down" },
-      { type: "empty" }
+      { type: "arrow" },
+      { type: "arrow" } 
     ],
     [
       { type: "empty" },
-      { type: "empty" },
+      { type: "arrow", direction: "left", correctDirection: "right" },
       { type: "arrow", direction: "up", correctDirection: "down" },
       { type: "empty" },
       { type: "empty" }
@@ -85,8 +85,8 @@ const gridTemplates: CellData[][][] = [
     ],
     [
       { type: "empty" },
-      { type: "arrow", direction: "up", correctDirection: "down" },
-      { type: "empty" },
+      { type: "arrow"},
+      { type: "arrow" }, 
       { type: "empty" },
       { type: "arrow", direction: "down", correctDirection: "down" }
     ],
@@ -101,16 +101,16 @@ const gridTemplates: CellData[][][] = [
   // Grid 3
   [
     [
-      { type: "arrow",},
+      { type: "arrow", correctDirection: "right" },
       { type: "empty" },
       { type: "block" },
-      { type: "empty" },
+      { type: "arrow" }, 
       { type: "arrow", direction: "right", correctDirection: "down" }
     ],
     [
-      { type: "arrow", },
+      { type: "arrow", correctDirection: "right" },
       { type: "block",},
-      { type: "arrow",  },
+      { type: "arrow", correctDirection: "right" },
       { type: "arrow", direction: "right", correctDirection: "down" },
       { type: "arrow", direction: "left", correctDirection: "left" }
     ],
@@ -123,7 +123,7 @@ const gridTemplates: CellData[][][] = [
     ],
     [
       { type: "block" },
-      { type: "empty" },
+      { type: "arrow" }, 
       { type: "block" },
       { type: "arrow", direction: "up", correctDirection: "right" },
       { type: "arrow", direction: "down", correctDirection: "down" }
@@ -140,10 +140,10 @@ const gridTemplates: CellData[][][] = [
   [
     [
       { type: "empty" },
-      { type: "arrow", direction: "left", correctDirection: "down" },
+      { type: "arrow", correctDirection: "down" },
       { type: "block" },
-      { type: "arrow",},
-      { type: "empty" }
+      { type: "arrow" },
+      { type: "arrow" } 
     ],
     [
       { type: "block" },
@@ -156,22 +156,22 @@ const gridTemplates: CellData[][][] = [
       { type: "empty" },
       { type: "empty" },
       { type: "arrow", direction: "down", correctDirection: "right" },
-      { type: "arrow", direction: "left", correctDirection: "right" },
-      { type: "arrow", direction: "right", correctDirection: "down" }
+      { type: "arrow", direction: "left", correctDirection: "down" },
+      { type: "arrow",}
     ],
     [
       { type: "empty" },
       { type: "block" },
       { type: "block" },
-      { type: "block" },
-      { type: "arrow", direction: "left", correctDirection: "down" }
+      { type: "arrow", direction: "up", correctDirection: "down" }, 
+      { type: "arrow"}
     ],
     [
       { type: "empty" },
       { type: "block" },
       { type: "goal" },
       { type: "arrow", direction: "right", correctDirection: "left" },
-      { type: "arrow", direction: "up", correctDirection: "left" }
+      { type: "arrow"}
     ]
   ],
   // Grid 5
@@ -181,26 +181,26 @@ const gridTemplates: CellData[][][] = [
       { type: "empty" },
       { type: "empty" },
       { type: "arrow", direction: "down", correctDirection: "down" },
-      { type: "empty" }
+      { type: "arrow", direction: "right", correctDirection: "left" } 
     ],
     [
       { type: "goal" },
       { type: "arrow", direction: "up", correctDirection: "left" },
       { type: "arrow", direction: "left", correctDirection: "left" },
-      { type: "arrow" },
+      { type: "arrow", correctDirection: "left" },
       { type: "block" }
     ],
     [
       { type: "empty" },
       { type: "empty" },
       { type: "block" },
-      { type: "arrow", },
-      { type: "arrow",  }
+      { type: "arrow"},
+      { type: "arrow" }
     ],
     [
       { type: "block" },
-      { type: "arrow", },
-      { type: "empty" },
+      { type: "arrow",},
+      { type: "arrow" }, 
       { type: "block" },
       { type: "empty" }
     ],
@@ -235,14 +235,14 @@ export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) 
   const [timeLeft, setTimeLeft] = useState(1000);
   const [gameSolved, setGameSolved] = useState(false);
 
-  // Check if all arrows are solved
+  
   const isGameComplete = grid.every(row =>
     row.every(cell =>
-      cell.type !== "arrow" || cell.solved
+      cell.type !== "arrow" || !cell.correctDirection || cell.solved
     )
   );
 
-  // Timer effect
+
   useEffect(() => {
     if (gameSolved || timeLeft <= 0) {
       return;
@@ -255,7 +255,7 @@ export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) 
     return () => clearInterval(timer);
   }, [timeLeft, gameSolved]);
 
-  // Check game completion
+
   useEffect(() => {
     if (isGameComplete && !gameSolved) {
       setGameSolved(true);
@@ -264,7 +264,7 @@ export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) 
           localStorage.setItem('switchboardResult', 'solved');
           onWin(timeLeft);
         } else {
-          // Move to next level
+      
           setLevel(prev => prev + 1);
           setGrid(getRandomGrid());
           setTimeLeft(1000);
@@ -274,7 +274,7 @@ export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) 
     }
   }, [isGameComplete, gameSolved, timeLeft, level, onWin]);
 
-  // Check game loss
+
   useEffect(() => {
     if (timeLeft <= 0 && !gameSolved) {
       onLose();
@@ -295,7 +295,7 @@ export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) 
             return {
               ...cell,
               direction: newDir,
-              solved: newDir === cell.correctDirection
+              solved: cell.correctDirection ? newDir === cell.correctDirection : false
             };
           }
           return cell;

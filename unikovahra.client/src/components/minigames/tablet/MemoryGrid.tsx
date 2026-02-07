@@ -17,8 +17,10 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({ size, sequenceLength, onSuccess
     const [showing, setShowing] = useState(false);
     const [showIndex, setShowIndex] = useState(0);
     const [lit, setLit] = useState(-1);
-
-
+    const beepSound = new Audio("/sfx/correct.mp3");
+    beepSound.volume = 0.1;
+    beepSound.playbackRate = 1 + Math.random() * 0.5;
+    
     const total = size * size;
 
     const StartGame = () => {
@@ -39,6 +41,7 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({ size, sequenceLength, onSuccess
                 setLit(sequence[showIndex]);
                 setTimeout(() => {
                     setLit(-1);
+                    beepSound.play();
                     setShowIndex(showIndex + 1);
                 }, 500);
             }, 700);
@@ -50,6 +53,7 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({ size, sequenceLength, onSuccess
 
     const handleCellClick = (index: number) => {
         if (showing) return;
+        beepSound.play();
 
         const newPlayerSequence = [...playerSequence, index];
         setPlayerSequence(newPlayerSequence);
@@ -59,6 +63,7 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({ size, sequenceLength, onSuccess
         }
         if (newPlayerSequence.length === sequence.length) {
             onSuccess();
+            
         }
     }
 
