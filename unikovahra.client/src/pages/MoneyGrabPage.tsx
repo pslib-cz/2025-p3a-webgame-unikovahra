@@ -83,7 +83,7 @@ export default function MoneyGrabPage() {
     return (
         <>
             <MoneyGrabContent
-                timelimit={3000}
+                timelimit={30}
                 onCollect={handleCollect}
                 onFinish={handleFinish}
             />
