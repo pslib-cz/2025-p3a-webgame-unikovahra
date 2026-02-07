@@ -219,11 +219,14 @@ const getRandomGrid = (): CellData[][] => {
   return template.map(row =>
     row.map(cell =>
       cell.type === "arrow"
-        ? {
-            ...cell,
-            direction: randomDirection(),
-            solved: false
-          }
+        ? (() => {
+            const direction = randomDirection();
+            return {
+              ...cell,
+              direction,
+              solved: cell.correctDirection ? direction === cell.correctDirection : false
+            };
+          })()
         : cell
     )
   );
