@@ -6,7 +6,6 @@ type ToastProps = {
     achievement: Achievement;
     onDismiss: () => void;
 }
-
 const Toast: React.FC<ToastProps> = ({ achievement, onDismiss }) => {
   return (
     <div className={styles.toast} onClick={onDismiss}>
@@ -15,6 +14,7 @@ const Toast: React.FC<ToastProps> = ({ achievement, onDismiss }) => {
             <div className={styles.title}>{achievement.name}</div>
             <div className={styles.description}>{achievement.description}</div>
         </div>
+        
 
 
 

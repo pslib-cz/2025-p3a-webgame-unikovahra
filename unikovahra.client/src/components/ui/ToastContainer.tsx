@@ -6,14 +6,16 @@ import Toast from './Toast'
 
 const ToastContainer = () => {
     const [toasts, setToasts] = useState<{id: string, achievement: Achievement}[]>([])
-    
+    const achievementSound = new Audio('/sfx/achievement.mp3');
+    achievementSound.volume = 0.1; 
     useEffect(() => {
         registerToastHandler((achievement) => {
             const id = `${achievement.id}-${Date.now()}`;
             setToasts((prev) => [...prev, {id, achievement}])
+            achievementSound.play();
             setTimeout(() => {
                 setToasts((prev) => prev.filter(t => t.id !== id))
-            }, 8000)
+            }, 8000) 
         })
         return () => unregisterToastHandler();
     }, []);

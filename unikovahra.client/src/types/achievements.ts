@@ -7,8 +7,7 @@ export type AchievementId =
   name: string;
   description: string;
   icon: string;
-}
-
+}   
 export const achievements: Record<AchievementId, Achievement> = {
     cheater: {
         id: 'cheater',
