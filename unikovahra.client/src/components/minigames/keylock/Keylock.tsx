@@ -8,8 +8,8 @@ type Props = {
 }
 
 const Rows = 7
-const Speed = 350
-const Timer = 25
+const Speed = 450
+const Timer = 35
 
 const Keylock: React.FC<Props> = ({ onSuccess, onFail }) => {
   const pin = localStorage.getItem('puzzlePin') ?? '0000'
@@ -80,7 +80,11 @@ const Keylock: React.FC<Props> = ({ onSuccess, onFail }) => {
       }, 700)
     } else {
       setResult('wrong')
-      setTimeout(onFail, 700)
+      setTimeLeft(t => Math.max(0, t - 5))
+      setTimeout(() => {
+        setResult('idle')
+        setStopped(false)
+      }, 700)
     }
   }
 

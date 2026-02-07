@@ -32,18 +32,30 @@ export default function MoneyGrabPage() {
                 completedMinigames: [...(progress?.completedMinigames || []), 'moneygrab']
             });
 
-           
+
             if (timeLeft > 15) {
                 showAchievement('speedrunner');
             }
 
-            if(totalCollected >= 80000) {
+            if (totalCollected >= 80000) {
                 showAchievement('rich');
             }
         } else if (!isSuccess && totalCollected === 0) {
             showAchievement('broke');
         }
     };
+
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0' ||
+            e.key === '=' || e.keyCode === 107 || e.keyCode === 109)) {
+            e.preventDefault();
+        }
+    });
+    
+    document.addEventListener('wheel', (e) => {
+        if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+
 
     if (finished) {
         return success ? (
@@ -71,7 +83,7 @@ export default function MoneyGrabPage() {
     return (
         <>
             <MoneyGrabContent
-                timelimit={30}
+                timelimit={3000}
                 onCollect={handleCollect}
                 onFinish={handleFinish}
             />

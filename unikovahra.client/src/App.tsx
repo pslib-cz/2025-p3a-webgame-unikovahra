@@ -72,9 +72,9 @@ function App() {
         } />
 
         <Route path="minigame/puzzle" element={
-          // <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping']} currentMinigame="puzzle">
+          <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping']} currentMinigame="puzzle">
             <SlidingPuzzlePage />
-          /* </ProtectedRoute> */
+          </ProtectedRoute> 
         } />
 
         <Route path="minigame/keylock" element={
