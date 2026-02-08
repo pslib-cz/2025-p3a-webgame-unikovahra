@@ -49,19 +49,20 @@ if (dbPath != null && dbPath.Contains("Data Source="))
     }
 }
 
-// Apply migrations on startup
+// Ensure database and seed data exist
 using (var scope = app.Services.CreateScope())
 {
     try
     {
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        db.Database.Migrate();
+        
+        // Use EnsureCreated for simpler database initialization
+        // This creates the database and seeds data if it doesn't exist
+        db.Database.EnsureCreated();
     }
     catch (Exception ex)
     {
-        // Log migration errors but continue - app should still start
-        // This allows app to run even if migration has issues
-        Console.WriteLine($"Migration warning: {ex.Message}");
+        Console.WriteLine($"Database initialization warning: {ex.Message}");
     }
 }
 
