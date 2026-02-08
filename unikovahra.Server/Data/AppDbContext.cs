@@ -72,7 +72,7 @@ namespace unikovahra.Server.Data
                     Text = "Tvůj poslední manévr (ať už rušička, nebo hák) spustil sekundární bezpečnostní protokol. Celý trezor se začal \r\ns ohlušujícím rachotem otřásat a dveře se začaly zvenčí  automaticky zavírat. Systém tě považuje za hrozbu a snaží se trezor zapečetit. Máš jen milisekundy na to, abys reagoval, než se masivní ocelová deska plně zasune.",
                     OptionA = "Podklouznout pod dveřmi",
                     NextA = 6,
-                    OptionB = "Schovat se mezi penězi",
+                      OptionB = "Schovat se mezi peněmi",
                     NextB = 7,
                     ImageUrl = "/images/gamebook5.jpg"
                 },
