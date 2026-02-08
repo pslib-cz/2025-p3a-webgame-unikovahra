@@ -53,7 +53,23 @@ if (dbPath != null && dbPath.Contains("Data Source="))
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
+    
+    try
+    {
+        // Try to apply pending migrations
+        var pendingMigrations = db.Database.GetPendingMigrations();
+        if (pendingMigrations.Any())
+        {
+            db.Database.Migrate();
+        }
+    }
+    catch (Exception ex)
+    {
+        // If migration fails (e.g., tables already exist but not in history),
+        // ensure the database is created and log the error
+        Console.WriteLine($"Migration error (database may already exist): {ex.Message}");
+        db.Database.EnsureCreated();
+    }
 }
 
 
