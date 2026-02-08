@@ -4,10 +4,7 @@ using unikovahra.Server.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -52,15 +49,8 @@ if (dbPath != null && dbPath.Contains("Data Source="))
 // Apply migrations on startup
 using (var scope = app.Services.CreateScope())
 {
-    try
-    {
-        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        db.Database.Migrate();
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Migration error: {ex.Message}");
-    }
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
 }
 
 
@@ -77,10 +67,6 @@ if (app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors("DevCors");
-
-
-//app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
