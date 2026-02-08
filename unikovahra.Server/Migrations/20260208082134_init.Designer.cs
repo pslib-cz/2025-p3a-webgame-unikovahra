@@ -10,8 +10,8 @@ using unikovahra.Server.Data;
 namespace unikovahra.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260128193739_fixdocker")]
-    partial class fixdocker
+    [Migration("20260208082134_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -173,7 +173,7 @@ namespace unikovahra.Server.Migrations
                         new
                         {
                             Id = 1,
-                            ImageUrl = "/images/minigame1.jpg",
+                            ImageUrl = "/images/minigame1.webp",
                             IntroSubtitle = "Kritická chyba v <span class='marked'> Systému </span> Napájení.",
                             IntroTaskSubtitle = "Tvůj <span class='marked'> úkol: </span>",
                             IntroTaskText = "Na panelu vidíš několik šipek, které jsou náhodně otočené. Kliknutím na šipku ji vždy otočíš o 90°.\r\nNež vyprší čas, musíš z těchto šipek vytvořit souvislou trasu od startu až do cíle.",
@@ -184,7 +184,7 @@ namespace unikovahra.Server.Migrations
                         new
                         {
                             Id = 2,
-                            ImageUrl = "/images/minigame2.jpg",
+                            ImageUrl = "/images/minigame2.webp",
                             IntroSubtitle = "Vstup do <span class='marked'> Kanceláře </span>",
                             IntroTaskSubtitle = "Tvůj <span class='marked'> úkol: </span>",
                             IntroTaskText = "Na displeji se objeví mřížka tlačítek, která se v náhodném pořadí rozsvěcí. Ty si musíš sekvenci zapamatovat a následně ji zopakovat klikáním na správná tlačítka.",
@@ -195,7 +195,7 @@ namespace unikovahra.Server.Migrations
                         new
                         {
                             Id = 3,
-                            ImageUrl = "/images/minigame3.jpg",
+                            ImageUrl = "/images/minigame3.webp",
                             IntroSubtitle = "Kamery blokují <span class='marked'> cestu </span>",
                             IntroTaskSubtitle = "Tvůj <span class='marked'> úkol: </span>",
                             IntroTaskText = "Na monitoru se spustí krátký odpočet a pod ním se objeví blikající kódy, které musíš rychle a přesně opsat, než čas vyprší. Úspěšné dokončení ti zajistí nejen vypnutí kamer, ale \r\ni získání důležitého PINu, který budeš potřebovat pro další postup.",
@@ -206,10 +206,10 @@ namespace unikovahra.Server.Migrations
                         new
                         {
                             Id = 4,
-                            ImageUrl = "/images/minigame4.jpg",
+                            ImageUrl = "/images/minigame4.webp",
                             IntroSubtitle = "Dodatečné <span class='marked'> ověření </span> pro hlavní PIN",
                             IntroTaskSubtitle = "Tvůj <span class='marked'> úkol: </span>",
-                            IntroTaskText = "Na obrazovce se objeví mřížka s rozházenými číslami. Tvým cílem je pomocí posouvání jednotlivých čtverců na monitoru seřadit čísla do správného číselného pořadí. Funguje to jako klasická „Patnáctka“: můžeš přesouvat vždy jen jeden dílek, který sousedí s prázdným místem.",
+                            IntroTaskText = "Na obrazovce se objeví mřížka s rozházenými číslami. Tvým cílem je pomocí posouvání jednotlivých čtverců na monitoru seřadit čísla do správného číselného pořadí. Funguje to jako klasická 'Patnáctka': můžeš přesouvat vždy jen jeden dílek který sousedí s prázdným místem.",
                             IntroText = "Po zadání velkého množství kódů systém vyhodnotil, že je nutné provést dodatečné ověření, aby ti umožnil použít hlavní PIN k odemčení hlavních dveří banky. Na monitoru se proto objeví nová výzva, která má potvrdit, že jsi oprávněný pokračovat dál.",
                             IntroTitle = "Získej <span class='marked'> PIN </span>",
                             Order = 4
@@ -217,7 +217,7 @@ namespace unikovahra.Server.Migrations
                         new
                         {
                             Id = 5,
-                            ImageUrl = "/images/minigame5.jpg",
+                            ImageUrl = "/images/minigame5.webp",
                             IntroSubtitle = "Poslední <span class='marked'> překážka </span>",
                             IntroTaskSubtitle = "Tvůj <span class='marked'> úkol: </span>",
                             IntroTaskText = "Na displeji se zobrazí čtyři sloupce čísel, která jsou uspořádaná náhodně a čísla v nich jdou různě za sebou. Pomocí tlačítek STOP pod sloupci musíš zadat správný čtyřmístný PIN, který sis předtím zapamatoval.",
@@ -266,7 +266,7 @@ namespace unikovahra.Server.Migrations
                         {
                             Id = 1,
                             Header = "Únik z trezoru",
-                            ImageUrl = "/images/gamebook1.jpg",
+                            ImageUrl = "/images/gamebook1.webp",
                             NextA = 2,
                             NextB = 3,
                             OptionA = "Vzít tašku s nářadím",
@@ -277,7 +277,7 @@ namespace unikovahra.Server.Migrations
                         {
                             Id = 2,
                             Header = "Stín a taška",
-                            ImageUrl = "/images/gamebook2.jpg",
+                            ImageUrl = "/images/gamebook2.webp",
                             NextA = 4,
                             NextB = 5,
                             OptionA = "Šokovou pistoli",
@@ -288,7 +288,7 @@ namespace unikovahra.Server.Migrations
                         {
                             Id = 3,
                             Header = "Hledání blokace",
-                            ImageUrl = "/images/gamebook3.jpg",
+                            ImageUrl = "/images/gamebook3.webp",
                             NextA = 5,
                             NextB = 4,
                             OptionA = "Použít hák a lano",
@@ -299,7 +299,7 @@ namespace unikovahra.Server.Migrations
                         {
                             Id = 4,
                             Header = "Setkání v temnotě",
-                            ImageUrl = "/images/gamebook4.jpg",
+                            ImageUrl = "/images/gamebook4.webp",
                             NextA = 7,
                             NextB = 6,
                             OptionA = "Zaútočit ve tmě",
@@ -310,7 +310,7 @@ namespace unikovahra.Server.Migrations
                         {
                             Id = 5,
                             Header = "Panika a pečetění",
-                            ImageUrl = "/images/gamebook5.jpg",
+                            ImageUrl = "/images/gamebook5.webp",
                             NextA = 6,
                             NextB = 7,
                             OptionA = "Podklouznout pod dveřmi",
@@ -321,7 +321,7 @@ namespace unikovahra.Server.Migrations
                         {
                             Id = 6,
                             Header = "Chycen!",
-                            ImageUrl = "/images/gamebook6.jpg",
+                            ImageUrl = "/images/gamebook6.webp",
                             NextA = 1,
                             OptionA = "Restart",
                             Text = "Ať už jsi proklouzl, nebo aktivoval přístroj, bylo pozdě. Světla se prudce rozsvítila a kolem tebe okamžitě stojí tým bankovní ostrahy. Cítíš, jak ti jeden z nich chytil ruku a na zápěstích ti zacvakla studená pouta. Tvoje dobrodružství končí. Systém zvítězil.\r\n\r\nMisi se nepovedlo dokončit."
@@ -330,7 +330,7 @@ namespace unikovahra.Server.Migrations
                         {
                             Id = 7,
                             Header = "Tma v trezoru",
-                            ImageUrl = "/images/gamebook7.jpg",
+                            ImageUrl = "/images/gamebook7.webp",
                             OptionA = "Začít sbírat",
                             Text = "Tvůj zoufalý pokus selhal. S ohlušujícím kovovým ŽUCH zapadla poslední západka a dveře se zaseknuly. Siréna umlkla. Proud vypadl a červené nouzové světlo přestalo blikat, což přineslo totální, absolutní tmu.\r\n\r\nNikdo tě nevidí. Nikdo tě neruší. Máš teď nečekaně všechno ticho a soukromí světa, abys splnil to, pro co jsi přišel. Sáhneš pro chladné, čisté bankovky a začínáš je vkládat do tašky."
                         });
