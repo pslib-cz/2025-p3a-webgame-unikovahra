@@ -101,23 +101,23 @@ const gridTemplates: CellData[][][] = [
   // Grid 3
   [
     [
-      { type: "arrow", correctDirection: "right" },
+      { type: "arrow"},
       { type: "empty" },
       { type: "block" },
       { type: "arrow" }, 
       { type: "arrow", direction: "right", correctDirection: "down" }
     ],
     [
-      { type: "arrow", correctDirection: "right" },
-      { type: "block",},
-      { type: "arrow", correctDirection: "right" },
+      { type: "arrow"},
+      { type: "block"},
+      { type: "arrow"  },
       { type: "arrow", direction: "right", correctDirection: "down" },
       { type: "arrow", direction: "left", correctDirection: "left" }
     ],
     [
       { type: "empty" },
       { type: "empty" },
-      { type: "arrow", direction: "left", correctDirection: "right" },
+      { type: "arrow"},
       { type: "arrow", direction: "left", correctDirection: "down" },
       { type: "block" }
     ],
@@ -157,7 +157,7 @@ const gridTemplates: CellData[][][] = [
       { type: "empty" },
       { type: "arrow", direction: "down", correctDirection: "right" },
       { type: "arrow", direction: "left", correctDirection: "down" },
-      { type: "arrow",}
+      { type: "arrow"}
     ],
     [
       { type: "empty" },
