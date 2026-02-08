@@ -16,9 +16,14 @@ const SwitchboardPage = () => {
       currentPath: '/minigame/finish/1/true',
       completedMinigames: [...(progress?.completedMinigames || []), 'switchboard']
     });
-    navigate('/minigame/finish/1/true', { replace: true });
+
+    if (timeLeft > 5) {
+      showAchievement('speedrunner');
+    }
 
     showAchievement('first_minigame');
+
+    navigate('/minigame/finish/1/true', { replace: true });
   };
 
   const handleLose = () => {

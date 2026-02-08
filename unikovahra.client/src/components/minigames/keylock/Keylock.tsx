@@ -3,7 +3,7 @@ import styles from './Keylock.module.css'
 import MusicPlayer from '../../../context/MusicContext'
 
 type Props = {
-  onSuccess: () => void
+  onSuccess: (timeLeft: number) => void
   onFail: () => void
 }
 
@@ -71,7 +71,7 @@ const Keylock: React.FC<Props> = ({ onSuccess, onFail }) => {
 
       setTimeout(() => {
         if (activeCol === 3) {
-          onSuccess()
+          onSuccess(timeLeft)
         } else {
           setActiveCol(c => c + 1)
           setResult('idle')
