@@ -39,7 +39,7 @@ WORKDIR /app
 COPY --from=server-build /app/publish .
 
 # Create directory for database with proper permissions
-RUN mkdir -p /app/data && chmod 777 /app/data
+RUN mkdir -p /data && chmod 777 /data
 
 # Set environment variables
 ENV ASPNETCORE_URLS=http://+:8080
