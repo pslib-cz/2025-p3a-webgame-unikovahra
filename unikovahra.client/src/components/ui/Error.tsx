@@ -1,7 +1,10 @@
 import React from 'react'
 
-export const Error = () => {
+export const Error = ({ message }: { message?: string }) => {
   return (
-    <div>Error</div>
+    <div className="error-container">
+      <h2>Něco se nepovedlo</h2>
+      <p>{message || "Došlo k neznámé chybě."}</p>
+    </div>
   )
 }

@@ -5,6 +5,7 @@ import MoneyGrabContent from "../components/minigames/moneygrab/MoneyGrabContent
 import MusicPlayer from "../context/MusicContext";
 import { loadProgress, saveProgress } from "../types/storage";
 import ScoreCounter, { type ScoreCounterHandle } from "../components/ui/ScoreCounter";
+import { showAchievement } from "../types/achievements";
 
 export default function MoneyGrabPage() {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function MoneyGrabPage() {
         scoreRef.current?.addScore(amount);
     };
 
-    const handleFinish = (isSuccess: boolean, totalCollected: number) => {
+    const handleFinish = (isSuccess: boolean, totalCollected: number, timeLeft: number) => {
         setSuccess(isSuccess);
         setFinished(true);
         setFinalScore(totalCollected);
@@ -30,8 +31,31 @@ export default function MoneyGrabPage() {
                 currentPath: '/rules/',
                 completedMinigames: [...(progress?.completedMinigames || []), 'moneygrab']
             });
+
+
+            if (timeLeft > 15) {
+                showAchievement('speedrunner');
+            }
+
+            if (totalCollected >= 80000) {
+                showAchievement('rich');
+            }
+        } else if (!isSuccess && totalCollected === 0) {
+            showAchievement('broke');
         }
     };
+
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0' ||
+            e.key === '=' || e.keyCode === 107 || e.keyCode === 109)) {
+            e.preventDefault();
+        }
+    });
+    
+    document.addEventListener('wheel', (e) => {
+        if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+
 
     if (finished) {
         return success ? (
@@ -42,7 +66,7 @@ export default function MoneyGrabPage() {
                 o tom, jestli tahle akce skončí úspěchem nebo neúspěchem...."
                 buttonText="Pravidla"
                 buttonColor="blue"
-                onButtonClick={() => navigate('/rules/')}
+                onButtonClick={() => navigate('/rules/', { replace: true })}
             />
         ) : (
             <ResultScreen
@@ -51,7 +75,7 @@ export default function MoneyGrabPage() {
                 Jedinou možností je začít hru znovu."
                 buttonText="Zkusit znovu"
                 buttonColor="white"
-                onButtonClick={() => { navigate('/') }}
+                onButtonClick={() => { navigate('/gamebook/7') }}
             />
         );
     }

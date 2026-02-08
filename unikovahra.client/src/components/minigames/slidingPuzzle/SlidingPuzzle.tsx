@@ -8,7 +8,7 @@ type Board = TileValue[][];
 const SIZE = 3;
 
 type SlidingPuzzleProps = {
-  onWin: () => void;
+  onWin: (timeLeft: number) => void;
   onLose: () => void;
 };
 
@@ -70,8 +70,7 @@ const SlidingPuzzle: React.FC<SlidingPuzzleProps> = ({ onWin, onLose }) => {
   });
 
   useEffect(() => {
-    if (timeLeft <= 0) {
-      onLose();
+    if (puzzleSolved || timeLeft <= 0) {
       return;
     }
 
@@ -80,7 +79,7 @@ const SlidingPuzzle: React.FC<SlidingPuzzleProps> = ({ onWin, onLose }) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft, onLose]);
+  }, [timeLeft, puzzleSolved]);
 
   const handleTileClick = (row: number, col: number) => {
     const empty = findEmpty(board);
@@ -103,13 +102,17 @@ const SlidingPuzzle: React.FC<SlidingPuzzleProps> = ({ onWin, onLose }) => {
 
   if (showPin) {
     localStorage.setItem('puzzlePin', pin);
+    if (timeLeft <= 0 && !puzzleSolved) {
+      onLose();
+      return null;
+    }
     return (
       <div className={styles.puzzleContainer}>
         <div className={styles.pinDisplay}>
-          <h2>Výborně!</h2>
-          <p>Zapamatuj si tento PIN:</p>
+          <h2 className={`marked ${styles.title}`}>Výborně!</h2>
+          <p className={styles.description}>Zapamatuj si tento PIN:</p>
           <div className={styles.pinCode}>{pin}</div>
-          <Button onClick={onWin} text={'Pokračovat'}/>
+          <Button onClick={() => onWin(timeLeft)} text={'Pokračovat'} color='blue' className='centered' />
         </div>
       </div>
     );

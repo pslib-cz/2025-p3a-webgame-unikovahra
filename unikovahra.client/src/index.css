@@ -9,6 +9,7 @@ body {
   padding: 0;
   background-color: var(--background);
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 
@@ -77,6 +78,8 @@ h6 {
   background-position: center;
   height: 100vh;
   width: 100vw;
+  background-color: #302E2E;
+  color: var(--white);
 
 
 }
@@ -112,12 +115,13 @@ h6 {
 
 @media screen and (max-width: 600px) {
   .wrap--centered {
-    padding-top: 2rem;
+    align-items: start;
   }
 
   .wrap::before {
     background-image: none;
   }
+
 }
 
 .initial__text {
@@ -130,6 +134,20 @@ h6 {
   font-size: 4rem;
   margin: 0;
 }
+
+@media screen and (max-width: 600px) {
+  .initial__title {
+    font-size: 2rem;
+    font-weight: var(--bold);
+  }
+  .wrap--mobile {
+    padding: 1rem;
+  }
+  .initial__text {
+    font-size: 2rem;
+  }
+}
+
 
 .error__title {
   font-size: 4rem;

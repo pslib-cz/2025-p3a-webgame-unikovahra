@@ -11,7 +11,7 @@ type Bill = {
 type MoneyGrabProps = {
     timelimit: number;
     onCollect: (amount: number) => void;
-    onFinish: (success: boolean, totalCollected: number) => void;
+    onFinish: (success: boolean, totalCollected: number, timeLeft: number) => void;
 };
 
 const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFinish }) => {
@@ -24,38 +24,63 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
     const [finished, setFinished] = useState(false);
     const [collectedAmount, setCollectedAmount] = useState(0);
     const TotalBills = 20;
+    const collectBillSound = new Audio("/sfx/money-grab.mp3");
+    collectBillSound.volume = 0.3;
+    collectBillSound.playbackRate = 1 + Math.random() * 0.5;
 
     useEffect(() => {
         const generated: Bill[] = Array.from({ length: TotalBills }).map(
             (_, i) => ({
                 id: i,
-                x: Math.random() * 95,
-                y: Math.random() * 95,
+                x: Math.random() * 90,
+                y: 15 + Math.random() * 80,
             })
         );
         setBills(generated);
     }, []);
 
     useEffect(() => {
-        const handleMove = (e: MouseEvent) => {
+        let rafId: number;
+
+        const updateLight = (clientX: number, clientY: number) => {
             if (!gameRef.current) return;
             const rect = gameRef.current.getBoundingClientRect();
-            setLight({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
+            
+            rafId = requestAnimationFrame(() => {
+                setLight({
+                    x: clientX - rect.left,
+                    y: clientY - rect.top,
+                });
             });
+        };
+
+        const handleMove = (e: MouseEvent) => {
+            updateLight(e.clientX, e.clientY);
+        };
+
+        const handleTouch = (e: TouchEvent) => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                updateLight(touch.clientX, touch.clientY);
+            }
         };
 
         const el = gameRef.current;
         el?.addEventListener("mousemove", handleMove);
-        return () => el?.removeEventListener("mousemove", handleMove);
+        el?.addEventListener("touchmove", handleTouch, { passive: true });
+        
+        return () => {
+            el?.removeEventListener("mousemove", handleMove);
+            el?.removeEventListener("touchmove", handleTouch);
+            if (rafId) cancelAnimationFrame(rafId);
+        };
     }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setFlicker(true);
             setTimeout(() => setFlicker(false), 150);
-        }, 1500);
+        }, 10000);
 
         return () => clearInterval(interval);
     }, []);
@@ -65,7 +90,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
 
         if (timeLeft <= 0) {
             setFinished(true);
-            onFinish(collectedAmount > 0, collectedAmount);
+            onFinish(collectedAmount > 0, collectedAmount, timeLeft);
             return;
         }
 
@@ -87,7 +112,7 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
             const updated = prev.filter((b) => b.id !== id);
             if (updated.length === 0) {
                 setFinished(true);
-                onFinish(true, collectedAmount + billValue);
+                onFinish(true, collectedAmount + billValue, timeLeft);
             }
             return updated;
         });
@@ -108,7 +133,10 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                         key={bill.id}
                         className={styles.bill}
                         style={{ left: `${bill.x}%`, top: `${bill.y}%` }}
-                        onClick={() => collectBill(bill.id)}
+                        onClick={() => {
+                            collectBill(bill.id);
+                            collectBillSound.play();
+                        }}
                     >
                         $$$
                     </div>
@@ -131,7 +159,6 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                     }}
                 />
             </div>
-            <MusicPlayer src="/sfx/background-noise.mp3" />
         </div>
     );
 }

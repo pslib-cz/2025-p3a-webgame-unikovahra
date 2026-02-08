@@ -25,7 +25,7 @@ const TabletPage = () => {
       const progress = loadProgress();
       saveProgress({ currentPath: '/minigame/finish/2/true', completedMinigames: [...(progress?.completedMinigames || []), 'tablet'] });
 
-      navigate('/minigame/finish/2/true');
+      navigate('/minigame/finish/2/true', { replace: true });
     }
   };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import type { NavigateFunction } from 'react-router-dom';
 import styles from './GamebookContent.module.css';
 import ImageDisplay from '../../ui/ImageDisplay';
 import Choices from '../../ui/Choices';
@@ -11,7 +12,7 @@ type GamebookContentProps = {
   nextA: number | null;
   optionB: string | null;
   nextB: number | null;
-  navigate: (path: string) => void;
+  navigate: NavigateFunction;
 };
 
 const GamebookContent:React.FC<GamebookContentProps> = ({

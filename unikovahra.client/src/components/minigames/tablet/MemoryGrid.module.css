@@ -24,4 +24,11 @@
     .size-5 {
         grid-template-columns: repeat(5, 50px);
     }
+    .button{
+        grid-column: 1 / -1;
+    }
+}
+
+.button {
+    grid-column: 1 / -1;
 }

@@ -35,6 +35,8 @@
     font-family: "Rajdhani", sans-serif;
     border-style: solid;
     font-weight: bold;
+    color: var(--white);
+    border-color: var(--white);
 }
 .btn:hover {
     cursor: pointer;
@@ -47,6 +49,7 @@
     justify-content: center;
     gap: 4rem;
     min-height: 100vh;
+    /* background-color: #302E2E; */
 }
 
 @media screen and (max-width: 600px) {

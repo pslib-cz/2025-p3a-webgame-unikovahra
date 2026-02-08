@@ -1,18 +1,8 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  justify-content: center; 
-  align-items: center;     
-}
-
 .wrapper {
-    min-width: 1080px;
+    min-width: 280px;
+    width: 90%;
     height: auto;
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 1rem;
     background: #000000;
     border-radius: 10px;

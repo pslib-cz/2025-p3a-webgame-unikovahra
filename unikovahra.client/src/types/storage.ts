@@ -13,5 +13,6 @@ export const clearProgress = () => {
   localStorage.removeItem(STORAGE_KEY);
   localStorage.removeItem('playerScore');
   localStorage.removeItem('puzzlePin');
+  localStorage.removeItem('unlockedAchievements');
 };
 

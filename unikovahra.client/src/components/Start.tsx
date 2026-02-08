@@ -41,11 +41,8 @@ const Start = () => {
                 onClick={handleStart}
                 onAnimationEnd={handleAnimationEnd}
             />
-            {hasSavedPath && (
-                <button className={`${styles.btn} ${styles.continueBtn}`} onClick={handleContinue} >Pokračovat</button>
-            )}
 
-            <button className={`${styles.btn}`}  onClick={handleStart} >{hasSavedPath ? 'Pokračovat' : 'Nová hra    '}</button>
+            <button className={`${styles.btn}`}  onClick={hasSavedPath ? handleContinue : handleStart} >{hasSavedPath ? 'Pokračovat' : 'Nová hra'}</button>
             <MusicPlayer src="../sfx/waiting-music.mp3" volume={0.3} loop={true} autoPlay={true}></MusicPlayer>
         </div>
     )

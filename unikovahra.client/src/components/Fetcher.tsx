@@ -8,7 +8,7 @@ type FetcherResult<T> = {
 
 type FetcherProps<T> = {
   url: string;
-  dependencies?: any[];
+  dependencies?: unknown[];
   children: (result: FetcherResult<T>) => ReactNode;
 };
 
@@ -43,6 +43,7 @@ export const Fetcher = <T,>({ url, dependencies = [], children }: FetcherProps<T
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, ...dependencies]);
 
   return <>{children({ data, loading, error })}</>;

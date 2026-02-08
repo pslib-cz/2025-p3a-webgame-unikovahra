@@ -10,6 +10,7 @@ import KeylockPage from "./pages/KeylockPage";
 import SlidingPuzzlePage from "./pages/SlidingPuzzlePage";
 import MoneyGrabPage from "./pages/MoneyGrabPage";
 import FinishPage from "./pages/FinishPage";
+import AchievementsPage from "./pages/AchievementsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import MinigameInitialPage from "./pages/MinigameInitialPage";
@@ -73,14 +74,14 @@ function App() {
         <Route path="minigame/puzzle" element={
           <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping']} currentMinigame="puzzle">
             <SlidingPuzzlePage />
-          </ProtectedRoute>
+          </ProtectedRoute> 
         } />
 
         <Route path="minigame/keylock" element={
-          <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping', 'puzzle']} currentMinigame="keylock">
-            <KeylockPage />
-          </ProtectedRoute>
-        } />
+            <ProtectedRoute requiredMinigames={['gamebook', 'moneygrab', 'switchboard', 'tablet', 'codetyping', 'puzzle']} currentMinigame="keylock">
+              <KeylockPage />
+            </ProtectedRoute>
+          } />
 
         <Route path="minigame/finish/:roomId/:success" element={<MinigameFinishPage />} />
 
@@ -89,6 +90,7 @@ function App() {
 
         <Route path="missionend" element={<MissionEndPage />} />
         <Route path="finish" element={<FinishPage />} />
+        <Route path="achievements" element={<AchievementsPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>

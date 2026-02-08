@@ -1,70 +1,305 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./SwitchboardContent.module.css";
+import Cell from "./Cell";
 
+export type Direction = "up" | "right" | "down" | "left";
 
-type Direction = "up" | "right" | "down" | "left";
-type CellType = "empty" | "block" | "arrow" | "goal";
-
-interface Cell {
-  type: CellType;
+export interface CellData {
+  type: "empty" | "block" | "arrow" | "goal";
   direction?: Direction;
-  color?: "green" | "red" | "dark";
+  correctDirection?: Direction;
+  solved?: boolean;
 }
 
-
-const initialGrid: Cell[][] = [
-  [
-    { type: "empty" },
-    { type: "arrow", direction: "down", color: "green" },
-    { type: "block" },
-    { type: "empty" },
-    { type: "empty" }
-  ],
-  [
-    { type: "empty" },
-    { type: "arrow", direction: "right", color: "green" },
-    { type: "arrow", direction: "down", color: "green" },
-    { type: "block" },
-    { type: "empty" }
-  ],
-  [
-    { type: "empty" },
-    { type: "block" },
-    { type: "arrow", direction: "left", color: "red" },
-    { type: "arrow", direction: "down", color: "dark" },
-    { type: "arrow", direction: "down", color: "dark" }
-  ],
-  [
-    { type: "empty" },
-    { type: "empty" },
-    { type: "empty" },
-    { type: "block" },
-    { type: "arrow", direction: "left", color: "dark" }
-  ],
-  [
-    { type: "empty" },
-    { type: "empty" },
-    { type: "block" },
-    { type: "empty" },
-    { type: "goal" }
-  ]
-];
+type SwitchboardProps = {
+  onWin: (timeLeft: number) => void;
+  onLose: () => void;
+};
 
 const directions: Direction[] = ["up", "right", "down", "left"];
 
+const randomDirection = (): Direction =>
+  directions[Math.floor(Math.random() * 4)];
 
-export default function ArrowMinigame() {
-  const [grid, setGrid] = useState<Cell[][]>(initialGrid);
+const gridTemplates: CellData[][][] = [
+  // Grid 1
+  [
+    [
+      { type: "empty" },
+      { type: "arrow", direction: "up", correctDirection: "down" },
+      { type: "block" },
+      { type: "empty" },
+      { type: "empty" }
+    ],
+    [
+      { type: "empty" },
+      { type: "arrow", direction: "left", correctDirection: "right" },
+      { type: "arrow", direction: "up", correctDirection: "down" },
+      { type: "block" },
+      { type: "empty" }
+    ],
+    [
+      { type: "empty" },
+      { type: "block" },
+      { type: "arrow", direction:"down", correctDirection: "right" },
+      { type: "arrow", direction: "left", correctDirection: "right" },
+      { type: "arrow", direction: "up", correctDirection: "down" }
+    ],
+    [
+      { type: "empty" },
+      { type: "empty" },
+      { type: "empty" },
+      { type: "block" },
+      { type: "arrow", direction: "down", correctDirection:"down" }
+    ],
+    [
+      { type: "empty" },
+      { type: "empty" },
+      { type: "block" },
+      { type: "empty" },
+      { type: "goal" }
+    ]
+  ],
+  // Grid 2
+  [
+    [
+      { type: "empty" },
+      { type: "arrow", correctDirection: "down" },
+      { type: "block" },
+      { type: "arrow" },
+      { type: "arrow" } 
+    ],
+    [
+      { type: "empty" },
+      { type: "arrow", direction: "left", correctDirection: "right" },
+      { type: "arrow", direction: "up", correctDirection: "down" },
+      { type: "empty" },
+      { type: "empty" }
+    ],
+    [
+      { type: "empty" },
+      { type: "block" },
+      { type: "arrow", direction: "left", correctDirection: "right" },
+      { type: "arrow", direction: "left", correctDirection: "right" },
+      { type: "arrow", direction: "up", correctDirection: "down" }
+    ],
+    [
+      { type: "empty" },
+      { type: "arrow"},
+      { type: "arrow" }, 
+      { type: "empty" },
+      { type: "arrow", direction: "down", correctDirection: "down" }
+    ],
+    [
+      { type: "empty" },
+      { type: "empty" },
+      { type: "empty" },
+      { type: "empty" },
+      { type: "goal" }
+    ]
+  ],
+  // Grid 3
+  [
+    [
+      { type: "arrow", correctDirection: "right" },
+      { type: "empty" },
+      { type: "block" },
+      { type: "arrow" }, 
+      { type: "arrow", direction: "right", correctDirection: "down" }
+    ],
+    [
+      { type: "arrow", correctDirection: "right" },
+      { type: "block",},
+      { type: "arrow", correctDirection: "right" },
+      { type: "arrow", direction: "right", correctDirection: "down" },
+      { type: "arrow", direction: "left", correctDirection: "left" }
+    ],
+    [
+      { type: "empty" },
+      { type: "empty" },
+      { type: "arrow", direction: "left", correctDirection: "right" },
+      { type: "arrow", direction: "left", correctDirection: "down" },
+      { type: "block" }
+    ],
+    [
+      { type: "block" },
+      { type: "arrow" }, 
+      { type: "block" },
+      { type: "arrow", direction: "up", correctDirection: "right" },
+      { type: "arrow", direction: "down", correctDirection: "down" }
+    ],
+    [
+      { type: "empty" },
+      { type: "empty" },
+      { type: "goal" },
+      { type: "arrow", direction: "right", correctDirection: "left" },
+      { type: "arrow", direction: "up", correctDirection: "left" }
+    ]
+  ],
+  // Grid 4
+  [
+    [
+      { type: "empty" },
+      { type: "arrow", correctDirection: "down" },
+      { type: "block" },
+      { type: "arrow" },
+      { type: "arrow" } 
+    ],
+    [
+      { type: "block" },
+      { type: "arrow", correctDirection: "right" },
+      { type: "arrow", correctDirection: "down" },
+      { type: "block" },
+      { type: "block" }
+    ],
+    [
+      { type: "empty" },
+      { type: "empty" },
+      { type: "arrow", direction: "down", correctDirection: "right" },
+      { type: "arrow", direction: "left", correctDirection: "down" },
+      { type: "arrow",}
+    ],
+    [
+      { type: "empty" },
+      { type: "block" },
+      { type: "block" },
+      { type: "arrow", direction: "up", correctDirection: "down" }, 
+      { type: "arrow"}
+    ],
+    [
+      { type: "empty" },
+      { type: "block" },
+      { type: "goal" },
+      { type: "arrow", direction: "right", correctDirection: "left" },
+      { type: "arrow"}
+    ]
+  ],
+  // Grid 5
+  [
+    [
+      { type: "block", },
+      { type: "empty" },
+      { type: "empty" },
+      { type: "arrow", direction: "down", correctDirection: "down" },
+      { type: "arrow", direction: "right", correctDirection: "left" } 
+    ],
+    [
+      { type: "goal" },
+      { type: "arrow", direction: "up", correctDirection: "left" },
+      { type: "arrow", direction: "left", correctDirection: "left" },
+      { type: "arrow", correctDirection: "left" },
+      { type: "block" }
+    ],
+    [
+      { type: "empty" },
+      { type: "empty" },
+      { type: "block" },
+      { type: "arrow"},
+      { type: "arrow" }
+    ],
+    [
+      { type: "block" },
+      { type: "arrow",},
+      { type: "arrow" }, 
+      { type: "block" },
+      { type: "empty" }
+    ],
+    [
+      { type: "empty" },
+      { type: "empty" },
+      { type: "empty" },
+      { type: "empty" },
+      { type: "empty" }
+    ]
+  ]
+];
+
+const getRandomGrid = (): CellData[][] => {
+  const template = gridTemplates[Math.floor(Math.random() * gridTemplates.length)];
+  return template.map(row =>
+    row.map(cell =>
+      cell.type === "arrow"
+        ? (() => {
+            const direction = randomDirection();
+            return {
+              ...cell,
+              direction,
+              solved: cell.correctDirection ? direction === cell.correctDirection : false
+            };
+          })()
+        : cell
+    )
+  );
+};
+
+export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) {
+  const [level, setLevel] = useState(1);
+  const [grid, setGrid] = useState<CellData[][]>(getRandomGrid());
+  const [timeLeft, setTimeLeft] = useState(10);
+  const [gameSolved, setGameSolved] = useState(false);
+
+  
+  const isGameComplete = grid.every(row =>
+    row.every(cell =>
+      cell.type !== "arrow" || !cell.correctDirection || cell.solved
+    )
+  );
+
+
+  useEffect(() => {
+    if (gameSolved || timeLeft <= 0) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft(prev => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft, gameSolved]);
+
+
+  useEffect(() => {
+    if (isGameComplete && !gameSolved) {
+      setGameSolved(true);
+      setTimeout(() => {
+        if (level === 3) {
+          localStorage.setItem('switchboardResult', 'solved');
+          onWin(timeLeft);
+        } else {
+      
+          setLevel(prev => prev + 1);
+          setGrid(getRandomGrid());
+          setTimeLeft(10);
+          setGameSolved(false);
+        }
+      }, 500);
+    }
+  }, [isGameComplete, gameSolved, timeLeft, level, onWin]);
+
+
+  useEffect(() => {
+    if (timeLeft <= 0 && !gameSolved) {
+      onLose();
+    }
+  }, [timeLeft, gameSolved, onLose]);
 
   const rotate = (dir: Direction): Direction =>
     directions[(directions.indexOf(dir) + 1) % 4];
 
-  const handleClick = (x: number, y: number) => {
+  const handleCellClick = (x: number, y: number) => {
+    if (gameSolved || timeLeft <= 0) return;
+
     setGrid(prev =>
       prev.map((row, yy) =>
         row.map((cell, xx) => {
           if (xx === x && yy === y && cell.type === "arrow") {
-            return { ...cell, direction: rotate(cell.direction!) };
+            const newDir = rotate(cell.direction!);
+            return {
+              ...cell,
+              direction: newDir,
+              solved: cell.correctDirection ? newDir === cell.correctDirection : false
+            };
           }
           return cell;
         })
@@ -73,23 +308,22 @@ export default function ArrowMinigame() {
   };
 
   return (
-    <div className={styles.arrowGame}>
+    <div className={styles.switchboard}>
+      <div className={styles.levelInfo}>
+        <div className={styles.levelText}>Level: {level}/3</div>
+        <div className={`${styles.timeDisplay} ${timeLeft <= 5 ? styles.timeCritical : styles.timeNormal}`}>
+          Time: {timeLeft}s
+        </div>
+      </div>
+
       <div className={styles.grid}>
         {grid.map((row, y) =>
           row.map((cell, x) => (
-            <div
+            <Cell
               key={`${x}-${y}`}
-              className={`${styles.cell} ${styles[cell.type]}`}
-              onClick={() => handleClick(x, y)}
-            >
-              {cell.type === "arrow" && (
-                <div
-                  className={`${styles.arrow} ${styles[cell.direction!]} ${
-                    styles[cell.color!]
-                  }`}
-                />
-              )}
-            </div>
+              cell={cell}
+              onClick={() => handleCellClick(x, y)}
+            />
           ))
         )}
       </div>

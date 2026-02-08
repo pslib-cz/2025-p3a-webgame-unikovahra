@@ -4,34 +4,35 @@ import ScoreCounter from '../components/ui/ScoreCounter'
 import { useNavigate } from 'react-router-dom'
 import SwitchboardContent from '../components/minigames/switchboard/SwitchboardContent'
 import { loadProgress, saveProgress } from '../types/storage'
+import { showAchievement } from '../types/achievements'
 const SwitchboardPage = () => {
   const navigate = useNavigate();
   const roomId = 1;
 
 
-  const handleSuccess = () => {
+  const handleSuccess = (timeLeft: number) => {
     const progress = loadProgress();
     saveProgress({
       currentPath: '/minigame/finish/1/true',
       completedMinigames: [...(progress?.completedMinigames || []), 'switchboard']
     });
-    navigate('/minigame/finish/1/true');
+
+    if (timeLeft > 5) {
+      showAchievement('speedrunner');
+    }
+
+    showAchievement('first_minigame');
+
+    navigate('/minigame/finish/1/true', { replace: true });
   };
 
+  const handleLose = () => {
+    navigate(`/minigame/finish/${roomId}/false`);
+  };
 
   return (
     <>
-      <SwitchboardContent />
-      <Button
-        text="Simulovat úspěch"
-        onClick={handleSuccess}
-        color="blue"
-      />
-      <Button
-        text="Simulovat neúspěch"
-        onClick={() => navigate(`/minigame/finish/${roomId}/false`)}
-        color="white"
-      />
+      <SwitchboardContent onWin={handleSuccess} onLose={handleLose} />
       <ScoreCounter style="styled" />
     </>
   )

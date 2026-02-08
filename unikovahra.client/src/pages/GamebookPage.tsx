@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Fetcher } from "../components/Fetcher";
 import Loader from "../components/ui/Loader";
 import { Error } from "../components/ui/Error";
 import GamebookContent from "../components/minigames/gamebook/GamebookContent";
+import { loadProgress } from "../types/storage";
 
 type StoryNodeDto = {
   id: number;
@@ -19,18 +21,24 @@ const GamebookPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const nodeId = Number(id ?? 1);
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  useEffect(() => {
+    const progress = loadProgress();
+    const completedMinigames = progress?.completedMinigames || [];
+    if (completedMinigames.includes("moneygrab")) {
+      navigate(progress?.currentPath || "/rules", { replace: true });
+    }
+  }, [navigate]);
 
+  const nodeId = Number(id ?? 1);
   return (
     <Fetcher<StoryNodeDto>
-      url={`${API_BASE_URL}/api/story/${nodeId}`}
+      url={`/api/story/${nodeId}`}
       dependencies={[nodeId]}
     >
       {({ data, loading, error }) => (
         <div className="wrap wrap--centered">
           {loading && <Loader />}
-          {error && <Error />}
+          {error && <Error message={error.message} />}
 
           {data && (
             <GamebookContent

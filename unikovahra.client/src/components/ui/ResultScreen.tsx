@@ -17,7 +17,7 @@ const ResultScreen = ({ title, message, buttonText, buttonColor, onButtonClick }
 
       // const scoreRef = useRef<ScoreCounterHandle>(null);
   return (
-    <div className="wrap wrap--centered wrap--fullycentered">
+    <div className="wrap wrap--centered wrap--fullycentered wrap--mobile">
       <h2 className={styles.title}>{title}</h2>
       <p className={styles.message}>{message}</p>
       {/* <ScoreCounter style={"notStyled"}/> */}

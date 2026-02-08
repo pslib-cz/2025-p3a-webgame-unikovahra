@@ -1,80 +1,95 @@
-.arrowGame {
+
+.switchboard {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #0b0d10;
+  padding: 20px;
+  border-radius: 1rem;
 }
 
+.levelInfo {
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.levelText {
+  margin: 0;
+}
+
+.timeDisplay {
+  font-size: 20px;
+  margin-top: 8px;
+  margin: 0;
+}
+
+.timeCritical {
+  color: var(--red);
+}
+
+.timeNormal {
+  color: var(--green);
+}
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(5, 72px);
-  grid-template-rows: repeat(5, 72px);
-  gap: 8px;
+  grid-template-columns: repeat(5, 60px);
+  grid-template-rows: repeat(5, 60px);
+  gap: 0.5rem;
 }
 
-
 .cell {
-  width: 72px;
-  height: 72px;
+  width: 60px;
+  height: 60px;
   border-radius: 6px;
-  background: #e5e5e5;
+  background: #12151a;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 0 1px #1e222b;
 }
 
-.cell:hover {
+.cell.arrow {
   cursor: pointer;
 }
 
-.block {
-  background: #000;
+.cell.empty {
+  background: #0f1217;
 }
 
-.goal {
-  background: #d4a017;
+.cell.block {
+  background: #050607;
+  box-shadow: inset 0 0 0 1px #000;
 }
 
-.empty {
-  background: #e5e5e5;
+.cell.goal {
+  background: radial-gradient(circle, #1b2f1b, #0a120a);
+  box-shadow: 0 0 8px var(--green);
+  animation: solvedPulse 0.8s ease-in-out infinite alternate;
 }
 
-
-.arrow {
-  width: 40px;
-  height: 40px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transition: transform 0.2s ease;
-background-image: url('public/images/arrow.svg');}
-
-
-.up {
-  transform: rotate(-90deg);
-}
-
-.right {
-  transform: rotate(0deg);
-}
-
-.down {
-  transform: rotate(90deg);
-}
-
-.left {
-  transform: rotate(180deg);
-}
-
-
-.green {
-
-}
-
-.red {
-
-}
+.up    { transform: rotate(0deg); }
+.right { transform: rotate(90deg); }
+.down  { transform: rotate(180deg); }
+.left  { transform: rotate(270deg); }
 
 .dark {
+  border-bottom-color: #2c2f36;
+}
 
+.green {
+  border-bottom-color: var(--green);
+  filter: drop-shadow(0 0 6px var(--green));
+}
+
+
+@keyframes solvedPulse {
+  from {
+    box-shadow: 0 0 6px rgba(60, 255, 135, 0.4);
+  }
+  to {
+    box-shadow: 0 0 12px rgba(60, 255, 135, 0.8);
+  }
 }
