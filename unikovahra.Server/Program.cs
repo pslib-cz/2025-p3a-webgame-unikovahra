@@ -37,6 +37,18 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Ensure database directory exists
+var dbPath = builder.Configuration.GetConnectionString("DefaultConnection");
+if (dbPath != null && dbPath.Contains("Data Source="))
+{
+    var dataSource = dbPath.Replace("Data Source=", "").Split(';')[0];
+    var directory = Path.GetDirectoryName(dataSource);
+    if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+    {
+        Directory.CreateDirectory(directory);
+    }
+}
+
 // Apply migrations on startup
 using (var scope = app.Services.CreateScope())
 {
