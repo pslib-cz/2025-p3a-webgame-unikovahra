@@ -37,10 +37,12 @@ const KeylockPage = () => {
 
   return (
     <>
+    <div className='wrap wrap--centered wrap--fullycentered'>
       <Keylock
         onSuccess={handleSuccess}
         onFail={handleFail}
       />
+      </div>
       <ScoreCounter style="styled" />
     </>
   )

@@ -32,7 +32,9 @@ const SwitchboardPage = () => {
 
   return (
     <>
+    <div className='wrap wrap--centered wrap--fullycentered'>
       <SwitchboardContent onWin={handleSuccess} onLose={handleLose} />
+      </div>
       <ScoreCounter style="styled" />
     </>
   )
