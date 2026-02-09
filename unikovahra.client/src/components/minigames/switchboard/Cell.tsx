@@ -13,7 +13,8 @@ export default function Cell({ cell, onClick }: Props) {
       className={[
         styles.cell,
         styles[cell.type],
-        cell.solved ? styles.solved : ""
+        cell.solved ? styles.solved : "",
+        cell.isStart ? styles.start : ""
       ].join(" ")}
       onClick={cell.type === "arrow" ? onClick : undefined}
     >

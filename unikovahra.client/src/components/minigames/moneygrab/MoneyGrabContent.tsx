@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./MoneyGrabContent.module.css";
-import MusicPlayer from "../../../context/MusicContext";
 
 type Bill = {
     id: number;
@@ -16,6 +15,7 @@ type MoneyGrabProps = {
 
 const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFinish }) => {
     const gameRef = useRef<HTMLDivElement>(null);
+    const collectBillSoundRef = useRef<HTMLAudioElement | null>(null);
 
     const [light, setLight] = useState({ x: 0, y: 0 });
     const [bills, setBills] = useState<Bill[]>([]);
@@ -24,9 +24,11 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
     const [finished, setFinished] = useState(false);
     const [collectedAmount, setCollectedAmount] = useState(0);
     const TotalBills = 20;
-    const collectBillSound = new Audio("/sfx/money-grab.mp3");
-    collectBillSound.volume = 0.3;
-    collectBillSound.playbackRate = 1 + Math.random() * 0.5;
+    
+    useEffect(() => {
+        collectBillSoundRef.current = new Audio("/sfx/money-grab.mp3");
+        collectBillSoundRef.current.volume = 0.3;
+    }, []);
 
     useEffect(() => {
         const generated: Bill[] = Array.from({ length: TotalBills }).map(
@@ -135,7 +137,11 @@ const MoneyGrabContent: React.FC<MoneyGrabProps> = ({ timelimit, onCollect, onFi
                         style={{ left: `${bill.x}%`, top: `${bill.y}%` }}
                         onClick={() => {
                             collectBill(bill.id);
-                            collectBillSound.play();
+                            if (collectBillSoundRef.current) {
+                                collectBillSoundRef.current.playbackRate = 1 + Math.random() * 0.5;
+                                collectBillSoundRef.current.currentTime = 0;
+                                collectBillSoundRef.current.play().catch(() => {});
+                            }
                         }}
                     >
                         $$$

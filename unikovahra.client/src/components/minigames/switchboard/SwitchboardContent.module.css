@@ -72,6 +72,12 @@
   animation: solvedPulse 0.8s ease-in-out infinite alternate;
 }
 
+.cell.start {
+  background: radial-gradient(circle, #1a2533, #0a0f16);
+  box-shadow: 0 0 8px rgba(60, 150, 255, 0.6);
+  animation: startPulse 0.8s ease-in-out infinite alternate;
+}
+
 .up    { transform: rotate(0deg); }
 .right { transform: rotate(90deg); }
 .down  { transform: rotate(180deg); }
@@ -93,5 +99,14 @@
   }
   to {
     box-shadow: 0 0 12px rgba(60, 255, 135, 0.8);
+  }
+}
+
+@keyframes startPulse {
+  from {
+    box-shadow: 0 0 6px rgba(60, 150, 255, 0.4);
+  }
+  to {
+    box-shadow: 0 0 12px rgba(60, 150, 255, 0.8);
   }
 }

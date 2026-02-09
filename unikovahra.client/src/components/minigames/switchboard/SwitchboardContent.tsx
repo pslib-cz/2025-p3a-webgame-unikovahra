@@ -9,6 +9,7 @@ export interface CellData {
   direction?: Direction;
   correctDirection?: Direction;
   solved?: boolean;
+  isStart?: boolean;
 }
 
 type SwitchboardProps = {
@@ -26,7 +27,7 @@ const gridTemplates: CellData[][][] = [
   [
     [
       { type: "empty" },
-      { type: "arrow", direction: "up", correctDirection: "down" },
+      { type: "arrow", direction: "down", correctDirection: "down" },
       { type: "block" },
       { type: "empty" },
       { type: "empty" }
@@ -64,7 +65,7 @@ const gridTemplates: CellData[][][] = [
   [
     [
       { type: "empty" },
-      { type: "arrow", correctDirection: "down" },
+      { type: "arrow",direction:"down" ,correctDirection: "down" },
       { type: "block" },
       { type: "arrow" },
       { type: "arrow" } 
@@ -105,7 +106,7 @@ const gridTemplates: CellData[][][] = [
       { type: "empty" },
       { type: "block" },
       { type: "arrow" }, 
-      { type: "arrow", direction: "right", correctDirection: "down" }
+      { type: "arrow", direction: "down", correctDirection: "down" }
     ],
     [
       { type: "arrow"},
@@ -140,7 +141,7 @@ const gridTemplates: CellData[][][] = [
   [
     [
       { type: "empty" },
-      { type: "arrow", correctDirection: "down" },
+      { type: "arrow", direction: "down", correctDirection: "down" },
       { type: "block" },
       { type: "arrow" },
       { type: "arrow" } 
@@ -181,7 +182,7 @@ const gridTemplates: CellData[][][] = [
       { type: "empty" },
       { type: "empty" },
       { type: "arrow", direction: "down", correctDirection: "down" },
-      { type: "arrow", direction: "right", correctDirection: "left" } 
+      { type: "arrow"} 
     ],
     [
       { type: "goal" },
@@ -216,15 +217,26 @@ const gridTemplates: CellData[][][] = [
 
 const getRandomGrid = (): CellData[][] => {
   const template = gridTemplates[Math.floor(Math.random() * gridTemplates.length)];
+  let firstArrowSet = false;
   return template.map(row =>
     row.map(cell =>
       cell.type === "arrow"
         ? (() => {
-            const direction = randomDirection();
+
+            let direction: Direction;
+            const isFirstArrow = !firstArrowSet && !!cell.correctDirection;
+            if (isFirstArrow && cell.correctDirection) {
+              direction = cell.correctDirection;
+              firstArrowSet = true;
+            } else {
+              direction = randomDirection();
+            }
+
             return {
               ...cell,
               direction,
-              solved: cell.correctDirection ? direction === cell.correctDirection : false
+              solved: cell.correctDirection ? direction === cell.correctDirection : false,
+              isStart: isFirstArrow
             };
           })()
         : cell
@@ -261,19 +273,21 @@ export default function SwitchboardContent({ onWin, onLose }: SwitchboardProps) 
 
   useEffect(() => {
     if (isGameComplete && !gameSolved) {
-      setGameSolved(true);
       setTimeout(() => {
-        if (level === 3) {
-          localStorage.setItem('switchboardResult', 'solved');
-          onWin(timeLeft);
-        } else {
-      
-          setLevel(prev => prev + 1);
-          setGrid(getRandomGrid());
-          setTimeLeft(10);
-          setGameSolved(false);
-        }
-      }, 500);
+        setGameSolved(true);
+        setTimeout(() => {
+          if (level === 3) {
+            localStorage.setItem('switchboardResult', 'solved');
+            onWin(timeLeft);
+          } else {
+        
+            setLevel(prev => prev + 1);
+            setGrid(getRandomGrid());
+            setTimeLeft(10);
+            setGameSolved(false);
+          }
+        }, 500);
+      }, 0);
     }
   }, [isGameComplete, gameSolved, timeLeft, level, onWin]);
 

@@ -87,7 +87,7 @@ export default function MoneyGrabPage() {
                 onCollect={handleCollect}
                 onFinish={handleFinish}
             />
-            <MusicPlayer src="../sfx/background-noise.mp3" volume={0.04} />
+            <MusicPlayer src="/sfx/background-noise.mp3" volume={0.04} />
             <ScoreCounter ref={scoreRef} style="styled" saveToStorage={false} />
         </>
     );

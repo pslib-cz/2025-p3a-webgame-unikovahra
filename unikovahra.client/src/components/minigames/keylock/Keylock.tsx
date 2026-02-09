@@ -9,7 +9,7 @@ type Props = {
 
 const Rows = 7
 const Speed = 450
-const Timer = 35
+const Timer = 30;
 
 const Keylock: React.FC<Props> = ({ onSuccess, onFail }) => {
   const pin = localStorage.getItem('puzzlePin') ?? '0000'
@@ -25,7 +25,8 @@ const Keylock: React.FC<Props> = ({ onSuccess, onFail }) => {
   const [result, setResult] = useState<'idle' | 'correct' | 'wrong'>('idle')
   const [stopped, setStopped] = useState(false)
   const [timeLeft, setTimeLeft] = useState(Timer)
-
+const successAudio = new Audio('/sfx/correct.mp3')
+const failAudio = new Audio('/sfx/error-modern.mp3')
   useEffect(() => {
     if (timeLeft <= 0) {
       onFail()
@@ -68,6 +69,7 @@ const Keylock: React.FC<Props> = ({ onSuccess, onFail }) => {
 
     if (value === pinDigits[activeCol]) {
       setResult('correct')
+      successAudio.play()
 
       setTimeout(() => {
         if (activeCol === 3) {
@@ -80,11 +82,11 @@ const Keylock: React.FC<Props> = ({ onSuccess, onFail }) => {
       }, 700)
     } else {
       setResult('wrong')
-      setTimeLeft(t => Math.max(0, t - 5))
+      failAudio.play()
       setTimeout(() => {
         setResult('idle')
         setStopped(false)
-      }, 700)
+      },1000)
     }
   }
 
